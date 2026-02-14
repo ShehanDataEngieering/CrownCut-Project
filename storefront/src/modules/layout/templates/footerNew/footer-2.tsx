@@ -55,9 +55,9 @@ const FooterTwo = () => {
                     </div>
                     <div className="tp-footer-widget-content">
                       <div className="tp-footer-talk mb-20">
-                        <span>Got Questions? Call us</span>
+                        <span>Got Questions? Call / WhatsApp</span>
                         <h4>
-                          <a href="tel:670-413-90-762">+670 413 90 762</a>
+                          <a href="tel:0760889995">076 088 99 95</a>
                         </h4>
                       </div>
                       <div className="tp-footer-contact">
@@ -69,8 +69,8 @@ const FooterTwo = () => {
                           </div>
                           <div className="tp-footer-contact-content">
                             <p>
-                              <a href="mailto:shofy@support.com">
-                                swe.hamedhasan@gmail.com
+                              <a href="mailto:crowncutgems@gmail.com">
+                                crowncutgems@gmail.com
                               </a>
                             </p>
                           </div>
@@ -84,11 +84,10 @@ const FooterTwo = () => {
                           <div className="tp-footer-contact-content">
                             <p>
                               <a
-                                href="https://www.google.com/maps/place/Sleepy+Hollow+Rd,+Gouverneur,+NY+13642,+USA/@44.3304966,-75.4552367,17z/data=!3m1!4b1!4m6!3m5!1s0x4cccddac8972c5eb:0x56286024afff537a!8m2!3d44.3304928!4d-75.453048!16s%2Fg%2F1tdsjdj4"
+                                href="https://www.google.com/maps/search/?api=1&query=Studieg%C3%A5ngen%208%2C%2041681%20Gothenburg%2C%20Sweden"
                                 target="_blank"
                               >
-                                79 Sleepy Hollow St. <br /> Jamaica, New York
-                                1432
+                                Studiegången 8, 41681 <br /> Gothenburg, Sweden
                               </a>
                             </p>
                           </div>
