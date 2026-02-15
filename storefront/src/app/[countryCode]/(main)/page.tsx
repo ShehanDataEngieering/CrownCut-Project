@@ -13,11 +13,11 @@ export const metadata: Metadata = {
     "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
 }
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ countryCode: string }>
-}) {
+type HomePageProps = {
+  params: { countryCode: string } | Promise<{ countryCode: string }>
+}
+
+export default async function Home({ params }: HomePageProps) {
   const { countryCode } = await params
   const collections = await getCollectionsWithProducts(countryCode)
   const region = await getRegion(countryCode)

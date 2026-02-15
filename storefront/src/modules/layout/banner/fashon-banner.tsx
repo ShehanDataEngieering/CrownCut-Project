@@ -1,8 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
-import type { StaticImageData } from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import type { SwiperProps } from "swiper/react"
@@ -16,7 +14,7 @@ type SliderItem = {
   id: number
   subtitle: string
   title: string
-  img: StaticImageData
+  img: { src: string }
 }
 
 // slider data
@@ -123,15 +121,11 @@ const FashionBanner = () => {
               {sliderData.map((item) => (
                 <SwiperSlide key={item.id} className="h-full">
                   <div className="tp-slider-item-2 relative bg-gray-100 flex items-center justify-center rounded-none overflow-hidden w-full h-full">
-                    <div className="w-full h-full relative">
-                      <Image
-                        src={item.img}
-                        alt="slider img"
-                        priority
-                        fill
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
+                    <img
+                      src={item.img.src}
+                      alt="slider img"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
                   </div>
                 </SwiperSlide>
               ))}

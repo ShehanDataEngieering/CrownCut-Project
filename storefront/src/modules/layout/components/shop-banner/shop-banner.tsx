@@ -2,7 +2,6 @@
 
 import React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
@@ -84,11 +83,10 @@ function BannerItem({
               <div
                 style={{ width: "100%", height: "100%", position: "relative" }}
               >
-                <Image
-                  src={s}
+                <img
+                  src={s.src}
                   alt={`banner-slide-${i}`}
-                  fill
-                  style={{ objectFit: "cover" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
             </SwiperSlide>

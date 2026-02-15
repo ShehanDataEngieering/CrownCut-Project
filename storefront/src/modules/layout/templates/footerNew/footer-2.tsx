@@ -211,7 +211,7 @@ const FooterTwo = () => {
                   <div className="col-md-6">
                     <div className="tp-footer-payment text-md-end">
                       <p>
-                        <Image src={pay} alt="pay" />
+                        <img src={pay.src} alt="pay" style={{ height: "auto", width: "auto", maxWidth: "100%" }} />
                       </p>
                     </div>
                   </div>

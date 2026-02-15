@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import useSticky from "@hooks/use-sticky"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
@@ -27,12 +26,17 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                 <div className="col-xl-2 col-lg-2 col-6">
                   <div className="logo">
                     <Link href="/">
-                      <Image
-                        className="logo-light"
-                        src="/assets/img/logo/crowncut-logonb.png"
+                      <img
+                        src={"/assets/img/logo/crowncut-logonb.png"}
                         alt="logo"
                         width={100}
                         height={100}
+                        style={{
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "contain",
+                          display: "block",
+                        }}
                       />
                     </Link>
                   </div>
