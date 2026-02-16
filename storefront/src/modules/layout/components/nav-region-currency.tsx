@@ -5,7 +5,6 @@ import { useParams, usePathname } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import CountrySelect from "./country-select"
 import { useToggleState } from "@medusajs/ui"
-import { updateRegion } from "@lib/data/cart"
 
 export default function NavRegionCurrency({
   regions,
@@ -13,32 +12,17 @@ export default function NavRegionCurrency({
   regions: HttpTypes.StoreRegion[] | null
 }) {
   const toggleState = useToggleState()
-  const { countryCode } = useParams<{ countryCode: string }>()
+  const params = useParams<{ countryCode: string }>()
+  const countryCode = Array.isArray(params.countryCode) ? params.countryCode[0] : params.countryCode
   const pathname = usePathname()
 
   const currentPath = useMemo(() => {
-    if (!countryCode) return "/"
-    return pathname.split(`/${countryCode}`)[1] || "/"
+    if (!countryCode || !pathname.startsWith(`/${countryCode}`)) {
+      return pathname
+    }
+    // Remove the country code prefix and return the rest
+    return pathname.slice(`/${countryCode}`.length) || "/"
   }, [pathname, countryCode])
-
-  const countries = useMemo(() => {
-    const list: { iso2: string; label: string }[] = []
-    regions?.forEach((r) => {
-      r.countries?.forEach((c) => {
-        if (c.iso_2)
-          list.push({
-            iso2: c.iso_2,
-            label: c.display_name || c.iso_2.toUpperCase(),
-          })
-      })
-    })
-    // Deduplicate by iso2
-    const map = new Map<string, { iso2: string; label: string }>()
-    list.forEach((c) => map.set(c.iso2, c))
-    return Array.from(map.values()).sort((a, b) =>
-      a.label.localeCompare(b.label)
-    )
-  }, [regions])
 
   const currencyByCountry = useMemo(() => {
     const map = new Map<string, string>()
@@ -50,40 +34,20 @@ export default function NavRegionCurrency({
     return map
   }, [regions])
 
-  const currencies = useMemo(() => {
-    const set = new Set<string>()
-    regions?.forEach((r) => {
-      if (r.currency_code) set.add(r.currency_code.toUpperCase())
-    })
-    return Array.from(set)
-  }, [regions])
-
   const [selectedCurrency, setSelectedCurrency] = useState<string>("")
 
   useEffect(() => {
     const cur = countryCode ? currencyByCountry.get(countryCode) : ""
     if (cur && cur !== selectedCurrency) setSelectedCurrency(cur)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryCode, currencyByCountry])
+  }, [countryCode, currencyByCountry, selectedCurrency])
 
-  const onChangeCurrency = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newCur = e.target.value
-    setSelectedCurrency(newCur)
-    // Find a region with this currency and pick a country from it
-    const region = regions?.find(
-      (r) => r.currency_code?.toUpperCase() === newCur
-    )
-    const fallbackCountry = region?.countries?.[0]?.iso_2
-    if (fallbackCountry) {
-      await updateRegion(fallbackCountry, currentPath)
-    }
+  if (!regions?.length) {
+    return null
   }
-
-  if (!regions?.length) return null
 
   return (
     <div className="flex items-center gap-3">
-      {/* Shipping to: country selector using existing component */}
+      {/* Country selector - currency auto-determined by backend region */}
       <div
         onMouseEnter={toggleState.open}
         onMouseLeave={toggleState.close}
@@ -97,22 +61,12 @@ export default function NavRegionCurrency({
         </div>
       </div>
 
-      {/* Currency dropdown */}
-      <label className="hidden small:inline-flex items-center gap-2 text-sm">
-        <span className="text-ui-fg-subtle">Currency</span>
-        <select
-          value={selectedCurrency}
-          onChange={onChangeCurrency}
-          className="h-8 px-2 rounded-md border border-ui-border-base bg-white"
-          aria-label="Select currency"
-        >
-          {currencies.map((code) => (
-            <option key={code} value={code}>
-              {code}
-            </option>
-          ))}
-        </select>
-      </label>
+      {/* Display current currency (read-only, determined by backend) */}
+      {selectedCurrency && (
+        <div className="hidden small:inline-flex items-center gap-2 text-sm text-ui-fg-subtle">
+          <span>{selectedCurrency}</span>
+        </div>
+      )}
     </div>
   )
 }

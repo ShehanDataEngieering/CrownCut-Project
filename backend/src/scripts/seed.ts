@@ -28,7 +28,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
   const salesChannelModuleService = container.resolve(Modules.SALES_CHANNEL);
   const storeModuleService = container.resolve(Modules.STORE);
 
-  const countries = ["gb", "de", "dk", "se", "fr", "es", "it"];
+  const countries = ["gb", "de", "dk", "se", "fr", "es", "it", "fi"];
 
   logger.info("Seeding store data...");
   const [store] = await storeModuleService.listStores();
@@ -62,6 +62,12 @@ export default async function seedDemoData({ container }: ExecArgs) {
             is_default: true,
           },
           {
+            currency_code: "sek",
+          },
+          {
+            currency_code: "dkk",
+          },
+          {
             currency_code: "usd",
           },
         ],
@@ -74,15 +80,30 @@ export default async function seedDemoData({ container }: ExecArgs) {
     input: {
       regions: [
         {
-          name: "Europe",
+          name: "EU",
           currency_code: "eur",
-          countries,
+          countries: ["gb", "de", "fr", "es", "it", "fi"],
+          payment_providers: ["pp_system_default"],
+        },
+        {
+          name: "Sweden",
+          currency_code: "sek",
+          countries: ["se"],
+          payment_providers: ["pp_system_default"],
+        },
+        {
+          name: "Denmark",
+          currency_code: "dkk",
+          countries: ["dk"],
           payment_providers: ["pp_system_default"],
         },
       ],
     },
   });
-  const region = regionResult[0];
+  const euRegion = regionResult.find(r => r.currency_code === "eur");
+  const seRegion = regionResult.find(r => r.currency_code === "sek");
+  const dkRegion = regionResult.find(r => r.currency_code === "dkk");
+  const region = euRegion; // Keep for backward compatibility
   logger.info("Finished seeding regions.");
 
   logger.info("Seeding tax regions...");
@@ -187,6 +208,10 @@ export default async function seedDemoData({ container }: ExecArgs) {
             country_code: "it",
             type: "country",
           },
+          {
+            country_code: "fi",
+            type: "country",
+          },
         ],
       },
     ],
@@ -224,8 +249,24 @@ export default async function seedDemoData({ container }: ExecArgs) {
             amount: 10,
           },
           {
-            region_id: region.id,
+            currency_code: "sek",
+            amount: 100,
+          },
+          {
+            currency_code: "dkk",
+            amount: 75,
+          },
+          {
+            region_id: euRegion.id,
             amount: 10,
+          },
+          {
+            region_id: seRegion.id,
+            amount: 100,
+          },
+          {
+            region_id: dkRegion.id,
+            amount: 75,
           },
         ],
         rules: [
@@ -255,15 +296,31 @@ export default async function seedDemoData({ container }: ExecArgs) {
         prices: [
           {
             currency_code: "usd",
-            amount: 10,
+            amount: 15,
           },
           {
             currency_code: "eur",
-            amount: 10,
+            amount: 15,
           },
           {
-            region_id: region.id,
-            amount: 10,
+            currency_code: "sek",
+            amount: 150,
+          },
+          {
+            currency_code: "dkk",
+            amount: 110,
+          },
+          {
+            region_id: euRegion.id,
+            amount: 15,
+          },
+          {
+            region_id: seRegion.id,
+            amount: 150,
+          },
+          {
+            region_id: dkRegion.id,
+            amount: 110,
           },
         ],
         rules: [

@@ -58,20 +58,24 @@ async function getCountryCode(
   try {
     let countryCode
 
-    const vercelCountryCode = request.headers
-      .get("x-vercel-ip-country")
-      ?.toLowerCase()
-
     const urlCountryCode = request.nextUrl.pathname.split("/")[1]?.toLowerCase()
 
+    // First, check if URL already has a valid country code
     if (urlCountryCode && regionMap.has(urlCountryCode)) {
       countryCode = urlCountryCode
-    } else if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
-      countryCode = vercelCountryCode
-    } else if (regionMap.has(DEFAULT_REGION)) {
-      countryCode = DEFAULT_REGION
-    } else if (regionMap.keys().next().value) {
-      countryCode = regionMap.keys().next().value
+    } else {
+      // Otherwise, determine from IP or use default
+      const vercelCountryCode = request.headers
+        .get("x-vercel-ip-country")
+        ?.toLowerCase()
+
+      if (vercelCountryCode && regionMap.has(vercelCountryCode)) {
+        countryCode = vercelCountryCode
+      } else if (regionMap.has(DEFAULT_REGION)) {
+        countryCode = DEFAULT_REGION
+      } else if (regionMap.keys().next().value) {
+        countryCode = regionMap.keys().next().value
+      }
     }
 
     return countryCode

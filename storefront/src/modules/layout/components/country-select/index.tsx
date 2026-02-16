@@ -26,12 +26,23 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
     | undefined
   >(undefined)
 
-  const { countryCode } = useParams()
-  const currentPath = usePathname().split(`/${countryCode}`)[1]
+  const params = useParams()
+  const countryCode = Array.isArray(params.countryCode) ? params.countryCode[0] : params.countryCode
+  const pathname = usePathname()
+  
+  // Properly extract the page path by removing the country code prefix
+  const currentPath = useMemo(() => {
+    if (!countryCode || !pathname.startsWith(`/${countryCode}`)) {
+      return pathname
+    }
+    // Remove the country code prefix and return the rest
+    return pathname.slice(`/${countryCode}`.length) || "/"
+  }, [pathname, countryCode])
 
   const { state, close } = toggleState
 
   const options = useMemo(() => {
+    if (!regions || regions.length === 0) return []
     return regions
       ?.map((r) => {
         return r.countries?.map((c) => ({
@@ -41,21 +52,22 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
         }))
       })
       .flat()
+      .filter(Boolean)
       .sort((a, b) => (a?.label ?? "").localeCompare(b?.label ?? ""))
   }, [regions])
 
-
-  console.log(options)
   useEffect(() => {
-    if (countryCode) {
-      const option = options?.find((o) => o?.country === countryCode)
+    if (countryCode && options && options.length > 0) {
+      const option = options.find((o) => o?.country === countryCode)
       setCurrent(option)
     }
   }, [options, countryCode])
 
   const handleChange = (option: CountryOption) => {
-    updateRegion(option.country, currentPath)
-    close()
+    if (option && option.country) {
+      updateRegion(option.country, currentPath || "/")
+      close()
+    }
   }
 
   return (
@@ -63,11 +75,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
       <Listbox
         as="span"
         onChange={handleChange}
-        defaultValue={
-          countryCode
-            ? options?.find((o) => o?.country === countryCode)
-            : undefined
-        }
+        value={current || { country: "", region: "", label: "Select" }}
       >
         <Listbox.Button className="py-1 w-full">
           <div className="txt-compact-small flex items-start gap-x-2">
