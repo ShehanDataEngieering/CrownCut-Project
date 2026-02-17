@@ -1,10 +1,8 @@
 import React from "react"
-import Image from "next/image"
 import Link from "next/link"
 // internal
 
 import { Email, Location } from "@svg"
-import logo from "@assets/img/logo/logo.svg"
 import pay from "@assets/img/footer/footer-pay.png"
 
 const social_data = [
@@ -46,16 +44,34 @@ const FooterTwo = () => {
           <div className="tp-footer-top pt-95 pb-40">
             <div className="container">
               <div className="row">
-                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                   <div className="tp-footer-widget footer-col-4-1 mb-50">
                     <div className="tp-footer-logo">
                       <Link href="/">
-                        <Image src={logo} alt="logo" />
+                        <img
+                          src="/assets/img/logo/crowncut-logonb.png"
+                          alt="logo"
+                          width={200}
+                          height={200}
+                          style={{
+                            width: "200px",
+                            height: "200px",
+                            objectFit: "contain",
+                            display: "block",
+                          }}
+                        />
                       </Link>
                     </div>
                     <div className="tp-footer-widget-content">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-5 col-lg-5 col-md-8 col-sm-6">
+                  <div className="tp-footer-widget footer-col-4-2 mb-50">
+                    <h4 className="tp-footer-widget-title">Contact Us</h4>
+                    <div className="tp-footer-widget-content">
                       <div className="tp-footer-talk mb-20">
-                        <span>Contact Us</span>
                         <h4>Crowncut Gems International</h4>
                         <p className="mb-10">We’d love to hear from you.</p>
                         <p className="mb-10">
@@ -107,34 +123,7 @@ const FooterTwo = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                  <div className="tp-footer-widget footer-col-4-2 mb-50">
-                    <h4 className="tp-footer-widget-title">My Account</h4>
-                    <div className="tp-footer-widget-content">
-                      <ul>
-                        <li>
-                          <a href="#">Track Orders</a>
-                        </li>
-                        <li>
-                          <a href="#">Shipping</a>
-                        </li>
-                        <li>
-                          <a href="#">Wishlist</a>
-                        </li>
-                        <li>
-                          <a href="#">My Account</a>
-                        </li>
-                        <li>
-                          <a href="#">Order History</a>
-                        </li>
-                        <li>
-                          <a href="#">Returns</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-2 col-md-4 col-sm-5">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-5">
                   <div className="tp-footer-widget footer-col-4-3 mb-50">
                     <h4 className="tp-footer-widget-title">Infomation</h4>
                     <div className="tp-footer-widget-content">
@@ -161,7 +150,7 @@ const FooterTwo = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-7">
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-7">
                   <div className="tp-footer-widget footer-col-4-4 mb-50">
                     <h4 className="tp-footer-widget-title">Subcribe.</h4>
                     <div className="tp-footer-widget-content">
