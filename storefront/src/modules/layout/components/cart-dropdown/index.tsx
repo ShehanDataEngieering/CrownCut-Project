@@ -91,12 +91,9 @@ const CartDropdown = ({
         aria-label="Go to cart"
       >
         <CartTwo />
-        {totalItems > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-semibold text-white shadow animate-pulse">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
-            {totalItems}
-          </span>
-        )}
+        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center text-[10px] font-semibold text-ui-fg-base">
+          {totalItems}
+        </span>
       </LocalizedClientLink>
       <Popover className="relative lg:block hidden">
         <Popover.Button
@@ -105,23 +102,11 @@ const CartDropdown = ({
           data-testid="nav-cart-link"
           className="h-full hover:text-ui-fg-base pr-2 relative inline-flex flex-col items-center justify-center gap-1"
         >
-          
-          {
-         
-          
-          totalItems > 0 && (
-            <span className="text-[11px] font-semibold text-ui-fg-base">
-              {totalItems} {totalItems === 1 ? "item" : "items"}
-            </span>
-          )}
           <span className="relative inline-block">
             <CartTwo />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-semibold text-white shadow animate-pulse">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75 animate-ping"></span>
-                {totalItems}
-              </span>
-            )}
+            <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center text-[10px] font-semibold text-ui-fg-base">
+              {totalItems}
+            </span>
           </span>
         </Popover.Button>
       </Popover>

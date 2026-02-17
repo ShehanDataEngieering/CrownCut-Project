@@ -18,10 +18,8 @@ import { SubmitButton } from "../submit-button"
 
 const Addresses = ({
   cart,
-  customer,
 }: {
   cart: HttpTypes.StoreCart | null
-  customer: HttpTypes.StoreCustomer | null
 }) => {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -67,7 +65,6 @@ const Addresses = ({
         <form action={formAction}>
           <div className="pb-8">
             <ShippingAddress
-              customer={customer}
               checked={sameAsBilling}
               onChange={toggleSameAsBilling}
               cart={cart}

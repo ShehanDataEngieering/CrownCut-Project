@@ -1,10 +1,8 @@
 import React from "react"
-import Image from "next/image"
 import Link from "next/link"
 // internal
 
 import { Email, Location } from "@svg"
-import logo from "@assets/img/logo/logo.svg"
 import pay from "@assets/img/footer/footer-pay.png"
 
 const social_data = [
@@ -46,19 +44,44 @@ const FooterTwo = () => {
           <div className="tp-footer-top pt-95 pb-40">
             <div className="container">
               <div className="row">
-                <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                   <div className="tp-footer-widget footer-col-4-1 mb-50">
                     <div className="tp-footer-logo">
                       <Link href="/">
-                        <Image src={logo} alt="logo" />
+                        <img
+                          src="/assets/img/logo/crowncut-logonb.png"
+                          alt="logo"
+                          width={200}
+                          height={200}
+                          style={{
+                            width: "200px",
+                            height: "200px",
+                            objectFit: "contain",
+                            display: "block",
+                          }}
+                        />
                       </Link>
                     </div>
                     <div className="tp-footer-widget-content">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-5 col-lg-5 col-md-8 col-sm-6">
+                  <div className="tp-footer-widget footer-col-4-2 mb-50">
+                    <h4 className="tp-footer-widget-title">Contact Us</h4>
+                    <div className="tp-footer-widget-content">
                       <div className="tp-footer-talk mb-20">
-                        <span>Got Questions? Call us</span>
-                        <h4>
-                          <a href="tel:670-413-90-762">+670 413 90 762</a>
-                        </h4>
+                        <h4>Crowncut Gems International</h4>
+                        <p className="mb-10">We’d love to hear from you.</p>
+                        <p className="mb-10">
+                          For inquiries about gemstones, orders, or partnerships,
+                          please reach out using the details below.
+                        </p>
+                        <p>
+                          <strong>Phone / WhatsApp:</strong>{" "}
+                          <a href="tel:+46760889995">076 088 99 95</a>
+                        </p>
                       </div>
                       <div className="tp-footer-contact">
                         <div className="tp-footer-contact-item d-flex align-items-start">
@@ -69,8 +92,8 @@ const FooterTwo = () => {
                           </div>
                           <div className="tp-footer-contact-content">
                             <p>
-                              <a href="mailto:shofy@support.com">
-                                swe.hamedhasan@gmail.com
+                              <a href="mailto:crowncutgems@gmail.com">
+                                crowncutgems@gmail.com
                               </a>
                             </p>
                           </div>
@@ -84,47 +107,23 @@ const FooterTwo = () => {
                           <div className="tp-footer-contact-content">
                             <p>
                               <a
-                                href="https://www.google.com/maps/place/Sleepy+Hollow+Rd,+Gouverneur,+NY+13642,+USA/@44.3304966,-75.4552367,17z/data=!3m1!4b1!4m6!3m5!1s0x4cccddac8972c5eb:0x56286024afff537a!8m2!3d44.3304928!4d-75.453048!16s%2Fg%2F1tdsjdj4"
+                                href="https://maps.google.com/?q=Studieg%C3%A5ngen%208%2C%2041681%2C%20Gothenburg%2C%20Sweden"
                                 target="_blank"
                               >
-                                79 Sleepy Hollow St. <br /> Jamaica, New York
-                                1432
+                                Studiegången 8<br />41681 Gothenburg, Sweden
                               </a>
                             </p>
                           </div>
                         </div>
                       </div>
+                      <p className="mb-0">
+                        You may also use our contact form and our team will respond
+                        within 24 hours.
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                  <div className="tp-footer-widget footer-col-4-2 mb-50">
-                    <h4 className="tp-footer-widget-title">My Account</h4>
-                    <div className="tp-footer-widget-content">
-                      <ul>
-                        <li>
-                          <a href="#">Track Orders</a>
-                        </li>
-                        <li>
-                          <a href="#">Shipping</a>
-                        </li>
-                        <li>
-                          <a href="#">Wishlist</a>
-                        </li>
-                        <li>
-                          <a href="#">My Account</a>
-                        </li>
-                        <li>
-                          <a href="#">Order History</a>
-                        </li>
-                        <li>
-                          <a href="#">Returns</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-2 col-md-4 col-sm-5">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-5">
                   <div className="tp-footer-widget footer-col-4-3 mb-50">
                     <h4 className="tp-footer-widget-title">Infomation</h4>
                     <div className="tp-footer-widget-content">
@@ -151,7 +150,7 @@ const FooterTwo = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-7">
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-7">
                   <div className="tp-footer-widget footer-col-4-4 mb-50">
                     <h4 className="tp-footer-widget-title">Subcribe.</h4>
                     <div className="tp-footer-widget-content">
@@ -201,7 +200,7 @@ const FooterTwo = () => {
                   <div className="col-md-6">
                     <div className="tp-footer-payment text-md-end">
                       <p>
-                        <Image src={pay} alt="pay" />
+                        <img src={pay.src} alt="pay" style={{ height: "auto", width: "auto", maxWidth: "100%" }} />
                       </p>
                     </div>
                   </div>

@@ -66,6 +66,11 @@ const nextConfig = {
     
     return config
   },
+  // Sass configuration to suppress Bootstrap 5.3.x deprecation warnings
+  sassOptions: {
+    quietDeps: true,  // Suppress deprecation warnings from dependencies
+  },
+  
   images: {
     remotePatterns: [
       {

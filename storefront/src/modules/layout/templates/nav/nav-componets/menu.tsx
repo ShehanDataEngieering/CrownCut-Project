@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import menu_data from "@lib/data/menu-data"
 import CartButton from "@modules/layout/components/cart-button"
-import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 import type { HttpTypes } from "@medusajs/types"
+import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 
 export default function Menu({
   regions,

@@ -6,7 +6,6 @@ import CheckoutForm from "@modules/checkout/templates/checkout-form"
 import CheckoutSummary from "@modules/checkout/templates/checkout-summary"
 import { enrichLineItems, retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
-import { getCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
   title: "Checkout",
@@ -28,7 +27,6 @@ const fetchCart = async () => {
 
 export default async function Checkout() {
   const cart = await fetchCart()
-  const customer = await getCustomer()
 
   return (
     <section className="tp-checkout-area pt-60 pb-60">
@@ -36,7 +34,7 @@ export default async function Checkout() {
         <div className="row">
           <div className="col-lg-7">
             <Wrapper cart={cart}>
-              <CheckoutForm cart={cart} customer={customer} />
+              <CheckoutForm cart={cart} />
             </Wrapper>
           </div>
           <div className="col-lg-5">
