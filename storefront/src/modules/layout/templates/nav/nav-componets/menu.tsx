@@ -1,8 +1,6 @@
 "use client"
 
-import React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import menu_data from "@lib/data/menu-data"
 import CartButton from "@modules/layout/components/cart-button"
 import type { HttpTypes } from "@medusajs/types"
@@ -10,8 +8,12 @@ import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 
 export default function Menu({
   regions,
+  isPageLoading = false,
+  onNavigateStart,
 }: {
   regions: HttpTypes.StoreRegion[] | null
+  isPageLoading?: boolean
+  onNavigateStart?: (href: string) => void
 }) {
   return (
     <>
@@ -24,8 +26,11 @@ export default function Menu({
                 <li key={menu.id} className="position-relative">
                   <Link
                     href={menu.link}
-                    className="text-dark text-decoration-none fw-medium"
+                    className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
+                    aria-busy={isPageLoading}
+                    onClick={() => onNavigateStart?.(menu.link)}
                   >
+                    {isPageLoading && <span className="menu-spinner" />}
                     {menu.title}
                   </Link>
                   <div className="home-menu tp-submenu tp-mega-menu">
@@ -42,6 +47,35 @@ export default function Menu({
           </ul>
         </div>
       </div>
+
+      <style jsx>{`
+        .menu-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+
+        .menu-link.is-loading {
+          pointer-events: none;
+          opacity: 0.7;
+        }
+
+        .menu-spinner {
+          width: 12px;
+          height: 12px;
+          border: 2px solid rgba(0, 0, 0, 0.2);
+          border-top-color: rgba(0, 0, 0, 0.8);
+          border-radius: 50%;
+          animation: menu-spin 0.65s linear infinite;
+          flex-shrink: 0;
+        }
+
+        @keyframes menu-spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </>
   )
 }
