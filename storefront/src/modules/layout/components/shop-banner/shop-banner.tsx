@@ -5,6 +5,7 @@ import Link from "next/link"
 import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
+import { resolveCategoryImage } from "@lib/data/category-image-map"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import "swiper/css"
@@ -114,7 +115,16 @@ function BannerItem({
   )
 }
 
-const ShopBanner: React.FC = () => {
+type GemstoneCategory = {
+  id: string
+  name: string
+  handle: string
+  description?: string | null
+}
+
+const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
+  categories,
+}) => {
   return (
     <>
       <section className="tp-banner-area">
@@ -131,693 +141,74 @@ const ShopBanner: React.FC = () => {
                       gap: 16,
                     }}
                   >
-                    <Link
-                      href="/categories"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
+                    {categories.map((category) => (
+                      <Link
+                        key={category.id}
+                        href={`/store?category=${encodeURIComponent(category.handle)}`}
+                        className="tp-gem-card"
+                        style={{ textDecoration: "none", color: "inherit" }}
                       >
                         <div
                           style={{
-                            width: "100%",
-                            height: 120,
+                            borderRadius: 8,
                             overflow: "hidden",
+                            boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+                            background: "#fff",
+                            border: "1.5px solid rgb(222, 222, 209)",
+                            height: "100%",
                           }}
                         >
-                          <img
-                            src="/assets/img/product/gem-1.jpg"
-                            alt="Sapphire-Blue"
+                          <div
                             style={{
                               width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
+                              height: 120,
+                              overflow: "hidden",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              background: "rgb(250, 250, 245)",
                             }}
-                          />
+                          >
+                            <img
+                              src={resolveCategoryImage(category.handle)}
+                              alt={category.name}
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                                objectPosition: "center",
+                                display: "block",
+                                padding: 8,
+                              }}
+                            />
+                          </div>
+                          <div style={{ padding: 12 }}>
+                            <h6 className="mb-1">{category.name}</h6>
+                            {category.description && (
+                              <p className="mb-0 text-muted small">
+                                {category.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Blue
-                        </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    ))}
 
-                    <Link
-                      href="/shop?gem=alexandrite"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
+                    {categories.length === 0 && (
                       <div
                         style={{
+                          gridColumn: "1 / -1",
+                          border: "1px solid rgb(222, 222, 209)",
                           borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+                          padding: 20,
+                          textAlign: "center",
+                          color: "#666",
                           background: "#fff",
                         }}
                       >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-2.jpg"
-                            alt="Sapphire-Yellow"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Yellow
-                        </div>
+                        No categories found.
                       </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=almandine-garnet"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-3.jpg"
-                            alt="Sapphire-White"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-White
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=amethyst"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-4.jpg"
-                            alt="Sapphire-Bi"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Bi
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=ametrine"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-5.jpg"
-                            alt="Sapphire-Green"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Green
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=andalusite"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-6.jpg"
-                            alt="Sapphire-Pink"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Pink
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=aquamarine"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-7.jpg"
-                            alt="Sapphire-Purple"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphire-Purple
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=beryl"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/gem-8.jpg"
-                            alt="Sapphirenatxta"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Sapphirenatxta
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=carnelian"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/spinel.jpg"
-                            alt="Spinel"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Spinel
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=chrome-diopside"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/garnet.jpg"
-                            alt="Garnet"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Garnet
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=chrysoberyl"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/Spessartite.jpg"
-                            alt="Chrysoberyl"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Spessartite
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=citrine"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/topaz.jpg"
-                            alt="Citrine"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Topaz
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=coral"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/quarts.jpg"
-                            alt="Quarts"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Quarts
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=demantoid-garnet"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/aquamarine.jpg"
-                            alt="Aquamarine"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Aquamarine
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=fluorite"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/chrysoberyl.jpg"
-                            alt="Chrysoberyl"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Chrysoberyl
-                        </div>
-                      </div>
-                    </Link>
-
-                    <Link
-                      href="/shop?gem=garnet"
-                      className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      <div
-                        style={{
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                          background: "#fff",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: "100%",
-                            height: 120,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <img
-                            src="/assets/img/product/zircon.jpg"
-                            alt="zircon"
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              display: "block",
-                            }}
-                          />
-                        </div>
-                        <div
-                          style={{
-                            padding: "10px 8px",
-                            fontWeight: 600,
-                            textAlign: "center",
-                          }}
-                        >
-                          Zircon
-                        </div>
-                      </div>
-                    </Link>
+                    )}
                   </div>
                 </div>
               </div>

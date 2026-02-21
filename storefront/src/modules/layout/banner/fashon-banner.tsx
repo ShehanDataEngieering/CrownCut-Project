@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import type { SwiperProps } from "swiper/react"
@@ -59,6 +61,46 @@ const sliderSetting: SwiperProps = {
 }
 
 const FashionBanner = () => {
+  const pathname = usePathname()
+  const [isPageLoading, setIsPageLoading] = useState(false)
+  const loadingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const clearPageLoading = () => {
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current)
+      loadingTimeoutRef.current = null
+    }
+    setIsPageLoading(false)
+  }
+
+  const startPageLoading = (href?: string) => {
+    if (href && href === pathname) {
+      return
+    }
+
+    if (loadingTimeoutRef.current) {
+      clearTimeout(loadingTimeoutRef.current)
+    }
+
+    setIsPageLoading(true)
+    loadingTimeoutRef.current = setTimeout(() => {
+      setIsPageLoading(false)
+      loadingTimeoutRef.current = null
+    }, 10000)
+  }
+
+  useEffect(() => {
+    clearPageLoading()
+  }, [pathname])
+
+  useEffect(() => {
+    return () => {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current)
+      }
+    }
+  }, [])
+
   return (
     <>
       <style
@@ -97,9 +139,14 @@ const FashionBanner = () => {
             reflection of life&apos;s most beautiful moments.
           </p>
           <Link
-            href="/shop"
-            className="tp-btn tp-btn-border inline-block bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-800 transition-all text-sm w-fit"
+            href="/categories"
+            className={`tp-btn tp-btn-border inline-block bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-800 transition-all text-sm w-fit inline-flex items-center gap-2 ${isPageLoading ? "pointer-events-none opacity-80" : ""}`}
+            aria-busy={isPageLoading}
+            onClick={() => startPageLoading("/categories")}
           >
+            {isPageLoading && (
+              <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+            )}
             Shop Collection
           </Link>
           <div className="flex flex-col w-full h-full p-6"></div>

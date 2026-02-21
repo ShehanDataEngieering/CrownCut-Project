@@ -6,6 +6,55 @@
 @import "react-modal-video/scss/modal-video.scss";
 @import "../../public/assets/scss/main.scss";
 
+:root {
+  --app-font-primary: var(--tp-ff-body);
+}
+
+html,
+body {
+  font-family: var(--app-font-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--tp-ff-heading);
+}
+
+p,
+a,
+li,
+span,
+label,
+input,
+select,
+textarea,
+button {
+  font-family: var(--app-font-primary);
+}
+
+.tp-footer-unified,
+.tp-footer-unified h1,
+.tp-footer-unified h2,
+.tp-footer-unified h3,
+.tp-footer-unified h4,
+.tp-footer-unified h5,
+.tp-footer-unified h6,
+.tp-footer-unified p,
+.tp-footer-unified a,
+.tp-footer-unified li,
+.tp-footer-unified span,
+.tp-footer-unified label,
+.tp-footer-unified input,
+.tp-footer-unified select,
+.tp-footer-unified textarea,
+.tp-footer-unified button {
+  font-family: var(--app-font-primary);
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
