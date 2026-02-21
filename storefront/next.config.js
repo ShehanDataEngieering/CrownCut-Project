@@ -2,6 +2,17 @@ const checkEnvVariables = require("./check-env-variables")
 
 checkEnvVariables()
 
+const getHostnameFromUrl = (value) => {
+  if (!value) return undefined
+
+  try {
+    const normalized = /^https?:\/\//.test(value) ? value : `https://${value}`
+    return new URL(normalized).hostname
+  } catch (error) {
+    return value.replace(/^https?:\/\//, "").split("/")[0]
+  }
+}
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -80,12 +91,16 @@ const nextConfig = {
       },
       ...(process.env.NEXT_PUBLIC_BASE_URL ? [{ // Note: needed to serve images from /public folder
         protocol: process.env.NEXT_PUBLIC_BASE_URL.startsWith('https') ? 'https' : 'http',
-        hostname: process.env.NEXT_PUBLIC_BASE_URL.replace(/^https?:\/\//, ''),
+        hostname: getHostnameFromUrl(process.env.NEXT_PUBLIC_BASE_URL),
       }] : []),
       ...(process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL ? [{ // Note: only needed when using local-file for product media
         protocol: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL.startsWith('https') ? 'https' : 'http',
-        hostname: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL.replace(/^https?:\/\//, ''),
+        hostname: getHostnameFromUrl(process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL),
       }] : []),
+      {
+        protocol: "https",
+        hostname: "bucket-production-4869.up.railway.app",
+      },
       { // Note: can be removed after deleting demo products
         protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
