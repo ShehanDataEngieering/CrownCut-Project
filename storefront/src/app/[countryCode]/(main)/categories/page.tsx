@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { listCategories } from "@lib/data/categories"
 import GemstoneCategoriesPage from "@modules/categories/components/gemstone-categories"
 
 export const metadata: Metadata = {
@@ -11,5 +12,16 @@ export default async function CategoriesPage({
 }: {
   params: { countryCode: string }
 }) {
-  return <GemstoneCategoriesPage />
+  const categories = await listCategories()
+
+  const normalizedCategories = categories
+    .filter((category) => category.handle)
+    .map((category) => ({
+      id: category.id,
+      name: category.name,
+      handle: category.handle!,
+      description: category.description,
+    }))
+
+  return <GemstoneCategoriesPage categories={normalizedCategories} />
 }
