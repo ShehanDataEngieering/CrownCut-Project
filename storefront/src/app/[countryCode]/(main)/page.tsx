@@ -23,6 +23,7 @@ type MetadataProps = {
 export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
+  const isSweden = params.countryCode?.toLowerCase() === "se"
   const countryCodes = await listRegions().then(
     (regions) =>
       regions
@@ -31,10 +32,14 @@ export async function generateMetadata({
   )
 
   const countryPath = buildCountryPath(params.countryCode)
+  const title = isSweden ? "Gemstones in Sweden | Crown Cut Gems" : SITE_NAME
+  const description = isSweden
+    ? "Shop natural gemstones in Sweden from Crown Cut Gems. Explore sapphire, aquamarine, garnet, and more with secure delivery."
+    : SITE_DESCRIPTION
 
   return {
-    title: SITE_NAME,
-    description: SITE_DESCRIPTION,
+    title,
+    description,
     alternates: {
       canonical: toAbsoluteUrl(countryPath),
       languages: {
@@ -43,8 +48,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: SITE_NAME,
-      description: SITE_DESCRIPTION,
+      title,
+      description,
       url: toAbsoluteUrl(countryPath),
       type: "website",
     },

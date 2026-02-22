@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import useSticky from "@hooks/use-sticky"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
@@ -9,6 +8,7 @@ import { memo, useEffect, useRef, useState } from "react"
 import type { HttpTypes } from "@medusajs/types"
 import { mobile_menu } from "@lib/data/menu-data"
 import Menu from "./nav-componets/menu"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   const { sticky } = useSticky()
@@ -88,7 +88,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
               <div className="row align-items-center">
                 <div className="col-xl-2 col-lg-2 col-6">
                   <div className="logo">
-                    <Link
+                    <LocalizedClientLink
                       href="/"
                       onClick={() => startPageLoading("/")}
                       aria-busy={isPageLoading}
@@ -105,7 +105,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                           display: "block",
                         }}
                       />
-                    </Link>
+                    </LocalizedClientLink>
                   </div>
                 </div>
                 <div className="col-xl-8 col-lg-8 d-none d-lg-block">
@@ -175,7 +175,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           <ul>
             {mobile_menu.map((item) => (
               <li key={`${item.id}-${item.title}`}>
-                <Link
+                <LocalizedClientLink
                   href={item.link}
                   aria-busy={isPageLoading}
                   onClick={() => {
@@ -184,7 +184,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                   }}
                 >
                   {item.title}
-                </Link>
+                </LocalizedClientLink>
               </li>
             ))}
           </ul>

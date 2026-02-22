@@ -6,6 +6,7 @@ import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
 import { resolveCategoryImage } from "@lib/data/category-image-map"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import "swiper/css"
@@ -101,13 +102,13 @@ function BannerItem({
       >
         <span>{content}</span>
         <h3 className="tp-banner-title-4">
-          <Link href="/shop">{title}</Link>
+          <LocalizedClientLink href="/shop">{title}</LocalizedClientLink>
         </h3>
         {isBtn && (
           <div className="tp-banner-btn-4">
-            <Link href="/shop" className="tp-btn tp-btn-border">
+            <LocalizedClientLink href="/shop" className="tp-btn tp-btn-border">
               Shop Now <ArrowRightLong />
-            </Link>
+            </LocalizedClientLink>
           </div>
         )}
       </div>
@@ -142,9 +143,9 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                     }}
                   >
                     {categories.map((category) => (
-                      <Link
+                      <LocalizedClientLink
                         key={category.id}
-                        href={`/store?category=${encodeURIComponent(category.handle)}`}
+                        href={`/categories/${encodeURIComponent(category.handle)}`}
                         className="tp-gem-card"
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
@@ -191,7 +192,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                             )}
                           </div>
                         </div>
-                      </Link>
+                      </LocalizedClientLink>
                     ))}
 
                     {categories.length === 0 && (
@@ -222,14 +223,14 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                 <div className="tp-banner-full-content">
                   <span>Collection</span>
                   <h3 className="tp-banner-full-title">
-                    <Link href="/shop">
+                    <LocalizedClientLink href="/shop">
                       GemStones from <br /> Sri Lanka
-                    </Link>
+                    </LocalizedClientLink>
                   </h3>
                   <div className="tp-banner-full-btn">
-                    <Link href="/shop" className="tp-btn tp-btn-border">
+                    <LocalizedClientLink href="/shop" className="tp-btn tp-btn-border">
                       Shop Now <ArrowRightLong />
-                    </Link>
+                    </LocalizedClientLink>
                   </div>
                 </div>
               </div>

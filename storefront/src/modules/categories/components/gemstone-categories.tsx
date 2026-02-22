@@ -33,7 +33,7 @@ export default function GemstoneCategoriesPage({
                   {categories.map((category) => (
                     <LocalizedClientLink
                       key={category.id}
-                      href={`/store?category=${encodeURIComponent(category.handle)}`}
+                      href={`/categories/${encodeURIComponent(category.handle)}`}
                       className="tp-gem-card"
                       style={{ textDecoration: "none", color: "inherit" }}
                     >

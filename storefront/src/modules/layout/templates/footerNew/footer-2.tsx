@@ -1,9 +1,9 @@
 import React from "react"
-import Link from "next/link"
 // internal
 
 import { Email, Location } from "@svg"
 import pay from "@assets/img/footer/footer-pay.png"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const social_data = [
   {
@@ -47,7 +47,7 @@ const FooterTwo = () => {
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                   <div className="tp-footer-widget footer-col-4-1 mb-50">
                     <div className="tp-footer-logo">
-                      <Link href="/">
+                      <LocalizedClientLink href="/">
                         <img
                           src="/assets/img/logo/crowncut-logonb.png"
                           alt="logo"
@@ -60,7 +60,7 @@ const FooterTwo = () => {
                             display: "block",
                           }}
                         />
-                      </Link>
+                      </LocalizedClientLink>
                     </div>
                     <div className="tp-footer-widget-content">
                       
@@ -193,7 +193,7 @@ const FooterTwo = () => {
                       <p>
                         © {new Date().getFullYear()} All Rights Reserved | Next
                         js Template by
-                        <Link href="/">❤</Link>.
+                        <LocalizedClientLink href="/">❤</LocalizedClientLink>.
                       </p>
                     </div>
                   </div>
