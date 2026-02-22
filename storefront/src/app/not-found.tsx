@@ -2,10 +2,12 @@ import { ArrowUpRightMini } from "@medusajs/icons"
 import { Text } from "@medusajs/ui"
 import { Metadata } from "next"
 import Link from "next/link"
+import { buildNoIndexMetadata } from "@lib/util/seo"
 
 export const metadata: Metadata = {
   title: "404",
   description: "Something went wrong",
+  ...buildNoIndexMetadata(),
 }
 
 export default function NotFound() {

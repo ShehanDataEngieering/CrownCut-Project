@@ -4,10 +4,12 @@ import SearchResultsTemplate from "@modules/search/templates/search-results-temp
 
 import { search } from "@modules/search/actions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { buildNoIndexMetadata } from "@lib/util/seo"
 
 export const metadata: Metadata = {
   title: "Search",
   description: "Explore all of our products.",
+  ...buildNoIndexMetadata(),
 }
 
 type Params = {

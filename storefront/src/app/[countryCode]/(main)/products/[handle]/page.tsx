@@ -4,6 +4,11 @@ import { notFound } from "next/navigation"
 import ProductTemplate from "@modules/products/templates"
 import { getRegion, listRegions } from "@lib/data/regions"
 import { getProductByHandle, getProductsList } from "@lib/data/products"
+import {
+  buildCountryAlternates,
+  buildCountryPath,
+  toAbsoluteUrl,
+} from "@lib/util/seo"
 
 type Props = {
   params: { countryCode: string; handle: string }
@@ -56,12 +61,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound()
   }
 
+  const countryCodes = await listRegions().then(
+    (regions) =>
+      regions
+        ?.flatMap((r) => r.countries?.map((c) => c.iso_2))
+        .filter(Boolean) as string[]
+  )
+
+  const productPath = buildCountryPath(params.countryCode, `/products/${handle}`)
+  const title = `${product.title}`
+  const description = product.description || `${product.title}`
+
   return {
-    title: `${product.title} | Medusa Store`,
-    description: `${product.title}`,
+    title,
+    description,
+    alternates: {
+      canonical: toAbsoluteUrl(productPath),
+      languages: {
+        ...buildCountryAlternates(countryCodes || [], `/products/${handle}`),
+        "x-default": toAbsoluteUrl(productPath),
+      },
+    },
     openGraph: {
-      title: `${product.title} | Medusa Store`,
-      description: `${product.title}`,
+      title,
+      description,
+      url: toAbsoluteUrl(productPath),
+      type: "website",
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   }
@@ -79,11 +104,65 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
+  const productPath = buildCountryPath(
+    params.countryCode,
+    `/products/${params.handle}`
+  )
+  const productUrl = toAbsoluteUrl(productPath)
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: pricedProduct.title,
+    description: pricedProduct.description || pricedProduct.title,
+    image: pricedProduct.thumbnail ? [pricedProduct.thumbnail] : undefined,
+    sku: pricedProduct.handle,
+    url: productUrl,
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: toAbsoluteUrl(buildCountryPath(params.countryCode)),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Products",
+        item: toAbsoluteUrl(buildCountryPath(params.countryCode, "/store")),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: pricedProduct.title,
+        item: productUrl,
+      },
+    ],
+  }
+
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <ProductTemplate
+        product={pricedProduct}
+        region={region}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }

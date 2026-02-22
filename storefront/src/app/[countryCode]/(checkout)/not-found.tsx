@@ -1,9 +1,11 @@
 import InteractiveLink from "@modules/common/components/interactive-link"
 import { Metadata } from "next"
+import { buildNoIndexMetadata } from "@lib/util/seo"
 
 export const metadata: Metadata = {
   title: "404",
   description: "Something went wrong",
+  ...buildNoIndexMetadata(),
 }
 
 export default async function NotFound() {
