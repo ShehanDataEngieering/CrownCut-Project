@@ -1,10 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import menu_data from "@lib/data/menu-data"
 import CartButton from "@modules/layout/components/cart-button"
 import type { HttpTypes } from "@medusajs/types"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default function Menu({
   regions,
@@ -24,7 +24,7 @@ export default function Menu({
             <div className="d-flex gap-3 align-items-center">
               {menu_data.map((menu) => (
                 <li key={menu.id} className="position-relative">
-                  <Link
+                  <LocalizedClientLink
                     href={menu.link}
                     className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
                     aria-busy={isPageLoading}
@@ -32,7 +32,7 @@ export default function Menu({
                   >
                     {isPageLoading && <span className="menu-spinner" />}
                     {menu.title}
-                  </Link>
+                  </LocalizedClientLink>
                   <div className="home-menu tp-submenu tp-mega-menu">
                     <div className="row row-cols-lg-4 row-cols-sm-2 row-cols-1 gx-2 gy-2 gy-lg-0"></div>
                   </div>
