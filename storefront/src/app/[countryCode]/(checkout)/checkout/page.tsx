@@ -6,9 +6,11 @@ import CheckoutForm from "@modules/checkout/templates/checkout-form"
 import CheckoutSummary from "@modules/checkout/templates/checkout-summary"
 import { enrichLineItems, retrieveCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+import { buildNoIndexMetadata } from "@lib/util/seo"
 
 export const metadata: Metadata = {
   title: "Checkout",
+  ...buildNoIndexMetadata(),
 }
 
 const fetchCart = async () => {

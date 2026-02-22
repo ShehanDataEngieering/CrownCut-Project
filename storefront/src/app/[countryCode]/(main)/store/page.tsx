@@ -2,10 +2,48 @@ import { Metadata } from "next"
 
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
+import { listRegions } from "@lib/data/regions"
+import {
+  buildCountryAlternates,
+  buildCountryPath,
+  toAbsoluteUrl,
+} from "@lib/util/seo"
 
-export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+type MetadataProps = {
+  params: {
+    countryCode: string
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const countryCodes = await listRegions().then(
+    (regions) =>
+      regions
+        ?.flatMap((region) => region.countries?.map((country) => country.iso_2))
+        .filter(Boolean) as string[]
+  )
+
+  const storePath = buildCountryPath(params.countryCode, "/store")
+
+  return {
+    title: "Store",
+    description: "Explore all of our products.",
+    alternates: {
+      canonical: toAbsoluteUrl(storePath),
+      languages: {
+        ...buildCountryAlternates(countryCodes || [], "/store"),
+        "x-default": toAbsoluteUrl(storePath),
+      },
+    },
+    openGraph: {
+      title: "Store",
+      description: "Explore all of our products.",
+      url: toAbsoluteUrl(storePath),
+      type: "website",
+    },
+  }
 }
 
 type Params = {

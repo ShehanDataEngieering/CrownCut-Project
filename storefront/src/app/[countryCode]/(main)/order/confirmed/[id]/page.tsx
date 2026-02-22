@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { enrichLineItems } from "@lib/data/cart"
 import { retrieveOrder } from "@lib/data/orders"
 import { HttpTypes } from "@medusajs/types"
+import { buildNoIndexMetadata } from "@lib/util/seo"
 
 type Props = {
   params: { id: string }
@@ -28,6 +29,7 @@ async function getOrder(id: string) {
 export const metadata: Metadata = {
   title: "Order Confirmed",
   description: "You purchase was successful",
+  ...buildNoIndexMetadata(),
 }
 
 export default async function OrderConfirmedPage({ params }: Props) {

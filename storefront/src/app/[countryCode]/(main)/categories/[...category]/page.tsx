@@ -6,6 +6,11 @@ import { listRegions } from "@lib/data/regions"
 import { StoreProductCategory, StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import {
+  buildCountryAlternates,
+  buildCountryPath,
+  toAbsoluteUrl,
+} from "@lib/util/seo"
 
 type Props = {
   params: { category: string[]; countryCode: string }
@@ -56,11 +61,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       product_categories[product_categories.length - 1].description ??
       `${title} category.`
 
+    const countryCodes = await listRegions().then(
+      (regions: StoreRegion[]) =>
+        regions
+          ?.flatMap((r) => r.countries?.map((c) => c.iso_2))
+          .filter(Boolean) as string[]
+    )
+
+    const categoryPath = buildCountryPath(
+      params.countryCode,
+      `/categories/${params.category.join("/")}`
+    )
+
     return {
-      title: `${title} | Medusa Store`,
+      title,
       description,
       alternates: {
-        canonical: `${params.category.join("/")}`,
+        canonical: toAbsoluteUrl(categoryPath),
+        languages: {
+          ...buildCountryAlternates(
+            countryCodes || [],
+            `/categories/${params.category.join("/")}`
+          ),
+          "x-default": toAbsoluteUrl(categoryPath),
+        },
+      },
+      openGraph: {
+        title,
+        description,
+        url: toAbsoluteUrl(categoryPath),
+        type: "website",
       },
     }
   } catch (error) {
@@ -79,12 +109,51 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     notFound()
   }
 
+  const categoryName =
+    product_categories[product_categories.length - 1]?.name || "Category"
+  const categoryPath = buildCountryPath(
+    params.countryCode,
+    `/categories/${params.category.join("/")}`
+  )
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: toAbsoluteUrl(buildCountryPath(params.countryCode)),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Categories",
+        item: toAbsoluteUrl(buildCountryPath(params.countryCode, "/categories")),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: categoryName,
+        item: toAbsoluteUrl(categoryPath),
+      },
+    ],
+  }
+
   return (
-    <CategoryTemplate
-      categories={product_categories}
-      sortBy={sortBy}
-      page={page}
-      countryCode={params.countryCode}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <CategoryTemplate
+        categories={product_categories}
+        sortBy={sortBy}
+        page={page}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }
