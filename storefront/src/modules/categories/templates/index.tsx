@@ -30,12 +30,14 @@ export default function CategoryTemplate({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col small:flex-row small:items-start gap-6 py-6 content-container tp-category-section"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
+      <div className="w-full small:w-[280px] small:shrink-0">
+        <RefinementList sortBy={sort} data-testid="sort-by-container" />
+      </div>
       <div className="w-full">
-        <div className="flex flex-row mb-8 text-2xl-semi gap-4">
+        <div className="flex flex-row mb-8 text-2xl-semi gap-4 tp-category-heading">
           {parents &&
             parents.map((parent) => (
               <span key={parent.id} className="text-ui-fg-subtle">

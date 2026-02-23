@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import { getCategoryByHandle } from "@lib/data/categories"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 import { listRegions } from "@lib/data/regions"
@@ -64,8 +65,8 @@ type Params = {
 }
 
 export default async function StorePage({ searchParams, params }: Params) {
-  const { 
-    sortBy, 
+  const {
+    sortBy,
     page,
     minPrice,
     maxPrice,
@@ -76,22 +77,36 @@ export default async function StorePage({ searchParams, params }: Params) {
     category
   } = searchParams
 
+  let categoryId: string | undefined
+  let resolvedCategoryHandle = ""
+
+  if (category) {
+    const { product_categories } = await getCategoryByHandle([category])
+    const matchedCategory = product_categories?.[0]
+
+    if (matchedCategory?.id) {
+      categoryId = matchedCategory.id
+      resolvedCategoryHandle = category
+    }
+  }
+
   return (
     <StoreTemplate
       sortBy={sortBy}
       page={page}
       countryCode={params.countryCode}
+      categoryId={categoryId}
       filters={{
-        priceRange: { 
-          min: minPrice ? parseFloat(minPrice) : undefined, 
-          max: maxPrice ? parseFloat(maxPrice) : undefined 
+        priceRange: {
+          min: minPrice ? parseFloat(minPrice) : undefined,
+          max: maxPrice ? parseFloat(maxPrice) : undefined,
         },
-        inStock: inStock === 'true',
-        onSale: onSale === 'true',
-        search: search || '',
-        category: category || '',
+        inStock: inStock === "true",
+        onSale: onSale === "true",
+        search: search || "",
+        category: resolvedCategoryHandle,
       }}
-      viewMode={view || 'grid'}
+      viewMode={view || "grid"}
     />
   )
 }

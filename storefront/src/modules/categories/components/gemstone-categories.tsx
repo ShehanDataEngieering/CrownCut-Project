@@ -1,7 +1,7 @@
 "use client"
 
 import { resolveCategoryImage } from "@lib/data/category-image-map"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import UnifiedGemCard from "@modules/common/components/unified-gem-card"
 
 type GemstoneCategory = {
   id: string
@@ -31,31 +31,17 @@ export default function GemstoneCategoriesPage({
 
                 <div className="tp-gem-grid">
                   {categories.map((category) => (
-                    <LocalizedClientLink
+                    <div
                       key={category.id}
-                      href={`/categories/${encodeURIComponent(category.handle)}`}
                       className="tp-gem-card"
-                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      <div className="tp-gem-card-inner">
-                        <div className="tp-gem-card-image-wrap">
-                          <img
-                            src={resolveCategoryImage(category.handle)}
-                            alt={category.name}
-                            className="tp-gem-card-image"
-                          />
-                        </div>
-
-                        <div className="tp-gem-card-content">
-                          <h6 className="mb-1">{category.name}</h6>
-                          {category.description && (
-                            <p className="mb-0 text-muted small">
-                              {category.description}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </LocalizedClientLink>
+                      <UnifiedGemCard
+                        href={`/categories/${encodeURIComponent(category.handle)}`}
+                        imageUrl={resolveCategoryImage(category.handle)}
+                        imageAlt={category.name}
+                        title={category.name}
+                      />
+                    </div>
                   ))}
 
                   {categories.length === 0 && (
@@ -84,46 +70,8 @@ export default function GemstoneCategoriesPage({
           height: 100%;
         }
 
-        .tp-gem-card-inner {
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-          background: #fff;
-          border: 1.5px solid rgb(222, 222, 209);
-          height: 100%;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .tp-gem-card:hover .tp-gem-card-inner {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 18px rgba(180, 180, 165, 0.35);
-        }
-
         .tp-gem-header {
           padding-top: 12px;
-        }
-
-        .tp-gem-card-image-wrap {
-          width: 100%;
-          height: 120px;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgb(250, 250, 245);
-        }
-
-        .tp-gem-card-image {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          object-position: center;
-          display: block;
-          padding: 8px;
-        }
-
-        .tp-gem-card-content {
-          padding: 12px;
         }
 
         .tp-gem-empty {
