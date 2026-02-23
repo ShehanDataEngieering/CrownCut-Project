@@ -6,7 +6,6 @@ import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
 import { resolveCategoryImage } from "@lib/data/category-image-map"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import "swiper/css"
@@ -102,13 +101,13 @@ function BannerItem({
       >
         <span>{content}</span>
         <h3 className="tp-banner-title-4">
-          <LocalizedClientLink href="/shop">{title}</LocalizedClientLink>
+          <Link href="/shop">{title}</Link>
         </h3>
         {isBtn && (
           <div className="tp-banner-btn-4">
-            <LocalizedClientLink href="/shop" className="tp-btn tp-btn-border">
+            <Link href="/shop" className="tp-btn tp-btn-border">
               Shop Now <ArrowRightLong />
-            </LocalizedClientLink>
+            </Link>
           </div>
         )}
       </div>
@@ -134,82 +133,84 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
             <div className="col-xl-6 col-lg-7">
               <div className="row">
                 <div className="col-12">
-                  <h3 style={{ marginBottom: 18 }}>Gemstones</h3>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(4, 1fr)",
-                      gap: 16,
-                    }}
-                  >
-                    {categories.map((category) => (
-                      <LocalizedClientLink
-                        key={category.id}
-                        href={`/categories/${encodeURIComponent(category.handle)}`}
-                        className="tp-gem-card"
-                        style={{ textDecoration: "none", color: "inherit" }}
-                      >
-                        <div
-                          style={{
-                            borderRadius: 8,
-                            overflow: "hidden",
-                            boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                            background: "#fff",
-                            border: "1.5px solid rgb(222, 222, 209)",
-                            height: "100%",
-                          }}
+                  <div style={{ paddingTop: 12 }}>
+                    <h3 style={{ marginBottom: 18 }}>Gemstones</h3>
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gap: 16,
+                      }}
+                    >
+                      {categories.map((category) => (
+                        <Link
+                          key={category.id}
+                          href={`/store?category=${encodeURIComponent(category.handle)}`}
+                          className="tp-gem-card"
+                          style={{ textDecoration: "none", color: "inherit" }}
                         >
                           <div
                             style={{
-                              width: "100%",
-                              height: 120,
+                              borderRadius: 8,
                               overflow: "hidden",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              background: "rgb(250, 250, 245)",
+                              boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+                              background: "#fff",
+                              border: "1.5px solid rgb(222, 222, 209)",
+                              height: "100%",
                             }}
                           >
-                            <img
-                              src={resolveCategoryImage(category.handle)}
-                              alt={category.name}
+                            <div
                               style={{
                                 width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                                objectPosition: "center",
-                                display: "block",
-                                padding: 8,
+                                height: 120,
+                                overflow: "hidden",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                background: "rgb(250, 250, 245)",
                               }}
-                            />
+                            >
+                              <img
+                                src={resolveCategoryImage(category.handle)}
+                                alt={category.name}
+                                style={{
+                                  width: "100%",
+                                  height: "100%",
+                                  objectFit: "contain",
+                                  objectPosition: "center",
+                                  display: "block",
+                                  padding: 8,
+                                }}
+                              />
+                            </div>
+                            <div style={{ padding: 12 }}>
+                              <h6 className="mb-1">{category.name}</h6>
+                              {category.description && (
+                                <p className="mb-0 text-muted small">
+                                  {category.description}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                          <div style={{ padding: 12 }}>
-                            <h6 className="mb-1">{category.name}</h6>
-                            {category.description && (
-                              <p className="mb-0 text-muted small">
-                                {category.description}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </LocalizedClientLink>
-                    ))}
+                        </Link>
+                      ))}
 
-                    {categories.length === 0 && (
-                      <div
-                        style={{
-                          gridColumn: "1 / -1",
-                          border: "1px solid rgb(222, 222, 209)",
-                          borderRadius: 8,
-                          padding: 20,
-                          textAlign: "center",
-                          color: "#666",
-                          background: "#fff",
-                        }}
-                      >
-                        No categories found.
-                      </div>
-                    )}
+                      {categories.length === 0 && (
+                        <div
+                          style={{
+                            gridColumn: "1 / -1",
+                            border: "1px solid rgb(222, 222, 209)",
+                            borderRadius: 8,
+                            padding: 20,
+                            textAlign: "center",
+                            color: "#666",
+                            background: "#fff",
+                          }}
+                        >
+                          No categories found.
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -223,14 +224,14 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                 <div className="tp-banner-full-content">
                   <span>Collection</span>
                   <h3 className="tp-banner-full-title">
-                    <LocalizedClientLink href="/shop">
+                    <Link href="/shop">
                       GemStones from <br /> Sri Lanka
-                    </LocalizedClientLink>
+                    </Link>
                   </h3>
                   <div className="tp-banner-full-btn">
-                    <LocalizedClientLink href="/shop" className="tp-btn tp-btn-border">
+                    <Link href="/shop" className="tp-btn tp-btn-border">
                       Shop Now <ArrowRightLong />
-                    </LocalizedClientLink>
+                    </Link>
                   </div>
                 </div>
               </div>

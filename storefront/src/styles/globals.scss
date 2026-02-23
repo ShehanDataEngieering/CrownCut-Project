@@ -182,97 +182,227 @@ button {
   color: var(--tp-common-black);
 }
 
-/* Product detail refresh */
-.product-detail {
-  background: radial-gradient(circle at top, #fef9f3 0%, #f4f7fb 35%, #eff1f4 100%);
+.tp-store-section,
+.tp-category-section {
+  padding-top: 140px;
 }
 
-.product-detail .card {
-  border-radius: 1.5rem;
+.tp-store-theme-page {
+  background: transparent;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.product-layout {
+.tp-store-theme-title {
+  font-family: var(--tp-ff-heading);
+  color: rgb(35, 35, 31);
+  letter-spacing: 0.01em;
+}
+
+.tp-store-theme-grid,
+.tp-store-theme-list {
+  font-family: var(--tp-ff-body);
+}
+
+.tp-product-theme-page {
+  background: rgb(246, 246, 241);
+  font-family: var(--tp-ff-body);
+}
+
+.tp-product-theme-container {
+  color: rgb(48, 48, 42);
+}
+
+.tp-product-theme-card {
+  background: rgba(251, 251, 247, 0.72);
+  border: 1px solid rgb(224, 224, 212) !important;
+  border-radius: 10px;
+}
+
+.tp-product-theme-card .card-body {
+  padding: 1.15rem;
+}
+
+.tp-product-gallery-body {
+  padding: 0.5rem !important;
+}
+
+.tp-product-gallery-body .flex.flex-col.flex-1 {
+  gap: 0.65rem !important;
+}
+
+.tp-product-info {
+  font-family: var(--tp-ff-body);
+}
+
+.tp-product-collection {
+  font-family: var(--tp-ff-body);
+  color: rgb(110, 110, 97);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tp-product-main-title {
+  font-family: var(--tp-ff-heading) !important;
+  color: rgb(26, 35, 50) !important;
+  font-size: clamp(2rem, 2.6vw, 3rem) !important;
+  line-height: 1.12 !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem;
+}
+
+.tp-product-description {
+  font-family: var(--tp-ff-body) !important;
+  color: rgb(80, 87, 98) !important;
+  font-size: 1.02rem !important;
+  line-height: 1.72 !important;
+}
+
+.tp-product-related-section {
+  background: rgb(246, 246, 241);
+}
+
+.tp-product-related-wrap {
+  font-family: var(--tp-ff-body);
+}
+
+.tp-related-eyebrow {
+  font-family: var(--tp-ff-body);
+  color: rgb(94, 98, 106);
+  font-size: 0.95rem;
+}
+
+.tp-related-title {
+  font-family: var(--tp-ff-heading);
+  color: rgb(26, 35, 50);
+  font-size: clamp(2rem, 2.9vw, 3rem);
+  line-height: 1.28;
+  margin: 0;
+}
+
+.tp-category-heading {
+  padding-top: 12px;
+}
+
+@media (max-width: 991.98px) {
+  .tp-store-section,
+  .tp-category-section {
+    padding-top: 120px;
+  }
+
+  .tp-product-theme-card .card-body {
+    padding: 1rem;
+  }
+
+  .tp-product-gallery-body {
+    padding: 0.4rem !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .tp-store-section,
+  .tp-category-section {
+    padding-top: 105px;
+  }
+}
+
+.tp-refinement-list .tp-theme-input {
+  border: 1.5px solid rgb(222, 222, 209);
+  background: #fff;
+  color: rgb(52, 52, 45);
+}
+
+.tp-refinement-list .tp-theme-input:focus {
+  border-color: rgb(196, 196, 180);
+  box-shadow: none;
+}
+
+.tp-theme-check {
+  accent-color: rgb(74, 74, 65);
+}
+
+.tp-theme-check:focus {
+  border-color: rgb(196, 196, 180) !important;
+  box-shadow: none !important;
+}
+
+.tp-theme-check.form-check-input:checked {
+  background-color: rgb(74, 74, 65) !important;
+  border-color: rgb(74, 74, 65) !important;
+}
+
+.tp-theme-check.form-check-input[type="radio"]:checked {
+  background-image: radial-gradient(circle, #fff 0 30%, transparent 31%) !important;
+}
+
+.tp-theme-check.form-check-input[type="checkbox"]:checked {
+  background-color: rgb(74, 74, 65) !important;
+  border-color: rgb(74, 74, 65) !important;
+}
+
+.tp-unified-gem-card-inner {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  background: rgb(248, 248, 242);
+  border: 1px solid rgb(214, 214, 203);
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tp-unified-gem-card:hover .tp-unified-gem-card-inner {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(180, 180, 165, 0.2);
+}
+
+.tp-unified-gem-card-image-wrap {
+  width: 100%;
+  height: 96px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(245, 245, 238);
+}
+
+.tp-unified-gem-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  padding: 6px;
+}
+
+.tp-unified-gem-card-content {
+  padding: 8px 10px;
+  min-height: 58px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  font-family: var(--tp-ff-body);
+  color: rgb(48, 48, 42);
 }
 
-.product-story-column,
-.product-media-column {
-  width: 100%;
+.tp-unified-gem-card-title {
+  font-family: var(--tp-ff-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgb(35, 35, 31);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
 }
 
-@media (min-width: 992px) {
-  .product-layout {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .product-story-column {
-    flex: 0 0 62.5%;
-    max-width: 62.5%;
-  }
-
-  .product-media-column {
-    flex: 0 0 37.5%;
-    max-width: 37.5%;
-  }
-}
-
-.product-story-card {
-  background: linear-gradient(135deg, #fffdf7, #f6f9ff);
-}
-
-.product-detail .product-tabs-wrapper {
-  padding: 0 1.5rem 1.5rem;
-}
-
-.product-detail .product-info-card {
-  background: rgba(255, 255, 255, 0.96);
-}
-
-.product-detail .product-gallery {
-  background: #fff;
-  min-height: auto;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.product-detail .product-gallery img,
-.product-detail .product-gallery picture,
-.product-detail .product-gallery video {
-  max-height: 360px;
-  object-fit: contain;
-}
-
-.product-detail .product-actions-card {
-  background: #ffffff;
-  color: #0f172a;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-}
-
-.product-detail .product-actions-card .card-body {
-  min-height: 100%;
-}
-
-.product-actions-card button {
-  background-color: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  color: #0f172a;
-}
-
-.product-actions-card button:hover,
-.product-actions-card button:focus-visible {
-  background-color: #e2e8f0;
-  border-color: rgba(15, 23, 42, 0.3);
-  color: #0f172a;
-}
-
-.related-products-section {
-  background: linear-gradient(120deg, #080808, #111827);
-}
-
-.related-products-section h2 {
-  letter-spacing: 0.05em;
+.tp-unified-gem-card-meta,
+.tp-unified-gem-card-meta * {
+  font-family: var(--tp-ff-body);
+  color: rgb(74, 74, 65);
+  font-size: 0.68rem;
 }
 
 

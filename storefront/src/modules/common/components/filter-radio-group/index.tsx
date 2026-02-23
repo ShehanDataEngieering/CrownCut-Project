@@ -24,7 +24,7 @@ const FilterRadioGroup = ({
           <div key={i.value} className="form-check mb-2">
             <input
               type="radio"
-              className="form-check-input"
+              className="form-check-input tp-theme-check"
               id={i.value}
               name={title}
               value={i.value}

@@ -18,12 +18,14 @@ const StoreTemplate = ({
   sortBy,
   page,
   countryCode,
+  categoryId,
   filters,
   viewMode,
 }: {
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  categoryId?: string
   filters?: FilterOptions
   viewMode?: "grid" | "list"
 }) => {
@@ -32,23 +34,21 @@ const StoreTemplate = ({
   const view = viewMode || "grid"
 
   return (
-    <div
-      className="container py-4"
-      data-testid="category-container"
-    >
-      <div className="row">
+    <div className="container py-4 tp-store-section tp-store-theme-page" data-testid="category-container">
+      <div className="row g-4 align-items-start">
         <div className="col-lg-3 col-md-4">
           <RefinementList sortBy={sort} filters={filters} />
         </div>
         <div className="col-lg-9 col-md-8">
           <div className="mb-4">
-            <h1 className="h2" data-testid="store-page-title">All products</h1>
+            <h1 className="h2 tp-store-theme-title" data-testid="store-page-title">All products</h1>
           </div>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}
             countryCode={countryCode}
+            categoryId={categoryId}
             filters={filters}
             viewMode={view}
           />
