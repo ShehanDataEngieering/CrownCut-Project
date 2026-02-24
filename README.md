@@ -18,45 +18,27 @@
 <h2 align="center">
   Prebaked medusajs 2.0 monorepo
 </h2>
-<h4 align="center">
-  Backend + Storefront + postgres + redis + MinIO + MeiliSearch
-</h4>
 
-<h2 align="center">
-  <a href="https://railway.app/template/gkU-27?referralCode=-Yg50p">one-click deploy on railway!</a>
-</h2>
 
-<h1 align="center">
-  Need help?<br>
-  <a href="https://funkyton.com/medusajs-2-0-is-finally-here/">Step by step deploy guide, and video instructions</a>
-</h1>
-
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 14 features for a performant storefront.</p>
-
-## About this boilerplate
-This boilerplate is a monorepo consisting of the officially released MedusaJS 2.0 backend and storefront application. It is a pre-configured, ready-to-deploy solution, modified for seamless deployment on [railway.app](https://railway.app?referralCode=-Yg50p).
-
-Updated: to `version 2.10.2` 🥳
-
-## Preconfigured 3rd party integrations
-
-- MinIO file storage: Replaces local file storage with MinIO cloud storage, automatically creating a 'medusa-media' bucket for your media files. [README](backend/src/modules/minio-file/README.md)
-- Resend email integration [Watch setup video](https://youtu.be/pbdZm26YDpE?si=LQTHWeZMLD4w3Ahw) - special thanks to [aleciavogel](https://github.com/aleciavogel) for Resend notification service, and react-email implementation! [README](backend/src/modules/email-notifications/README.md)
-- Stripe payment service: [Watch setup video](https://youtu.be/dcSOpIzc1Og)
-- Meilisearch integration by [Rokmohar](https://github.com/rokmohar/medusa-plugin-meilisearch): Adds powerful product search capabilities to your store. When deployed on Railway using the template, MeiliSearch is automatically configured. (For non-railway'ers: [Watch setup video](https://youtu.be/hrXcc5MjApI))
+## What's included (custom functionality)
+- **Multi-country support**: Storefront routes and pricing are ready for country-specific browsing using the Medusa region and country setup.
+- **Postgres database**: Connected and configured for the Medusa backend with Railway-provided `DATABASE_URL`.
+- **Medusa admin integration**: Admin UI is bundled with the backend and available at `http://localhost:9000/app` in development.
+- **Railway hosting**: Backend, storefront, and dependent services are wired for Railway deploys.
 
 # Backend
 
 ### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
-
 - `cd backend/`
 - `pnpm install` or `npm i`
 - Rename `.env.template` ->  `.env`
 - To connect to your online database from your local machine, copy the `DATABASE_URL` value auto-generated on Railway and add it to your `.env` file.
   - If connecting to a new database, for example a local one, run `pnpm ib` or `npm run ib` to seed the database.
 - `pnpm dev` or `npm run dev`
+
+### multi-country setup notes
+- Configure regions and countries in the Medusa admin.
+- Ensure `DEFAULT_REGION_ID` and `NEXT_PUBLIC_DEFAULT_REGION` are set when using the storefront (see the storefront env template).
 
 ### requirements
 - **postgres database** (Automatic setup when using the Railway template)
@@ -74,11 +56,18 @@ Video instructions: https://youtu.be/PPxenu7IjGM
 # Storefront
 
 ### local setup
-Video instructions: https://youtu.be/PPxenu7IjGM
-
 - `cd storefront/
 - Install dependencies `npm i` or `pnpm i`
 - Rename `.env.local.template` ->  `.env.local`
+
+### multi-country routing
+- Storefront routes use the `[countryCode]` segment.
+- The default country is taken from the environment variables and redirects to the appropriate country route when missing.
+
+## Railway deployment
+- Use the Railway template link at the top of this README for one-click deploy.
+- Railway provisions Postgres, Redis, MinIO, and MeiliSearch automatically.
+- After deploy, update environment variables for the backend and storefront as needed (database URL, admin secrets, and public storefront settings).
 
 ### requirements
 - A running backend on port 9000 is required to fetch product data and other information needed to build Next.js pages.
@@ -87,18 +76,3 @@ Video instructions: https://youtu.be/PPxenu7IjGM
 `cd storefront/`
 `npm run dev` or `pnpm dev` will run the storefront on uncompiled code, with hot-reloading as files are saved with changes.
 
-## Useful resources
-- How to setup credit card payment with Stripe payment module: https://youtu.be/dcSOpIzc1Og
-- https://funkyton.com/medusajs-2-0-is-finally-here/#succuessfully-deployed-whats-next
-  
-<p align="center">
-  <a href="https://funkyton.com/">
-    <div style="text-align: center;">
-      A template by,
-      <br>
-      <picture>
-        <img alt="FUNKYTON logo" src="https://res-5.cloudinary.com/hczpmiapo/image/upload/q_auto/v1/ghost-blog-images/funkyton-logo.png" width=200>
-      </picture>
-    </div>
-  </a>
-</p>
