@@ -28,9 +28,9 @@ export default function ProductRail({
         <div className="row">
           {products &&
             products.map((product) => (
-              <div className="col-xl-3 col-lg-4 col-sm-6" key={product.id}>
+              <div className="col-xl-3 col-lg-4 col-sm-6 d-flex" key={product.id}>
                 {/* @ts-ignore */}
-                <ProductPreview product={product} region={region} isFeatured />
+                <ProductPreview product={product} region={region} isFeatured variant="gem" />
               </div>
             ))}
         </div>

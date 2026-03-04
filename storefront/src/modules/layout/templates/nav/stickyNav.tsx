@@ -9,6 +9,7 @@ import type { HttpTypes } from "@medusajs/types"
 import { mobile_menu } from "@lib/data/menu-data"
 import Menu from "./nav-componets/menu"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { Search } from "@svg"
 
 function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   const { sticky } = useSticky()
@@ -96,11 +97,11 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                       <img
                         src="/assets/img/logo/crowncut-logonb.png"
                         alt="logo"
-                        width={100}
-                        height={100}
+                        width={120}
+                        height={120}
                         style={{
-                          width: "100px",
-                          height: "100px",
+                          width: "120px",
+                          height: "120px",
                           objectFit: "contain",
                           display: "block",
                         }}
@@ -121,6 +122,15 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                 </div>
 
                 <div className="col-6 d-lg-none text-end">
+                  <LocalizedClientLink
+                    href="/search"
+                    aria-label="Search"
+                    className="mobile-search-link"
+                    onClick={() => startPageLoading("/search")}
+                  >
+                    <Search />
+                    <span className="visually-hidden">Search</span>
+                  </LocalizedClientLink>
                   <button
                     type="button"
                     className="mobile-menu-trigger"
@@ -217,6 +227,20 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           display: inline-flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .mobile-search-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 40px;
+          margin-right: 8px;
+          border-radius: 9999px;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+          color: inherit;
+          text-decoration: none;
+          vertical-align: middle;
         }
 
         .mobile-menu-trigger:disabled {

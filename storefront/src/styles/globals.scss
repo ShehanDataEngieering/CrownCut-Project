@@ -182,6 +182,25 @@ button {
   color: var(--tp-common-black);
 }
 
+.tp-header-area .main-menu.menu-style-3 > nav > ul > li > a,
+.tp-header-area .main-menu.menu-style-3.menu-style-4 > nav > ul > li > a,
+.tp-header-area .menu-link {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.tp-header-area .logo img {
+  max-height: 120px;
+}
+
+@media (max-width: 1199.98px) {
+  .tp-header-area .main-menu.menu-style-3 > nav > ul > li > a,
+  .tp-header-area .main-menu.menu-style-3.menu-style-4 > nav > ul > li > a,
+  .tp-header-area .menu-link {
+    font-size: 1.05rem;
+  }
+}
+
 .tp-store-section,
 .tp-category-section {
   padding-top: 140px;
@@ -359,7 +378,9 @@ button {
 
 .tp-unified-gem-card-image-wrap {
   width: 100%;
-  height: 96px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  min-height: 140px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -404,5 +425,3 @@ button {
   color: rgb(74, 74, 65);
   font-size: 0.68rem;
 }
-
-
