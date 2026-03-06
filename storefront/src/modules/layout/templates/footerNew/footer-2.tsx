@@ -176,10 +176,12 @@ const FooterTwo = () => {
                               href={s.link}
                               key={s.id}
                               target="_blank"
+                              rel="noreferrer"
                               className="tp-footer-social-link"
+                              aria-label={s.title}
+                              title={s.title}
                             >
                               <i className={s.icon}></i>
-                              <span>{s.title}</span>
                             </a>
                           ))}
                         </div>
@@ -197,9 +199,7 @@ const FooterTwo = () => {
                   <div className="col-md-6">
                     <div className="tp-footer-copyright">
                       <p>
-                        © {new Date().getFullYear()} All Rights Reserved | Next
-                        js Template by
-                        <LocalizedClientLink href="/">❤</LocalizedClientLink>.
+                        © {new Date().getFullYear()} All Rights Reserved | Built by Shehan Prasanna.
                       </p>
                     </div>
                   </div>
@@ -216,33 +216,6 @@ const FooterTwo = () => {
           </div>
         </div>
       </footer>
-      <style jsx>{`
-        .tp-footer-social-4.tp-footer-social {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.65rem 1.1rem;
-          max-width: 280px;
-        }
-
-        .tp-footer-social-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.55rem;
-          text-decoration: none;
-          color: inherit;
-          font-weight: 500;
-        }
-
-        .tp-footer-social-link i {
-          width: 34px;
-          height: 34px;
-          border-radius: 8px;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-      `}</style>
     </>
   )
 }
