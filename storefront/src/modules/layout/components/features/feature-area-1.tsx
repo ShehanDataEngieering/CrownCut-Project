@@ -13,25 +13,25 @@ export const feature_data: FeatureItem[] = [
     id: 'delivery',
     Icon: Delivery,
     title: 'Free Delivery',
-    subtitle: 'Orders from all item'
+    subtitle: 'Enjoy complimentary shipping on all orders over $250. Your precious gems delivered safely to your doorstep.'
   },
   {
     id: 'refund',
     Icon: Refund,
-    title: 'Return & Refund',
-    subtitle: 'Money back guarantee'
+    title: 'Return and Refund',
+    subtitle: "Easy returns and hassle-free refunds within 14 days if you're not completely satisfied."
   },
   {
-    id: 'discount',
+    id: 'protection',
     Icon: Discount,
-    title: 'Member Discount',
-    subtitle: 'Onevery order over $140.00'
+    title: 'Extend Protection',
+    subtitle: 'Protect your investment with our extended care plan for lasting brilliance and peace of mind.'
   },
   {
     id: 'support',
     Icon: Support,
     title: 'Support 24/7',
-    subtitle: 'Contact us 24 hours a day'
+    subtitle: 'Our expert support team is available around the clock to assist you anytime, anywhere.'
   },
 ];
 

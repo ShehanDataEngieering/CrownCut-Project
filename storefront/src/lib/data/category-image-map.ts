@@ -1,5 +1,16 @@
 const DEFAULT_CATEGORY_IMAGE = "/assets/img/product/gem-1.jpg"
 
+const FALLBACK_CATEGORY_IMAGES = [
+  "/assets/img/product/gem-1.jpg",
+  "/assets/img/product/gem-2.jpg",
+  "/assets/img/product/gem-3.jpg",
+  "/assets/img/product/gem-4.jpg",
+  "/assets/img/product/gem-5.jpg",
+  "/assets/img/product/gem-6.jpg",
+  "/assets/img/product/gem-7.jpg",
+  "/assets/img/product/gem-8.jpg",
+]
+
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "sapphire-blue": "/assets/img/product/gem-1.jpg",
   "sapphire-yellow": "/assets/img/product/gem-2.jpg",
@@ -19,6 +30,26 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   zircon: "/assets/img/product/zircon.jpg",
 }
 
+const hashString = (input: string) => {
+  // Simple deterministic hash for stable fallbacks (no crypto needed)
+  let hash = 0
+  for (let i = 0; i < input.length; i++) {
+    hash = (hash * 31 + input.charCodeAt(i)) | 0
+  }
+  return Math.abs(hash)
+}
+
 export function resolveCategoryImage(handle: string): string {
-  return CATEGORY_IMAGE_MAP[handle] || DEFAULT_CATEGORY_IMAGE
+  const key = (handle || "").toLowerCase().trim()
+
+  if (key && CATEGORY_IMAGE_MAP[key]) {
+    return CATEGORY_IMAGE_MAP[key]
+  }
+
+  if (!key) {
+    return DEFAULT_CATEGORY_IMAGE
+  }
+
+  const idx = hashString(key) % FALLBACK_CATEGORY_IMAGES.length
+  return FALLBACK_CATEGORY_IMAGES[idx] || DEFAULT_CATEGORY_IMAGE
 }

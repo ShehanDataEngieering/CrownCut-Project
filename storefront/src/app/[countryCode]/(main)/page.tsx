@@ -39,9 +39,11 @@ export default async function Home({ params }: HomePageProps) {
 
   return (
     <>
-       <FashionBanner />
-       <FeatureAreaOne />
-       <ShopBanner categories={normalizedCategories} />
+      <FashionBanner />
+      <div className="mt-8">
+        <FeatureAreaOne />
+      </div>
+      <ShopBanner categories={normalizedCategories} />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />

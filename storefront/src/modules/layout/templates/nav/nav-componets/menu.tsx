@@ -5,6 +5,7 @@ import CartButton from "@modules/layout/components/cart-button"
 import type { HttpTypes } from "@medusajs/types"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { Search } from "@svg"
 
 export default function Menu({
   regions,
@@ -20,27 +21,37 @@ export default function Menu({
       <div className="d-flex align-items-center gap-4">
         {/* Menu List Section */}
         <div className="menu-list-section flex-grow-1">
-          <ul className="d-flex gap-3 m-0 p-0 list-unstyled align-items-center justify-content-between">
-            <div className="d-flex gap-3 align-items-center">
-              {menu_data.map((menu) => (
-                <li key={menu.id} className="position-relative">
-                  <LocalizedClientLink
-                    href={menu.link}
-                    className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
-                    aria-busy={isPageLoading}
-                    onClick={() => onNavigateStart?.(menu.link)}
-                  >
-                    {isPageLoading && <span className="menu-spinner" />}
-                    {menu.title}
-                  </LocalizedClientLink>
-                  <div className="home-menu tp-submenu tp-mega-menu">
-                    <div className="row row-cols-lg-4 row-cols-sm-2 row-cols-1 gx-2 gy-2 gy-lg-0"></div>
-                  </div>
-                </li>
-              ))}
-            </div>
-            {/* Shipping and Cart Section right aligned to corner */}
-            <li className="position-relative align-items-center d-flex gap-3">
+          <ul className="d-flex gap-3 m-0 p-0 list-unstyled align-items-center w-100">
+            {menu_data.map((menu) => (
+              <li key={menu.id} className="position-relative">
+                <LocalizedClientLink
+                  href={menu.link}
+                  className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
+                  aria-busy={isPageLoading}
+                  onClick={() => onNavigateStart?.(menu.link)}
+                >
+                  {isPageLoading && <span className="menu-spinner" />}
+                  {menu.title}
+                </LocalizedClientLink>
+                <div className="home-menu tp-submenu tp-mega-menu">
+                  <div className="row row-cols-lg-4 row-cols-sm-2 row-cols-1 gx-2 gy-2 gy-lg-0"></div>
+                </div>
+              </li>
+            ))}
+
+            {/* Right-side actions */}
+            <li className="ms-auto position-relative align-items-center d-flex gap-3">
+              <LocalizedClientLink
+                href="/search"
+                aria-label="Search"
+                className="text-dark text-decoration-none"
+                onClick={() => onNavigateStart?.("/search")}
+              >
+                <span className="menu-icon-btn" aria-hidden="true">
+                  <Search />
+                </span>
+                <span className="visually-hidden">Search</span>
+              </LocalizedClientLink>
               <NavRegionCurrency regions={regions} />
               <CartButton />
             </li>
@@ -53,6 +64,16 @@ export default function Menu({
           display: inline-flex;
           align-items: center;
           gap: 0.45rem;
+        }
+
+        .menu-icon-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 9999px;
+          border: 1px solid rgba(0, 0, 0, 0.15);
         }
 
         .menu-link.is-loading {

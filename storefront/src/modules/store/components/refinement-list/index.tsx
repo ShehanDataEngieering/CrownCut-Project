@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 import SortProducts, { SortOptions } from "./sort-products"
 
@@ -26,6 +26,22 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
   const searchParams = useSearchParams()
   const isListView = searchParams?.get('view') === 'list'
 
+  const [searchDraft, setSearchDraft] = useState(filters?.search || "")
+  const [minDraft, setMinDraft] = useState(filters?.priceRange?.min?.toString() || "")
+  const [maxDraft, setMaxDraft] = useState(filters?.priceRange?.max?.toString() || "")
+
+  useEffect(() => {
+    setSearchDraft(filters?.search || "")
+  }, [filters?.search])
+
+  useEffect(() => {
+    setMinDraft(filters?.priceRange?.min?.toString() || "")
+  }, [filters?.priceRange?.min])
+
+  useEffect(() => {
+    setMaxDraft(filters?.priceRange?.max?.toString() || "")
+  }, [filters?.priceRange?.max])
+
   const themedCardStyle: React.CSSProperties = {
     border: "1.5px solid rgb(222, 222, 209)",
     borderRadius: 8,
@@ -34,14 +50,14 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
   }
 
   const themedBodyStyle: React.CSSProperties = {
-    background: "rgb(250, 250, 245)",
+    background: "#fff",
     padding: "1rem",
   }
 
   const themedAlertStyle: React.CSSProperties = {
     border: "1.5px solid rgb(222, 222, 209)",
     borderRadius: 8,
-    background: "rgb(250, 250, 245)",
+    background: "#fff",
     color: "rgb(52, 52, 45)",
     padding: "0.75rem 1rem",
     marginBottom: 0,
@@ -91,6 +107,11 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
     router.push(`${pathname}?${params.toString()}`)
   }
 
+  const canApply =
+    searchDraft.trim() !== (filters?.search || "").trim() ||
+    minDraft.trim() !== (filters?.priceRange?.min?.toString() || "").trim() ||
+    maxDraft.trim() !== (filters?.priceRange?.max?.toString() || "").trim()
+
   return (
     <div className="mb-4 d-grid tp-refinement-list" style={{ gap: "0.875rem" }}>
       <div className="card" style={themedCardStyle}>
@@ -123,8 +144,14 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
             type="text"
             className="form-control tp-theme-input"
             placeholder="Search products..."
-            defaultValue={filters?.search || ''}
-            onChange={(e) => updateFilters({ search: e.target.value, page: '1' })}
+            value={searchDraft}
+            onChange={(e) => setSearchDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault()
+                updateFilters({ search: searchDraft.trim(), page: "1" })
+              }
+            }}
           />
         </div>
       </div>
@@ -139,8 +166,14 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
                 type="number"
                 className="form-control tp-theme-input"
                 placeholder="Min"
-                defaultValue={filters?.priceRange?.min || ''}
-                onChange={(e) => updateFilters({ minPrice: e.target.value, page: '1' })}
+                value={minDraft}
+                onChange={(e) => setMinDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault()
+                    updateFilters({ minPrice: minDraft.trim(), page: "1" })
+                  }
+                }}
               />
             </div>
             <div className="col-6">
@@ -148,10 +181,46 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
                 type="number"
                 className="form-control tp-theme-input"
                 placeholder="Max"
-                defaultValue={filters?.priceRange?.max || ''}
-                onChange={(e) => updateFilters({ maxPrice: e.target.value, page: '1' })}
+                value={maxDraft}
+                onChange={(e) => setMaxDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault()
+                    updateFilters({ maxPrice: maxDraft.trim(), page: "1" })
+                  }
+                }}
               />
             </div>
+          </div>
+
+          <div className="d-flex gap-2 mt-3">
+            <button
+              type="button"
+              className="btn flex-fill"
+              style={{ border: "1.5px solid rgb(222, 222, 209)", background: "#fff" }}
+              onClick={() => {
+                setSearchDraft(filters?.search || "")
+                setMinDraft(filters?.priceRange?.min?.toString() || "")
+                setMaxDraft(filters?.priceRange?.max?.toString() || "")
+              }}
+              disabled={!canApply}
+            >
+              Reset
+            </button>
+            <button
+              type="button"
+              className="btn flex-fill"
+              style={{ border: "1.5px solid rgb(222, 222, 209)", background: "rgb(222, 222, 209)", color: "rgb(35, 35, 31)" }}
+              onClick={() => updateFilters({
+                search: searchDraft.trim(),
+                minPrice: minDraft.trim(),
+                maxPrice: maxDraft.trim(),
+                page: "1",
+              })}
+              disabled={!canApply}
+            >
+              Apply
+            </button>
           </div>
         </div>
       </div>

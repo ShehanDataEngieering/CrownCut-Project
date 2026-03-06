@@ -24,7 +24,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                   className="absolute inset-0 rounded-rounded"
                   alt={`Product image ${index + 1}`}
                   fill
-                  sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
+                  sizes="(max-width: 575px) 92vw, (max-width: 768px) 88vw, (max-width: 992px) 70vw, 800px"
                   style={{
                     objectFit: "cover",
                   }}

@@ -18,17 +18,17 @@ const menu_data = [
       {
         img: home_2,
         title: 'Fashion',
-        link: '/home-2'
+        link: '/'
       },
       {
         img: home_3,
         title: 'Beauty',
-        link: '/home-3'
+        link: '/'
       },
       {
         img: home_4,
         title: 'Jewelry',
-        link: '/home-4'
+        link: '/'
       }
     ]
   },
@@ -44,37 +44,31 @@ const menu_data = [
         mega_menus: [
           { title: 'Only Categories', link: '/categories' },
           { title: 'Shop Grid with Sideber', link: '/store' },
-          { title: 'Product Details', link: '/product-details' },
+          { title: 'Product Details', link: '/store' },
         ]
       },
       {
         title: 'Products',
-        link: '/product-details',
+        link: '/store',
         mega_menus: [
-          { title: 'Product Simple', link: '/product-details' },
-          { title: 'With Video', link: '/product-details-video' },
-          { title: 'With Countdown Timer', link: '/product-details-countdown' },
-          { title: 'Variations Swatches', link: '/product-details-swatches' },
+          { title: 'All Products', link: '/store' },
         ]
       },
       {
         title: 'eCommerce',
-        link: '/shop',
+        link: '/store',
         mega_menus: [
           { title: 'Shopping Cart', link: '/cart' },
-          { title: 'Compare', link: '/compare' },
-          { title: 'Wishlist', link: '/wishlist' },
+          { title: 'Compare', link: '/store' },
+          { title: 'Wishlist', link: '/store' },
           { title: 'Checkout', link: '/checkout' },
-          { title: 'My account', link: '/profile' },
+          { title: 'My account', link: '/account' },
         ]
       },
       {
         title: 'More Pages',
-        link: '/shop',
+        link: '/',
         mega_menus: [
-          { title: 'Login', link: '/login' },
-          { title: 'Register', link: '/register' },
-          { title: 'Forgot Password', link: '/forgot' },
           { title: '404 Error', link: '/404' },
         ]
       },
@@ -84,18 +78,10 @@ const menu_data = [
     id: 3,
     sub_menu: true,
     title: 'Shop',
-    link: '/shop',
+    link: '/store',
     sub_menus: [
-      { title: 'Shop', link: '/shop' },
-      { title: 'Right Sidebar', link: '/shop-right-sidebar' },
-      { title: 'Hidden Sidebar', link: '/shop-hidden-sidebar' },
+      { title: 'Shop', link: '/store' },
     ],
-  },
-  {
-    id: 4,
-    single_link: true,
-    title: 'Coupons',
-    link: '/coupon',
   },
   {
     id: 5,
@@ -103,11 +89,7 @@ const menu_data = [
     title: 'Blog',
     link: '/blog',
     sub_menus: [
-      { title: 'Blog Standard', link: '/blog' },
-      { title: 'Blog Grid', link: '/blog-grid' },
-      { title: 'Blog List', link: '/blog-list' },
-      { title: 'Blog Details', link: '/blog-details' },
-      { title: 'Blog Details Full Width', link: '/blog-details-2' },
+      { title: 'Blog', link: '/blog' },
     ]
   },
   {
@@ -136,17 +118,17 @@ export const mobile_menu = [
       {
         img: home_2,
         title: 'Fashion',
-        link: '/home-2'
+        link: '/'
       },
       {
         img: home_3,
         title: 'Beauty',
-        link: '/home-3'
+        link: '/'
       },
       {
         img: home_4,
         title: 'Jewelry',
-        link: '/home-4'
+        link: '/'
       }
     ]
   },
@@ -154,16 +136,10 @@ export const mobile_menu = [
     id: 2,
     sub_menu: true,
     title: 'Products',
-    link: '/shop',
+    link: '/store',
     sub_menus: [
-      { title: 'Shop', link: '/shop' },
-      { title: 'Right Sidebar', link: '/shop-right-sidebar' },
-      { title: 'Hidden Sidebar', link: '/shop-hidden-sidebar' },
-      { title: 'Only Categories', link: '/shop-category' },
-      { title: 'Product Simple', link: '/product-details' },
-      { title: 'With Video', link: '/product-details-video' },
-      { title: 'With Countdown Timer', link: '/product-details-countdown' },
-      { title: 'Variations Swatches', link: '/product-details-swatches' },
+      { title: 'Shop', link: '/store' },
+      { title: 'Categories', link: '/categories' },
     ],
   },
   {
@@ -173,29 +149,20 @@ export const mobile_menu = [
     link: '/cart',
     sub_menus: [
       { title: 'Shopping Cart', link: '/cart' },
-      { title: 'Compare', link: '/compare' },
-      { title: 'Wishlist', link: '/wishlist' },
+      { title: 'Compare', link: '/store' },
+      { title: 'Wishlist', link: '/store' },
       { title: 'Checkout', link: '/checkout' },
-      { title: 'My account', link: '/profile' },
+      { title: 'My account', link: '/account' },
     ],
   },
   {
     id: 4,
     sub_menu: true,
     title: 'More Pages',
-    link: '/login',
+    link: '/',
     sub_menus: [
-      { title: 'Login', link: '/login' },
-      { title: 'Register', link: '/register' },
-      { title: 'Forgot Password', link: '/forgot' },
       { title: '404 Error', link: '/404' },
     ],
-  },
-  {
-    id: 4,
-    single_link: true,
-    title: 'Coupons',
-    link: '/coupon',
   },
   {
     id: 5,
@@ -203,11 +170,7 @@ export const mobile_menu = [
     title: 'Blog',
     link: '/blog',
     sub_menus: [
-      { title: 'Blog Standard', link: '/blog' },
-      { title: 'Blog Grid', link: '/blog-grid' },
-      { title: 'Blog List', link: '/blog-list' },
-      { title: 'Blog Details', link: '/blog-details' },
-      { title: 'Blog Details Full Width', link: '/blog-details-2' },
+      { title: 'Blog', link: '/blog' },
     ]
   },
   {

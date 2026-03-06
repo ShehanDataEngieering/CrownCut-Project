@@ -21,10 +21,10 @@ export default function CollectionTemplate({
   const sort = sortBy || "created_at"
 
   return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container">
+    <div className="flex flex-col small:flex-row small:items-start py-6 content-container tp-store-section">
       <RefinementList sortBy={sort} />
       <div className="w-full">
-        <div className="mb-8 text-2xl-semi">
+        <div className="mb-8 text-2xl-semi tp-page-heading">
           <h1>{collection.title}</h1>
         </div>
         <Suspense fallback={<SkeletonProductGrid />}>

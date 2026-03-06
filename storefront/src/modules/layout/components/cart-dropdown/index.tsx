@@ -1,17 +1,11 @@
 "use client"
 
-import { Popover, Transition } from "@headlessui/react"
-import { Button } from "@medusajs/ui"
+import { Popover } from "@headlessui/react"
 import { usePathname, useRouter } from "next/navigation"
-import { Fragment, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { CartTwo } from "@svg"
-import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
-import DeleteButton from "@modules/common/components/delete-button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Thumbnail from "@modules/products/components/thumbnail"
 
 const CartDropdown = ({
   cart: cartState,
@@ -24,37 +18,34 @@ const CartDropdown = ({
   )
   const [cartDropdownOpen, setCartDropdownOpen] = useState(false)
 
-  const open = () => setCartDropdownOpen(true)
-  const close = () => setCartDropdownOpen(false)
-
-  console.log("CartDropdown cart state:", cartState);
-  console.log("CartDropdown cart items:", cartState?.items);
+  const open = useCallback(() => setCartDropdownOpen(true), [])
+  const close = useCallback(() => setCartDropdownOpen(false), [])
 
   const totalItems =
     cartState?.items?.reduce((acc, item) => {
       return acc + item.quantity
     }, 0) || 0
 
-  console.log("CartDropdown totalItems calculated:", totalItems);
-
-  const subtotal = cartState?.subtotal ?? 0
   const itemRef = useRef<number>(totalItems || 0)
 
-  const timedOpen = () => {
+  const timedOpen = useCallback(() => {
     open()
 
     const timer = setTimeout(close, 5000)
 
-    setActiveTimer(timer)
-  }
+    setActiveTimer(timer as unknown as NodeJS.Timer)
+  }, [close, open])
 
-  const openAndCancel = () => {
-    if (activeTimer) {
-      clearTimeout(activeTimer)
-    }
+  const openAndCancel = useCallback(() => {
+    setActiveTimer((t) => {
+      if (t) {
+        clearTimeout(t)
+      }
+      return undefined
+    })
 
     open()
-  }
+  }, [open])
 
   // Clean up the timer when the component unmounts
   useEffect(() => {
@@ -75,8 +66,6 @@ const CartDropdown = ({
 
     itemRef.current = totalItems
   }, [pathname, timedOpen, totalItems])
-
-   console.log("Rendering CartDropdown with totalItems:", totalItems);
 
   return (
     <div

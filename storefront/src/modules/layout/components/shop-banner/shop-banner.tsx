@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
@@ -101,13 +101,13 @@ function BannerItem({
       >
         <span>{content}</span>
         <h3 className="tp-banner-title-4">
-          <Link href="/shop">{title}</Link>
+          <LocalizedClientLink href="/store">{title}</LocalizedClientLink>
         </h3>
         {isBtn && (
           <div className="tp-banner-btn-4">
-            <Link href="/shop" className="tp-btn tp-btn-border">
+            <LocalizedClientLink href="/store" className="tp-btn tp-btn-border">
               Shop Now <ArrowRightLong />
-            </Link>
+            </LocalizedClientLink>
           </div>
         )}
       </div>
@@ -138,12 +138,12 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                     <div
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
                         gap: 16,
                       }}
                     >
                       {categories.map((category) => (
-                        <Link
+                        <LocalizedClientLink
                           key={category.id}
                           href={`/store?category=${encodeURIComponent(category.handle)}`}
                           className="tp-gem-card"
@@ -167,7 +167,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                background: "rgb(250, 250, 245)",
+                                background: "#fff",
                               }}
                             >
                               <img
@@ -192,7 +192,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                               )}
                             </div>
                           </div>
-                        </Link>
+                        </LocalizedClientLink>
                       ))}
 
                       {categories.length === 0 && (
@@ -224,14 +224,17 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                 <div className="tp-banner-full-content">
                   <span>Collection</span>
                   <h3 className="tp-banner-full-title">
-                    <Link href="/shop">
+                    <LocalizedClientLink href="/store">
                       GemStones from <br /> Sri Lanka
-                    </Link>
+                    </LocalizedClientLink>
                   </h3>
+                  <p style={{ margin: "14px 0 0", color: "rgba(255,255,255,0.85)", maxWidth: 360 }}>
+                    Discover authentic, ethically sourced gemstones from the heart of Sri Lanka - known worldwide for their brilliance and purity.
+                  </p>
                   <div className="tp-banner-full-btn">
-                    <Link href="/shop" className="tp-btn tp-btn-border">
+                    <LocalizedClientLink href="/store" className="tp-btn tp-btn-border">
                       Shop Now <ArrowRightLong />
-                    </Link>
+                    </LocalizedClientLink>
                   </div>
                 </div>
               </div>

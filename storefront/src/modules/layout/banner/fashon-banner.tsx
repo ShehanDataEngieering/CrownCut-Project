@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -116,9 +115,9 @@ const FashionBanner = () => {
         }}
       />
       <div className="flex flex-col w-full h-full p-1"></div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 py-20 px-6 lg:px-20 bg-gray-50 auto-rows-fr">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 py-14 sm:py-20 px-4 sm:px-6 lg:px-20 bg-gray-50 auto-rows-fr">
         <div
-          className="flex flex-col justify-center items-center space-y-6 text-center w-full h-full p-6"
+          className="flex flex-col justify-center items-center space-y-5 sm:space-y-6 text-center w-full h-full p-5 sm:p-6"
           style={{ backgroundColor: "#DEDED1" }}
         >
           <h3
@@ -127,18 +126,18 @@ const FashionBanner = () => {
               fontFamily: "SourceSerif4ExtraLightItalic, serif",
               fontStyle: "italic",
               fontWeight: 200,
-              fontSize: "33px",
+              fontSize: "clamp(1.6rem, 4.5vw, 2.2rem)",
             }}
           >
             Nature&apos;s Art, Crafted for the Heart
           </h3>
-          <p className="text-gray-600 max-w-md">
+          <p className="text-gray-600 max-w-md text-sm sm:text-base leading-relaxed">
             Every gemstone holds a story of love, memory, and meaning. More than
             a sparkle, it captures emotions that last a lifetime. At CROWNCUT
             Gems International, we believe every gem is a promise and a timeless
             reflection of life&apos;s most beautiful moments.
           </p>
-          <Link
+          <LocalizedClientLink
             href="/categories"
             className={`tp-btn tp-btn-border inline-block bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-800 transition-all text-sm w-fit inline-flex items-center gap-2 ${isPageLoading ? "pointer-events-none opacity-80" : ""}`}
             aria-busy={isPageLoading}
@@ -148,7 +147,7 @@ const FashionBanner = () => {
               <span className="inline-block h-3 w-3 animate-spin rounded-full border-2 border-white/40 border-t-white" />
             )}
             Shop Collection
-          </Link>
+          </LocalizedClientLink>
           <div className="flex flex-col w-full h-full p-6"></div>
         </div>
         <div className="flex flex-col w-full h-full">
@@ -185,3 +184,4 @@ const FashionBanner = () => {
 }
 
 export default FashionBanner
+import LocalizedClientLink from "@modules/common/components/localized-client-link"

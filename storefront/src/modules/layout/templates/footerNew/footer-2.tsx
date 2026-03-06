@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 // internal
 
@@ -8,27 +10,27 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 const social_data = [
   {
     id: 1,
-    link: "https://www.facebook.com/hamed.y.hasan0",
-    icon: "fa-brands fa-facebook-f",
-    title: "Facebook",
+    link: "https://wa.me/46760889995",
+    icon: "fa-brands fa-whatsapp",
+    title: "WhatsApp",
   },
   {
     id: 2,
-    link: "https://twitter.com/HamedHasan75",
-    icon: "fa-brands fa-twitter",
-    title: "Twitter",
+    link: "https://www.instagram.com/crowncut_gems",
+    icon: "fa-brands fa-instagram",
+    title: "Instagram",
   },
   {
     id: 3,
-    link: "nkedin.com/in/hamed-hasan/",
-    icon: "fa-brands fa-linkedin-in",
-    title: "Linkedin",
+    link: "https://www.tiktok.com/@crowncut.gems",
+    icon: "fa-brands fa-tiktok",
+    title: "TikTok",
   },
   {
     id: 4,
-    link: "https://vimeo.com/",
-    icon: "fa-brands fa-vimeo-v",
-    title: "Vimeo",
+    link: "https://www.facebook.com/profile.php?id=61582002311999",
+    icon: "fa-brands fa-facebook-f",
+    title: "Facebook",
   },
 ]
 
@@ -168,12 +170,16 @@ const FooterTwo = () => {
                           </form>
                         </div>
                         <div className="tp-footer-social-4 tp-footer-social">
-                          <h4 className="tp-footer-social-title-4">
-                            Follow Us On
-                          </h4>
+                          <h4 className="tp-footer-social-title-4">Follow Us</h4>
                           {social_data.map((s) => (
-                            <a href={s.link} key={s.id} target="_blank">
+                            <a
+                              href={s.link}
+                              key={s.id}
+                              target="_blank"
+                              className="tp-footer-social-link"
+                            >
                               <i className={s.icon}></i>
+                              <span>{s.title}</span>
                             </a>
                           ))}
                         </div>
@@ -210,6 +216,33 @@ const FooterTwo = () => {
           </div>
         </div>
       </footer>
+      <style jsx>{`
+        .tp-footer-social-4.tp-footer-social {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.65rem 1.1rem;
+          max-width: 280px;
+        }
+
+        .tp-footer-social-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.55rem;
+          text-decoration: none;
+          color: inherit;
+          font-weight: 500;
+        }
+
+        .tp-footer-social-link i {
+          width: 34px;
+          height: 34px;
+          border-radius: 8px;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      `}</style>
     </>
   )
 }
