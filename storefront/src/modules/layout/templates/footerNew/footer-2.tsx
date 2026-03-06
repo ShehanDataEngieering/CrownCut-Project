@@ -178,9 +178,10 @@ const FooterTwo = () => {
                               target="_blank"
                               rel="noreferrer"
                               className="tp-footer-social-link"
+                              aria-label={s.title}
+                              title={s.title}
                             >
                               <i className={s.icon}></i>
-                            
                             </a>
                           ))}
                         </div>
@@ -215,49 +216,6 @@ const FooterTwo = () => {
           </div>
         </div>
       </footer>
-      <style jsx>{`
-        .tp-footer-social-4.tp-footer-social {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.65rem 1.1rem;
-          max-width: 280px;
-        }
-
-        .tp-footer-social-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.7rem;
-          width: 100%;
-          min-height: 52px;
-          padding: 8px 10px;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          border-radius: 10px;
-          background: #fff;
-          text-decoration: none;
-          color: inherit;
-          font-weight: 500;
-          line-height: 1;
-        }
-
-        .tp-footer-social-link i {
-          width: 42px;
-          height: 42px;
-          border-radius: 8px;
-          border: 1px solid rgba(0, 0, 0, 0.12);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 18px;
-          flex-shrink: 0;
-          background: #fff;
-        }
-
-        .tp-footer-social-link span {
-          display: inline-flex;
-          align-items: center;
-          min-height: 24px;
-        }
-      `}</style>
     </>
   )
 }
