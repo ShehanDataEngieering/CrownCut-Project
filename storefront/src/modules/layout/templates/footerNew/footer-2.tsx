@@ -176,10 +176,11 @@ const FooterTwo = () => {
                               href={s.link}
                               key={s.id}
                               target="_blank"
+                              rel="noreferrer"
                               className="tp-footer-social-link"
                             >
                               <i className={s.icon}></i>
-                              <span>{s.title}</span>
+                            
                             </a>
                           ))}
                         </div>
@@ -197,9 +198,7 @@ const FooterTwo = () => {
                   <div className="col-md-6">
                     <div className="tp-footer-copyright">
                       <p>
-                        © {new Date().getFullYear()} All Rights Reserved | Next
-                        js Template by
-                        <LocalizedClientLink href="/">❤</LocalizedClientLink>.
+                        © {new Date().getFullYear()} All Rights Reserved | Built by Shehan Prasanna.
                       </p>
                     </div>
                   </div>
@@ -227,20 +226,36 @@ const FooterTwo = () => {
         .tp-footer-social-link {
           display: inline-flex;
           align-items: center;
-          gap: 0.55rem;
+          gap: 0.7rem;
+          width: 100%;
+          min-height: 52px;
+          padding: 8px 10px;
+          border: 1px solid rgba(0, 0, 0, 0.12);
+          border-radius: 10px;
+          background: #fff;
           text-decoration: none;
           color: inherit;
           font-weight: 500;
+          line-height: 1;
         }
 
         .tp-footer-social-link i {
-          width: 34px;
-          height: 34px;
+          width: 42px;
+          height: 42px;
           border-radius: 8px;
           border: 1px solid rgba(0, 0, 0, 0.12);
           display: inline-flex;
           align-items: center;
           justify-content: center;
+          font-size: 18px;
+          flex-shrink: 0;
+          background: #fff;
+        }
+
+        .tp-footer-social-link span {
+          display: inline-flex;
+          align-items: center;
+          min-height: 24px;
         }
       `}</style>
     </>

@@ -193,6 +193,16 @@ button {
   max-height: 120px;
 }
 
+/* Keep header/dropdowns above hero sliders before sticky mode activates. */
+.tp-header-area.tp-header-transparent {
+  z-index: 100;
+}
+
+.tp-header-area.tp-header-transparent .tp-header-bottom-3 {
+  position: relative;
+  z-index: 100;
+}
+
 @media (max-width: 1199.98px) {
   .tp-header-area .main-menu.menu-style-3 > nav > ul > li > a,
   .tp-header-area .main-menu.menu-style-3.menu-style-4 > nav > ul > li > a,
@@ -203,7 +213,7 @@ button {
 
 .tp-store-section,
 .tp-category-section {
-  padding-top: 140px;
+  padding-top: 140px !important;
 }
 
 .tp-store-theme-page {
@@ -309,7 +319,7 @@ button {
 @media (max-width: 991.98px) {
   .tp-store-section,
   .tp-category-section {
-    padding-top: 120px;
+    padding-top: 120px !important;
   }
 
   .tp-product-theme-card .card-body {
@@ -324,7 +334,7 @@ button {
 @media (max-width: 767.98px) {
   .tp-store-section,
   .tp-category-section {
-    padding-top: 105px;
+    padding-top: 105px !important;
   }
 }
 
@@ -348,7 +358,7 @@ button {
 
   .tp-store-section,
   .tp-category-section {
-    padding-top: 95px;
+    padding-top: 95px !important;
   }
 
   .tp-product-theme-card .card-body {
