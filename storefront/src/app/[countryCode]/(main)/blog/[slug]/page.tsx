@@ -132,7 +132,7 @@ export default function BlogPostPage({ params }: Props) {
                 borderRadius: 12,
                 overflow: "hidden",
                 border: "1.5px solid rgb(222, 222, 209)",
-                background: "rgb(250, 250, 245)",
+                background: "#fff",
               }}
             >
               <img

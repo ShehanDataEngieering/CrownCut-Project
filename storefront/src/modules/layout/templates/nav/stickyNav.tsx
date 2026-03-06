@@ -109,7 +109,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                     </LocalizedClientLink>
                   </div>
                 </div>
-                <div className="col-xl-8 col-lg-8 d-none d-lg-block">
+                <div className="col-xl-10 col-lg-10 d-none d-lg-block">
                   <div className="main-menu menu-style-3 menu-style-4 p-relative">
                     <nav className="tp-main-menu-content">
                       <Menu
@@ -149,8 +149,6 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                     )}
                   </button>
                 </div>
-
-                <div className="col d-none d-lg-block"></div>
               </div>
             </div>
           </div>
@@ -215,19 +213,26 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
         </div>
       )}
 
-      <style jsx>{`
-        .mobile-menu-trigger {
-          font-size: 28px;
-          line-height: 1;
-          background: transparent;
-          border: 0;
-          color: inherit;
-          min-width: 48px;
-          min-height: 40px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
+        <style jsx>{`
+          .mobile-menu-trigger {
+            font-size: 28px;
+            line-height: 1;
+            background: transparent;
+            border: 0;
+            color: inherit;
+            min-width: 48px;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .mobile-menu-trigger:focus-visible,
+          .mobile-menu-close:focus-visible,
+          .mobile-search-link:focus-visible {
+            outline: 2px solid rgba(0, 0, 0, 0.5);
+            outline-offset: 2px;
+          }
 
         .mobile-search-link {
           display: inline-flex;
@@ -324,17 +329,35 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           color: inherit;
           text-decoration: none;
           font-weight: 500;
+          padding: 0.25rem 0.1rem;
         }
 
-        .mobile-menu-actions {
-          margin-top: 1.25rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(0, 0, 0, 0.12);
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.75rem;
-        }
+          .mobile-menu-actions {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+          }
+
+          @media (max-width: 575px) {
+            .mobile-menu-actions {
+              flex-direction: column;
+              align-items: stretch;
+            }
+
+            .mobile-menu-actions :global(button),
+            .mobile-menu-actions :global(a) {
+              width: 100%;
+              justify-content: center;
+            }
+
+            .mobile-menu-title {
+              font-size: 0.95rem;
+            }
+          }
 
         .page-loading-overlay {
           position: fixed;

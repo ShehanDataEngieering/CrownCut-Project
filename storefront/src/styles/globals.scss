@@ -234,7 +234,7 @@ button {
 }
 
 .tp-product-theme-card {
-  background: rgba(251, 251, 247, 0.72);
+  background: #fff;
   border: 1px solid rgb(224, 224, 212) !important;
   border-radius: 10px;
 }
@@ -301,7 +301,8 @@ button {
   margin: 0;
 }
 
-.tp-category-heading {
+.tp-category-heading,
+.tp-page-heading {
   padding-top: 12px;
 }
 
@@ -324,6 +325,93 @@ button {
   .tp-store-section,
   .tp-category-section {
     padding-top: 105px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .content-container {
+    @apply px-4;
+  }
+
+  .tp-header-area .logo img {
+    max-height: 72px;
+  }
+
+  .tp-header-area .tp-header-action-item .tp-header-action-btn {
+    font-size: 1.05rem;
+  }
+
+  .tp-header-bottom-3 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .tp-store-section,
+  .tp-category-section {
+    padding-top: 95px;
+  }
+
+  .tp-product-theme-card .card-body {
+    padding: 1rem !important;
+  }
+
+  .tp-product-main-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  .tp-product-description {
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .tp-product-gallery-body .flex.flex-col.flex-1 {
+    gap: 0.5rem !important;
+  }
+
+  .tp-related-title {
+    font-size: clamp(1.6rem, 6.2vw, 2.2rem);
+    line-height: 1.25;
+  }
+
+  .tp-related-eyebrow {
+    font-size: 0.85rem;
+  }
+
+  .tp-unified-gem-card-title {
+    font-size: 0.78rem;
+  }
+
+  .tp-unified-gem-card-meta,
+  .tp-unified-gem-card-meta * {
+    font-size: 0.65rem;
+  }
+
+  .tp-shop-top-select .nice-select {
+    min-width: 100%;
+    padding-left: 16px;
+    padding-right: 36px;
+  }
+
+  .tp-shop-top-tab .nav-tabs .nav-link {
+    width: 36px;
+    height: 36px;
+    line-height: 34px;
+    font-size: 16px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pagination .page-link {
+    min-width: 36px;
+  }
+
+  .mobile-menu-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
@@ -365,7 +453,7 @@ button {
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  background: rgb(248, 248, 242);
+  background: #fff;
   border: 1px solid rgb(214, 214, 203);
   height: 100%;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -385,7 +473,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(245, 245, 238);
+  background: #fff;
 }
 
 .tp-unified-gem-card-image {
@@ -424,4 +512,28 @@ button {
   font-family: var(--tp-ff-body);
   color: rgb(74, 74, 65);
   font-size: 0.68rem;
+}
+
+.tp-banner-area {
+  padding-top: 24px;
+}
+
+@media (max-width: 575.98px) {
+  .tp-banner-area .tp-banner-content-4 {
+    padding: 20px 18px;
+  }
+
+  .tp-banner-area .tp-banner-title-4 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .tp-banner-area .tp-banner-full-title {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    line-height: 1.2;
+  }
+
+  .tp-banner-area .tp-banner-full-content {
+    padding: 28px 20px;
+  }
 }

@@ -50,14 +50,14 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
   }
 
   const themedBodyStyle: React.CSSProperties = {
-    background: "rgb(250, 250, 245)",
+    background: "#fff",
     padding: "1rem",
   }
 
   const themedAlertStyle: React.CSSProperties = {
     border: "1.5px solid rgb(222, 222, 209)",
     borderRadius: 8,
-    background: "rgb(250, 250, 245)",
+    background: "#fff",
     color: "rgb(52, 52, 45)",
     padding: "0.75rem 1rem",
     marginBottom: 0,

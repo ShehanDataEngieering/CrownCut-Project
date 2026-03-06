@@ -113,7 +113,7 @@ export default function BlogPage() {
                         style={{
                           width: "100%",
                           height: 180,
-                          background: "rgb(250, 250, 245)",
+                          background: "#fff",
                         }}
                       >
                         <img

@@ -40,19 +40,19 @@ const StoreTemplate = ({
           <RefinementList sortBy={sort} filters={filters} />
         </div>
         <div className="col-lg-9 col-md-8">
-          <div className="mb-4">
+          <div className="mb-4 tp-page-heading">
             <h1 className="h2 tp-store-theme-title" data-testid="store-page-title">All products</h1>
           </div>
-        <Suspense fallback={<SkeletonProductGrid />}>
-          <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
-            countryCode={countryCode}
-            categoryId={categoryId}
-            filters={filters}
-            viewMode={view}
-          />
-        </Suspense>
+          <Suspense fallback={<SkeletonProductGrid />}>
+            <PaginatedProducts
+              sortBy={sort}
+              page={pageNumber}
+              countryCode={countryCode}
+              categoryId={categoryId}
+              filters={filters}
+              viewMode={view}
+            />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -84,12 +84,6 @@ const menu_data = [
     ],
   },
   {
-    id: 4,
-    single_link: true,
-    title: 'Coupons',
-    link: '/store?onSale=true',
-  },
-  {
     id: 5,
     sub_menu: true,
     title: 'Blog',
@@ -169,12 +163,6 @@ export const mobile_menu = [
     sub_menus: [
       { title: '404 Error', link: '/404' },
     ],
-  },
-  {
-    id: 4,
-    single_link: true,
-    title: 'Coupons',
-    link: '/store?onSale=true',
   },
   {
     id: 5,

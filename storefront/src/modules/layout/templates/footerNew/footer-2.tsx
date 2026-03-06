@@ -16,19 +16,19 @@ const social_data = [
   },
   {
     id: 2,
-    link: "https://www.instagram.com/",
+    link: "https://www.instagram.com/crowncut_gems",
     icon: "fa-brands fa-instagram",
     title: "Instagram",
   },
   {
     id: 3,
-    link: "https://www.tiktok.com/",
+    link: "https://www.tiktok.com/@crowncut.gems",
     icon: "fa-brands fa-tiktok",
     title: "TikTok",
   },
   {
     id: 4,
-    link: "https://www.facebook.com/",
+    link: "https://www.facebook.com/profile.php?id=61582002311999",
     icon: "fa-brands fa-facebook-f",
     title: "Facebook",
   },

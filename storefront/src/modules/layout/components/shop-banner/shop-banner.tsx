@@ -138,7 +138,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                     <div
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
                         gap: 16,
                       }}
                     >
@@ -167,7 +167,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                background: "rgb(250, 250, 245)",
+                                background: "#fff",
                               }}
                             >
                               <img
