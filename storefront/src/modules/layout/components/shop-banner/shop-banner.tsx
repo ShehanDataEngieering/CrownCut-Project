@@ -225,11 +225,11 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                   <span>Collection</span>
                   <h3 className="tp-banner-full-title">
                     <LocalizedClientLink href="/store">
-                      GemStones from <br /> Sri Lanka
+                      GemStones
                     </LocalizedClientLink>
                   </h3>
                   <p style={{ margin: "14px 0 0", color: "rgba(255,255,255,0.85)", maxWidth: 360 }}>
-                    Discover authentic, ethically sourced gemstones from the heart of Sri Lanka - known worldwide for their brilliance and purity.
+                    Discover authentic, ethically sourced gemstones known worldwide for their brilliance and purity.
                   </p>
                   <div className="tp-banner-full-btn">
                     <LocalizedClientLink href="/store" className="tp-btn tp-btn-border">

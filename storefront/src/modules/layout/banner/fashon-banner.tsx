@@ -114,10 +114,9 @@ const FashionBanner = () => {
         `,
         }}
       />
-      <div className="flex flex-col w-full h-full p-1"></div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 py-14 sm:py-20 px-4 sm:px-6 lg:px-20 bg-gray-50 auto-rows-fr">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 py-8 sm:py-12 lg:py-20 px-4 sm:px-6 lg:px-20 bg-gray-50 auto-rows-fr">
         <div
-          className="flex flex-col justify-center items-center space-y-5 sm:space-y-6 text-center w-full h-full p-5 sm:p-6"
+          className="flex flex-col justify-center items-center space-y-4 sm:space-y-5 text-center w-full py-10 px-5 sm:p-6"
           style={{ backgroundColor: "#DEDED1" }}
         >
           <h3
@@ -148,7 +147,6 @@ const FashionBanner = () => {
             )}
             Shop Collection
           </LocalizedClientLink>
-          <div className="flex flex-col w-full h-full p-6"></div>
         </div>
         <div className="flex flex-col w-full h-full">
           <div className="tp-slider-area relative z-10 w-full h-full">
