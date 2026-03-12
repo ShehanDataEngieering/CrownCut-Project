@@ -106,77 +106,38 @@ export default menu_data;
 export const mobile_menu = [
   {
     id: 1,
-    homes: true,
+    single_link: true,
     title: 'Home',
     link: '/',
-    home_pages: [
-      {
-        img: home_1,
-        title: 'Electronics',
-        link: '/'
-      },
-      {
-        img: home_2,
-        title: 'Fashion',
-        link: '/'
-      },
-      {
-        img: home_3,
-        title: 'Beauty',
-        link: '/'
-      },
-      {
-        img: home_4,
-        title: 'Jewelry',
-        link: '/'
-      }
-    ]
   },
   {
     id: 2,
-    sub_menu: true,
-    title: 'Products',
+    single_link: true,
+    title: 'Shop',
     link: '/store',
-    sub_menus: [
-      { title: 'Shop', link: '/store' },
-      { title: 'Categories', link: '/categories' },
-    ],
   },
   {
     id: 3,
-    sub_menu: true,
-    title: 'eCommerce',
-    link: '/cart',
-    sub_menus: [
-      { title: 'Shopping Cart', link: '/cart' },
-      { title: 'Compare', link: '/store' },
-      { title: 'Wishlist', link: '/store' },
-      { title: 'Checkout', link: '/checkout' },
-      { title: 'My account', link: '/account' },
-    ],
+    single_link: true,
+    title: 'Categories',
+    link: '/categories',
   },
   {
     id: 4,
-    sub_menu: true,
-    title: 'More Pages',
-    link: '/',
-    sub_menus: [
-      { title: '404 Error', link: '/404' },
-    ],
+    single_link: true,
+    title: 'Blog',
+    link: '/blog',
   },
   {
     id: 5,
-    sub_menu: true,
-    title: 'Blog',
-    link: '/blog',
-    sub_menus: [
-      { title: 'Blog', link: '/blog' },
-    ]
+    single_link: true,
+    title: 'Contact',
+    link: '/contact',
   },
   {
     id: 6,
     single_link: true,
-    title: 'Contact',
-    link: '/contact',
+    title: 'My Account',
+    link: '/account',
   },
 ]

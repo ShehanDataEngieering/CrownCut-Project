@@ -25,7 +25,7 @@ export default function GemstoneCategoriesPage({
                 <div className="tp-gem-header">
                   <h3 className="mb-3">Gemstones</h3>
                   <p className="mb-4 text-muted">
-                    Explore our collection of precious gemstones from Sri Lanka
+                    Explore our collection of precious gemstones
                   </p>
                 </div>
 
@@ -86,7 +86,7 @@ export default function GemstoneCategoriesPage({
 
         @media (max-width: 991.98px) {
           .tp-gem-section {
-            padding-top: 120px;
+            padding-top: 90px;
           }
 
           .tp-gem-grid {
@@ -96,7 +96,7 @@ export default function GemstoneCategoriesPage({
 
         @media (max-width: 767.98px) {
           .tp-gem-section {
-            padding-top: 105px;
+            padding-top: 80px;
           }
 
           .tp-gem-grid {
@@ -105,8 +105,13 @@ export default function GemstoneCategoriesPage({
         }
 
         @media (max-width: 479.98px) {
+          .tp-gem-section {
+            padding-top: 72px;
+          }
+
           .tp-gem-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
           }
         }
       `}</style>

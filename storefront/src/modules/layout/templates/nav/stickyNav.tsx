@@ -99,9 +99,8 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                         alt="logo"
                         width={120}
                         height={120}
+                        className="header-logo-img"
                         style={{
-                          width: "120px",
-                          height: "120px",
                           objectFit: "contain",
                           display: "block",
                         }}
@@ -121,7 +120,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                   </div>
                 </div>
 
-                <div className="col-6 d-lg-none text-end">
+                <div className="col-6 d-lg-none d-flex align-items-center justify-content-end gap-2">
                   <LocalizedClientLink
                     href="/search"
                     aria-label="Search"
@@ -214,17 +213,30 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
       )}
 
         <style jsx>{`
+          .header-logo-img {
+            width: 120px;
+            height: 120px;
+          }
+
+          @media (max-width: 991.98px) {
+            .header-logo-img {
+              width: 56px;
+              height: 56px;
+            }
+          }
+
           .mobile-menu-trigger {
-            font-size: 28px;
+            font-size: 24px;
             line-height: 1;
             background: transparent;
             border: 0;
             color: inherit;
-            min-width: 48px;
-            min-height: 40px;
+            width: 40px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
           }
 
           .mobile-menu-trigger:focus-visible,
@@ -238,14 +250,13 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
+          width: 40px;
           height: 40px;
-          margin-right: 8px;
           border-radius: 9999px;
           border: 1px solid rgba(0, 0, 0, 0.15);
           color: inherit;
           text-decoration: none;
-          vertical-align: middle;
+          flex-shrink: 0;
         }
 
         .mobile-menu-trigger:disabled {

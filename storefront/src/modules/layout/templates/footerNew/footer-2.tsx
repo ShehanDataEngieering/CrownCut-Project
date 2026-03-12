@@ -43,21 +43,21 @@ const FooterTwo = () => {
           data-bg-color="#F5F5F5"
           style={{ backgroundColor: `rgb(245, 245, 245)` }}
         >
-          <div className="tp-footer-top pt-95 pb-40">
+          <div className="tp-footer-top pt-60 pb-30">
             <div className="container">
               <div className="row">
-                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                  <div className="tp-footer-widget footer-col-4-1 mb-50">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-6">
+                  <div className="tp-footer-widget footer-col-4-1 mb-40">
                     <div className="tp-footer-logo">
                       <LocalizedClientLink href="/">
                         <img
                           src="/assets/img/logo/crowncut-logonb.png"
                           alt="logo"
-                          width={200}
-                          height={200}
+                          width={80}
+                          height={80}
                           style={{
-                            width: "200px",
-                            height: "200px",
+                            width: "80px",
+                            height: "80px",
                             objectFit: "contain",
                             display: "block",
                           }}
@@ -65,18 +65,18 @@ const FooterTwo = () => {
                       </LocalizedClientLink>
                     </div>
                     <div className="tp-footer-widget-content">
-                      
+
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-5 col-lg-5 col-md-8 col-sm-6">
-                  <div className="tp-footer-widget footer-col-4-2 mb-50">
+                <div className="col-xl-5 col-lg-5 col-md-8 col-12">
+                  <div className="tp-footer-widget footer-col-4-2 mb-40">
                     <h4 className="tp-footer-widget-title">Contact Us</h4>
                     <div className="tp-footer-widget-content">
                       <div className="tp-footer-talk mb-20">
                         <h4>Crowncut Gems International</h4>
-                        <p className="mb-10">We’d love to hear from you.</p>
-                        <p className="mb-10">
+                        <p className="mb-10 tp-footer-contact-verbose">We’d love to hear from you.</p>
+                        <p className="mb-10 tp-footer-contact-verbose">
                           For inquiries about gemstones, orders, or partnerships,
                           please reach out using the details below.
                         </p>
@@ -118,15 +118,15 @@ const FooterTwo = () => {
                           </div>
                         </div>
                       </div>
-                      <p className="mb-0">
+                      <p className="mb-0 tp-footer-contact-verbose">
                         You may also use our contact form and our team will respond
                         within 24 hours.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-2 col-lg-2 col-md-4 col-sm-5">
-                  <div className="tp-footer-widget footer-col-4-3 mb-50">
+                <div className="col-xl-2 col-lg-2 col-md-4 col-6">
+                  <div className="tp-footer-widget footer-col-4-3 mb-40">
                     <h4 className="tp-footer-widget-title">Infomation</h4>
                     <div className="tp-footer-widget-content">
                       <ul>
@@ -152,8 +152,8 @@ const FooterTwo = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-7">
-                  <div className="tp-footer-widget footer-col-4-4 mb-50">
+                <div className="col-xl-3 col-lg-3 col-md-6 col-6">
+                  <div className="tp-footer-widget footer-col-4-4 mb-40">
                     <h4 className="tp-footer-widget-title">Subcribe.</h4>
                     <div className="tp-footer-widget-content">
                       <div className="tp-footer-subscribe">
@@ -169,7 +169,7 @@ const FooterTwo = () => {
                             </div>
                           </form>
                         </div>
-                        <div className="tp-footer-social-4 tp-footer-social">
+                        <div className="tp-footer-social-4 tp-footer-social tp-footer-social-grid">
                           <h4 className="tp-footer-social-title-4">Follow Us</h4>
                           {social_data.map((s) => (
                             <a
@@ -182,6 +182,7 @@ const FooterTwo = () => {
                               title={s.title}
                             >
                               <i className={s.icon}></i>
+                              <span>{s.title}</span>
                             </a>
                           ))}
                         </div>

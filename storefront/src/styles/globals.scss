@@ -264,6 +264,7 @@ button {
 
 .tp-header-area .logo img {
   max-height: 120px;
+  max-width: 100%;
 }
 
 /* Keep header/dropdowns above hero sliders before sticky mode activates. */
@@ -286,7 +287,7 @@ button {
 
 .tp-store-section,
 .tp-category-section {
-  padding-top: 140px !important;
+  padding-top: 110px !important;
 }
 
 .tp-store-theme-page {
@@ -411,13 +412,25 @@ button {
   }
 }
 
+@media (max-width: 991.98px) {
+  .tp-header-area .logo img {
+    max-height: 56px !important;
+    max-width: 56px !important;
+    height: 56px !important;
+    width: 56px !important;
+  }
+}
+
 @media (max-width: 575.98px) {
   .content-container {
     @apply px-4;
   }
 
   .tp-header-area .logo img {
-    max-height: 72px;
+    max-height: 48px !important;
+    max-width: 48px !important;
+    height: 48px !important;
+    width: 48px !important;
   }
 
   .tp-header-area .tp-header-action-item .tp-header-action-btn {
@@ -595,6 +608,160 @@ button {
   font-family: var(--tp-ff-body);
   color: rgb(74, 74, 65);
   font-size: 0.68rem;
+}
+
+/* Global mobile spacing reductions */
+@media (max-width: 767.98px) {
+  .pb-80 { padding-bottom: 40px !important; }
+  .pb-60 { padding-bottom: 30px !important; }
+  .pt-80 { padding-top: 40px !important; }
+  .pt-60 { padding-top: 30px !important; }
+  .mb-40 { margin-bottom: 20px !important; }
+  .mb-30 { margin-bottom: 16px !important; }
+
+  /* Store/category page top padding reduction (below sticky header) */
+  .tp-store-section,
+  .tp-category-section {
+    padding-top: 80px !important;
+  }
+
+  /* Feature section */
+  .tp-feature-item-2.mb-40 {
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .pb-80 { padding-bottom: 30px !important; }
+  .pt-80 { padding-top: 30px !important; }
+  .mb-40 { margin-bottom: 16px !important; }
+
+  .tp-store-section,
+  .tp-category-section {
+    padding-top: 70px !important;
+  }
+}
+
+/* Footer mobile compact */
+@media (max-width: 767.98px) {
+  .tp-footer-top {
+    padding-top: 32px !important;
+    padding-bottom: 16px !important;
+  }
+
+  .tp-footer-widget.mb-40 {
+    margin-bottom: 20px !important;
+  }
+
+  .tp-footer-logo img {
+    width: 64px !important;
+    height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
+  }
+
+  .tp-footer-widget-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .tp-footer-talk {
+    margin-bottom: 10px !important;
+  }
+
+  .tp-footer-talk h4 {
+    font-size: 0.875rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .tp-footer-talk p,
+  .tp-footer-contact p,
+  .tp-footer-widget-content p,
+  .tp-footer-widget-content ul li {
+    font-size: 0.8rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .tp-footer-contact-item {
+    margin-bottom: 6px !important;
+  }
+
+  .tp-footer-subscribe p {
+    font-size: 0.8rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .tp-footer-subscribe-form {
+    margin-bottom: 12px !important;
+  }
+
+  .tp-footer-subscribe-input input {
+    font-size: 0.8rem !important;
+    padding: 8px 12px !important;
+  }
+
+  .tp-footer-subscribe-input button {
+    font-size: 0.8rem !important;
+    padding: 8px 10px !important;
+  }
+
+  .tp-footer-bottom {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .tp-footer-copyright p,
+  .tp-footer-payment p {
+    font-size: 0.75rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .tp-footer-payment {
+    text-align: left !important;
+    margin-top: 4px;
+  }
+
+  /* Social grid compact on mobile — 2×2 icon-only buttons */
+  .tp-footer-unified .tp-footer-social-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .tp-footer-unified .tp-footer-social-grid .tp-footer-social-title-4 {
+    width: 100% !important;
+    margin-bottom: 4px !important;
+  }
+
+  .tp-footer-unified .tp-footer-social-grid .tp-footer-social-link {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: calc(50% - 4px) !important;
+    min-height: 60px !important;
+    padding: 8px 4px !important;
+    font-size: 0.7rem !important;
+    grid-template-columns: unset !important;
+    gap: 4px !important;
+  }
+
+  .tp-footer-unified .tp-footer-social-grid .tp-footer-social-link i {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 15px !important;
+  }
+
+  .tp-footer-unified .tp-footer-social-grid .tp-footer-social-link span {
+    white-space: nowrap !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Hide verbose contact text on mobile */
+  .tp-footer-contact-verbose {
+    display: none !important;
+  }
 }
 
 .tp-banner-area {

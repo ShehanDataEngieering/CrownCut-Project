@@ -18,44 +18,42 @@ export default function Menu({
 }) {
   return (
     <>
-      <div className="d-flex align-items-center gap-4">
-        {/* Menu List Section */}
-        <div className="menu-list-section flex-grow-1">
-          <ul className="d-flex gap-3 m-0 p-0 list-unstyled align-items-center w-100">
-            {menu_data.map((menu) => (
-              <li key={menu.id} className="position-relative">
-                <LocalizedClientLink
-                  href={menu.link}
-                  className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
-                  aria-busy={isPageLoading}
-                  onClick={() => onNavigateStart?.(menu.link)}
-                >
-                  {isPageLoading && <span className="menu-spinner" />}
-                  {menu.title}
-                </LocalizedClientLink>
-                <div className="home-menu tp-submenu tp-mega-menu">
-                  <div className="row row-cols-lg-4 row-cols-sm-2 row-cols-1 gx-2 gy-2 gy-lg-0"></div>
-                </div>
-              </li>
-            ))}
-
-            {/* Right-side actions */}
-            <li className="ms-auto position-relative align-items-center d-flex gap-3">
+      <div className="d-flex align-items-center w-100">
+        {/* Nav links — centered */}
+        <ul className="d-flex gap-3 m-0 p-0 list-unstyled align-items-center justify-content-center flex-grow-1">
+          {menu_data.map((menu) => (
+            <li key={menu.id} className="position-relative">
               <LocalizedClientLink
-                href="/search"
-                aria-label="Search"
-                className="text-dark text-decoration-none"
-                onClick={() => onNavigateStart?.("/search")}
+                href={menu.link}
+                className={`text-dark text-decoration-none fw-medium menu-link ${isPageLoading ? "is-loading" : ""}`}
+                aria-busy={isPageLoading}
+                onClick={() => onNavigateStart?.(menu.link)}
               >
-                <span className="menu-icon-btn" aria-hidden="true">
-                  <Search />
-                </span>
-                <span className="visually-hidden">Search</span>
+                {isPageLoading && <span className="menu-spinner" />}
+                {menu.title}
               </LocalizedClientLink>
-              <NavRegionCurrency regions={regions} />
-              <CartButton />
+              <div className="home-menu tp-submenu tp-mega-menu">
+                <div className="row row-cols-lg-4 row-cols-sm-2 row-cols-1 gx-2 gy-2 gy-lg-0"></div>
+              </div>
             </li>
-          </ul>
+          ))}
+        </ul>
+
+        {/* Right-side actions */}
+        <div className="d-flex align-items-center gap-3 flex-shrink-0">
+          <LocalizedClientLink
+            href="/search"
+            aria-label="Search"
+            className="text-dark text-decoration-none"
+            onClick={() => onNavigateStart?.("/search")}
+          >
+            <span className="menu-icon-btn" aria-hidden="true">
+              <Search />
+            </span>
+            <span className="visually-hidden">Search</span>
+          </LocalizedClientLink>
+          <NavRegionCurrency regions={regions} />
+          <CartButton />
         </div>
       </div>
 
