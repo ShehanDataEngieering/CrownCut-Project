@@ -76,12 +76,9 @@ const menu_data = [
   },
   {
     id: 3,
-    sub_menu: true,
+    single_link: true,
     title: 'Shop',
     link: '/store',
-    sub_menus: [
-      { title: 'Shop', link: '/store' },
-    ],
   },
   {
     id: 5,
@@ -91,12 +88,6 @@ const menu_data = [
     sub_menus: [
       { title: 'Blog', link: '/blog' },
     ]
-  },
-  {
-    id: 6,
-    single_link: true,
-    title: 'Contact',
-    link: '/contact',
   },
 ]
 
@@ -127,12 +118,6 @@ export const mobile_menu = [
     single_link: true,
     title: 'Blog',
     link: '/blog',
-  },
-  {
-    id: 5,
-    single_link: true,
-    title: 'Contact',
-    link: '/contact',
   },
   {
     id: 6,

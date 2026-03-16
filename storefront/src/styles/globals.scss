@@ -58,7 +58,7 @@ button {
 /* Footer social layout layer */
 .tp-footer-unified .tp-footer-social-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
   width: 100%;
   max-width: 100%;
@@ -785,5 +785,66 @@ button {
 
   .tp-banner-area .tp-banner-full-content {
     padding: 28px 20px;
+  }
+}
+
+/* ─── Web view (desktop) alignment fixes ─── */
+
+/* Fix header padding on desktop — prevent overflow on 992px–1400px range */
+@media (min-width: 992px) and (max-width: 1400px) {
+  .tp-header-bottom-3.pl-85 {
+    padding-left: 24px !important;
+  }
+  .tp-header-bottom-3.pr-85 {
+    padding-right: 24px !important;
+  }
+  .tp-header-bottom-3 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* Footer column alignment on medium-large screens */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .tp-footer-unified .col-xl-2.col-lg-2 {
+    flex: 0 0 auto;
+    width: 16.666%;
+  }
+  .tp-footer-unified .col-xl-5.col-lg-5 {
+    flex: 0 0 auto;
+    width: 33%;
+  }
+  .tp-footer-unified .col-xl-2.col-lg-2:nth-child(3) {
+    width: 18%;
+  }
+  .tp-footer-unified .col-xl-3.col-lg-3 {
+    flex: 0 0 auto;
+    width: 30%;
+  }
+}
+
+/* Ensure footer social grid doesn't overflow its container */
+.tp-footer-unified .tp-footer-subscribe {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Fix row overflow on all screens */
+.tp-footer-unified .row {
+  overflow: visible;
+}
+
+/* Fix product card grid alignment in store/category views */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .tp-product-theme-card {
+    height: 100%;
+  }
+}
+
+/* Fix container overflow on medium screens */
+@media (min-width: 992px) {
+  .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

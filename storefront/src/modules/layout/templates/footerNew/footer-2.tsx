@@ -119,8 +119,7 @@ const FooterTwo = () => {
                         </div>
                       </div>
                       <p className="mb-0 tp-footer-contact-verbose">
-                        You may also use our contact form and our team will respond
-                        within 24 hours.
+                        Our team will respond to your inquiry within 24 hours.
                       </p>
                     </div>
                   </div>
@@ -144,9 +143,6 @@ const FooterTwo = () => {
                         </li>
                         <li>
                           <a href="#">Latest News</a>
-                        </li>
-                        <li>
-                          <a href="#">Contact Us</a>
                         </li>
                       </ul>
                     </div>
