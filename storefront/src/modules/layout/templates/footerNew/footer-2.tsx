@@ -1,9 +1,6 @@
 "use client"
 
 import React from "react"
-// internal
-
-import { Email, Location } from "@svg"
 import pay from "@assets/img/footer/footer-pay.png"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -36,184 +33,146 @@ const social_data = [
 
 const FooterTwo = () => {
   return (
-    <>
-      <footer>
-        <div
-          className="tp-footer-area tp-footer-style-2 tp-footer-style-3 tp-footer-style-4 tp-footer-unified"
-          data-bg-color="#F5F5F5"
-          style={{ backgroundColor: `rgb(245, 245, 245)` }}
-        >
-          <div className="tp-footer-top pt-60 pb-30">
-            <div className="container">
-              <div className="row">
-                <div className="col-xl-2 col-lg-2 col-md-4 col-6">
-                  <div className="tp-footer-widget footer-col-4-1 mb-40">
-                    <div className="tp-footer-logo">
-                      <LocalizedClientLink href="/">
-                        <img
-                          src="/assets/img/logo/crowncut-logonb.png"
-                          alt="logo"
-                          width={80}
-                          height={80}
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            objectFit: "contain",
-                            display: "block",
-                          }}
-                        />
-                      </LocalizedClientLink>
-                    </div>
-                    <div className="tp-footer-widget-content">
+    <footer
+      className="tp-footer-unified"
+      style={{ backgroundColor: "#F5F5F5", borderTop: "1px solid rgba(0,0,0,0.08)" }}
+    >
+      {/* Main footer */}
+      <div className="container py-5">
+        <div className="row g-4">
 
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-5 col-lg-5 col-md-8 col-12">
-                  <div className="tp-footer-widget footer-col-4-2 mb-40">
-                    <h4 className="tp-footer-widget-title">Contact Us</h4>
-                    <div className="tp-footer-widget-content">
-                      <div className="tp-footer-talk mb-20">
-                        <h4>Crowncut Gems International</h4>
-                        <p className="mb-10 tp-footer-contact-verbose">We’d love to hear from you.</p>
-                        <p className="mb-10 tp-footer-contact-verbose">
-                          For inquiries about gemstones, orders, or partnerships,
-                          please reach out using the details below.
-                        </p>
-                        <p>
-                          <strong>Phone / WhatsApp:</strong>{" "}
-                          <a href="tel:+46760889995">076 088 99 95</a>
-                        </p>
-                      </div>
-                      <div className="tp-footer-contact">
-                        <div className="tp-footer-contact-item d-flex align-items-start">
-                          <div className="tp-footer-contact-icon">
-                            <span>
-                              <Email />
-                            </span>
-                          </div>
-                          <div className="tp-footer-contact-content">
-                            <p>
-                              <a href="mailto:crowncutgems@gmail.com">
-                                crowncutgems@gmail.com
-                              </a>
-                            </p>
-                          </div>
-                        </div>
-                        <div className="tp-footer-contact-item d-flex align-items-start">
-                          <div className="tp-footer-contact-icon">
-                            <span>
-                              <Location />
-                            </span>
-                          </div>
-                          <div className="tp-footer-contact-content">
-                            <p>
-                              <a
-                                href="https://maps.google.com/?q=Studieg%C3%A5ngen%208%2C%2041681%2C%20Gothenburg%2C%20Sweden"
-                                target="_blank"
-                              >
-                                Studiegången 8<br />41681 Gothenburg, Sweden
-                              </a>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="mb-0 tp-footer-contact-verbose">
-                        Our team will respond to your inquiry within 24 hours.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-2 col-lg-2 col-md-4 col-6">
-                  <div className="tp-footer-widget footer-col-4-3 mb-40">
-                    <h4 className="tp-footer-widget-title">Infomation</h4>
-                    <div className="tp-footer-widget-content">
-                      <ul>
-                        <li>
-                          <a href="#">Our Story</a>
-                        </li>
-                        <li>
-                          <a href="#">Careers</a>
-                        </li>
-                        <li>
-                          <a href="#">Privacy Policy</a>
-                        </li>
-                        <li>
-                          <a href="#">Terms & Conditions</a>
-                        </li>
-                        <li>
-                          <a href="#">Latest News</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-3 col-lg-3 col-md-6 col-6">
-                  <div className="tp-footer-widget footer-col-4-4 mb-40">
-                    <h4 className="tp-footer-widget-title">Subcribe.</h4>
-                    <div className="tp-footer-widget-content">
-                      <div className="tp-footer-subscribe">
-                        <p>Our conversation is just getting started</p>
-                        <div className="tp-footer-subscribe-form mb-30">
-                          <form action="#">
-                            <div className="tp-footer-subscribe-input">
-                              <input
-                                type="email"
-                                placeholder="Enter Your Email"
-                              />
-                              <button type="submit">Subscribe</button>
-                            </div>
-                          </form>
-                        </div>
-                        <div className="tp-footer-social-4 tp-footer-social tp-footer-social-grid">
-                          <h4 className="tp-footer-social-title-4">Follow Us</h4>
-                          {social_data.map((s) => (
-                            <a
-                              href={s.link}
-                              key={s.id}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="tp-footer-social-link"
-                              aria-label={s.title}
-                              title={s.title}
-                            >
-                              <i className={s.icon}></i>
-                              <span>{s.title}</span>
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* Brand + Contact */}
+          <div className="col-lg-5 col-md-6">
+            <LocalizedClientLink href="/">
+              <img
+                src="/assets/img/logo/crowncut-logonb.png"
+                alt="Crown Cut Gems"
+                style={{ width: 64, height: 64, objectFit: "contain", display: "block", marginBottom: "0.75rem" }}
+              />
+            </LocalizedClientLink>
+            <p style={{ fontSize: "0.85rem", color: "#555", marginBottom: "0.75rem", maxWidth: 280 }}>
+              Fine gems and jewelry curated for brilliance and everyday elegance.
+            </p>
+            <div style={{ fontSize: "0.85rem", color: "#444", lineHeight: 1.8 }}>
+              <div>
+                <a href="tel:+46760889995" style={{ color: "inherit", textDecoration: "none" }}>
+                  +46 760 889 995
+                </a>
+              </div>
+              <div>
+                <a href="mailto:crowncutgems@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>
+                  crowncutgems@gmail.com
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://maps.google.com/?q=Studieg%C3%A5ngen%208%2C%2041681%2C%20Gothenburg%2C%20Sweden"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  Gothenburg, Sweden
+                </a>
               </div>
             </div>
           </div>
-          <div className="tp-footer-bottom">
-            <div className="container">
-              <div className="tp-footer-bottom-wrapper">
-                <div className="row align-items-center">
-                  <div className="col-md-6">
-                    <div className="tp-footer-copyright">
-                      <p>
-                        © {new Date().getFullYear()} All Rights Reserved | Built by Shehan Prasanna.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="tp-footer-payment text-md-end">
-                      <p>
-                        <img src={pay.src} alt="pay" style={{ height: "auto", width: "auto", maxWidth: "100%" }} />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+          {/* Links */}
+          <div className="col-lg-3 col-md-3 col-6">
+            <h6 style={{ fontWeight: 600, marginBottom: "0.75rem", fontSize: "0.9rem" }}>Information</h6>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2 }}>
+              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Our Story</a></li>
+              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Privacy Policy</a></li>
+              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Terms &amp; Conditions</a></li>
+              <li><LocalizedClientLink href="/blog" style={{ color: "#555", textDecoration: "none" }}>Blog</LocalizedClientLink></li>
+            </ul>
+          </div>
+
+          {/* Follow + Subscribe */}
+          <div className="col-lg-4 col-md-3 col-6">
+            <h6 style={{ fontWeight: 600, marginBottom: "0.75rem", fontSize: "0.9rem" }}>Follow Us</h6>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+              {social_data.map((s) => (
+                <a
+                  key={s.id}
+                  href={s.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={s.title}
+                  title={s.title}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(0,0,0,0.15)",
+                    background: "#fff",
+                    color: "#333",
+                    fontSize: 16,
+                    textDecoration: "none",
+                    flexShrink: 0,
+                  }}
+                >
+                  <i className={s.icon} />
+                </a>
+              ))}
+            </div>
+
+            <h6 style={{ fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Newsletter</h6>
+            <div style={{ display: "flex", gap: "0.4rem" }}>
+              <input
+                type="email"
+                placeholder="Your email"
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  padding: "0.4rem 0.75rem",
+                  fontSize: "0.82rem",
+                  border: "1px solid rgba(0,0,0,0.18)",
+                  borderRadius: 6,
+                  background: "#fff",
+                  outline: "none",
+                }}
+              />
+              <button
+                type="button"
+                style={{
+                  padding: "0.4rem 0.85rem",
+                  fontSize: "0.82rem",
+                  background: "#111",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)", padding: "0.9rem 0", background: "#efefef" }}>
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-md-6">
+              <p style={{ margin: 0, fontSize: "0.78rem", color: "#666" }}>
+                © {new Date().getFullYear()} Crown Cut Gems. All rights reserved.
+              </p>
+            </div>
+            <div className="col-md-6 text-md-end mt-2 mt-md-0">
+              <img src={pay.src} alt="payment methods" style={{ height: 20, width: "auto", maxWidth: "100%", opacity: 0.7 }} />
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   )
 }
 
