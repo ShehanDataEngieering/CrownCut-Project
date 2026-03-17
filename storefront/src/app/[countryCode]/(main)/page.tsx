@@ -9,9 +9,9 @@ import FashionBanner from "@modules/layout/banner/fashon-banner"
 import FeatureAreaOne from "@modules/layout/components/features/feature-area-1"
 import ShopBanner from "@modules/layout/components/shop-banner/shop-banner"
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "Home",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "Fine gems and jewelry curated for brilliance and everyday elegance.",
 }
 
 type HomePageProps = {
