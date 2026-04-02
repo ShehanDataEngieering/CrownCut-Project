@@ -270,6 +270,7 @@ button {
 /* Keep header/dropdowns above hero sliders before sticky mode activates. */
 .tp-header-area.tp-header-transparent {
   z-index: 100;
+  background-color: #fff;
 }
 
 .tp-header-area.tp-header-transparent .tp-header-bottom-3 {

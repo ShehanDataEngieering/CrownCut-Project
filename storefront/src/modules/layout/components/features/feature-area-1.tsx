@@ -48,14 +48,26 @@ const FeatureAreaOne: React.FC = () => {
               color: #B6AE9F !important;
               stroke: #B6AE9F !important;
             }
+            .tp-feature-area.tp-feature-border-2 .tp-feature-item-2::after {
+              display: none !important;
+            }
+            @media (max-width: 767px) {
+              .tp-feature-col-divider {
+                border-right: none !important;
+              }
+            }
           `,
         }}
       />
       <section className={`tp-feature-area tp-feature-border-2 pb-80`}>
         <div className="container">
-          <div className="row align-items-center">
-            {feature_data.map((item) => (
-              <div key={item.id} className="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+          <div className="row align-items-stretch">
+            {feature_data.map((item, index) => (
+              <div
+                key={item.id}
+                className={`col-xl-3 col-lg-3 col-md-6 col-sm-6${index < feature_data.length - 1 ? " tp-feature-col-divider" : ""}`}
+                style={index < feature_data.length - 1 ? { borderRight: "1px solid #D9DBDE" } : undefined}
+              >
                 <div className="tp-feature-item-2 d-flex align-items-start mb-40">
                   <div className="tp-feature-icon-2 mr-10">
                     <span>

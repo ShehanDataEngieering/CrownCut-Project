@@ -120,38 +120,6 @@ const FooterTwo = () => {
               ))}
             </div>
 
-            <h6 style={{ fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Newsletter</h6>
-            <div style={{ display: "flex", gap: "0.4rem" }}>
-              <input
-                type="email"
-                placeholder="Your email"
-                style={{
-                  flex: 1,
-                  minWidth: 0,
-                  padding: "0.4rem 0.75rem",
-                  fontSize: "0.82rem",
-                  border: "1px solid rgba(0,0,0,0.18)",
-                  borderRadius: 6,
-                  background: "#fff",
-                  outline: "none",
-                }}
-              />
-              <button
-                type="button"
-                style={{
-                  padding: "0.4rem 0.85rem",
-                  fontSize: "0.82rem",
-                  background: "#111",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: 6,
-                  cursor: "pointer",
-                  flexShrink: 0,
-                }}
-              >
-                Subscribe
-              </button>
-            </div>
           </div>
 
         </div>

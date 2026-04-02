@@ -86,33 +86,33 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
         >
           <div className="tp-header-bottom-3 pl-85 pr-85">
             <div className="container-fluid">
-              <div className="row align-items-center">
-                <div className="col-xl-2 col-lg-2 col-6">
-                  <div className="logo">
-                    <LocalizedClientLink
-                      href="/"
-                      onClick={() => startPageLoading("/")}
-                      aria-busy={isPageLoading}
-                    >
-                      <img
-                        src="/assets/img/logo/crowncut-logonb.png"
-                        alt="logo"
-                        width={120}
-                        height={120}
-                        className="header-logo-img"
-                        style={{
-                          objectFit: "contain",
-                          display: "block",
-                        }}
-                      />
-                    </LocalizedClientLink>
-                  </div>
+              <div className="header-layout">
+                {/* Logo */}
+                <div className="header-logo">
+                  <LocalizedClientLink
+                    href="/"
+                    onClick={() => startPageLoading("/")}
+                    aria-busy={isPageLoading}
+                  >
+                    <img
+                      src="/assets/img/logo/crowncut-logonb.png"
+                      alt="logo"
+                      width={120}
+                      height={120}
+                      className="header-logo-img"
+                      style={{
+                        objectFit: "contain",
+                        display: "block",
+                      }}
+                    />
+                  </LocalizedClientLink>
                 </div>
-                <div className="col-xl-10 col-lg-10 d-none d-lg-block">
+
+                {/* Desktop nav — centered via CSS grid */}
+                <div className="header-nav d-none d-lg-flex justify-content-center">
                   <div className="main-menu menu-style-3 menu-style-4 p-relative">
                     <nav className="tp-main-menu-content">
                       <Menu
-                        regions={regions}
                         isPageLoading={isPageLoading}
                         onNavigateStart={startPageLoading}
                       />
@@ -120,33 +120,51 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                   </div>
                 </div>
 
-                <div className="col-6 d-lg-none d-flex align-items-center justify-content-end gap-2">
-                  <LocalizedClientLink
-                    href="/search"
-                    aria-label="Search"
-                    className="mobile-search-link"
-                    onClick={() => startPageLoading("/search")}
-                  >
-                    <Search />
-                    <span className="visually-hidden">Search</span>
-                  </LocalizedClientLink>
-                  <button
-                    type="button"
-                    className="mobile-menu-trigger"
-                    aria-label="Open mobile menu"
-                    aria-expanded={isMobileMenuOpen}
-                    aria-controls="mobile-menu-drawer"
-                    disabled={isPageLoading}
-                    onClick={() => setIsMobileMenuOpen(true)}
-                  >
-                    {isPageLoading ? (
-                      <span className="mobile-trigger-loading">
-                        <span className="loading-spinner" />
-                      </span>
-                    ) : (
-                      "☰"
-                    )}
-                  </button>
+                {/* Right section: desktop actions + mobile buttons */}
+                <div className="header-right">
+                  {/* Desktop actions */}
+                  <div className="header-desktop-actions d-none d-lg-flex align-items-center gap-3">
+                    <LocalizedClientLink
+                      href="/search"
+                      aria-label="Search"
+                      className="menu-icon-btn text-dark text-decoration-none"
+                      onClick={() => startPageLoading("/search")}
+                    >
+                      <Search />
+                      <span className="visually-hidden">Search</span>
+                    </LocalizedClientLink>
+                    <NavRegionCurrency regions={regions} />
+                    <CartButton />
+                  </div>
+                  {/* Mobile buttons */}
+                  <div className="d-flex d-lg-none align-items-center gap-2">
+                    <LocalizedClientLink
+                      href="/search"
+                      aria-label="Search"
+                      className="mobile-search-link"
+                      onClick={() => startPageLoading("/search")}
+                    >
+                      <Search />
+                      <span className="visually-hidden">Search</span>
+                    </LocalizedClientLink>
+                    <button
+                      type="button"
+                      className="mobile-menu-trigger"
+                      aria-label="Open mobile menu"
+                      aria-expanded={isMobileMenuOpen}
+                      aria-controls="mobile-menu-drawer"
+                      disabled={isPageLoading}
+                      onClick={() => setIsMobileMenuOpen(true)}
+                    >
+                      {isPageLoading ? (
+                        <span className="mobile-trigger-loading">
+                          <span className="loading-spinner" />
+                        </span>
+                      ) : (
+                        "☰"
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -213,6 +231,40 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
       )}
 
         <style jsx>{`
+          /* ── Header layout ── */
+          .header-layout {
+            display: flex;
+            align-items: center;
+            width: 100%;
+          }
+
+          .header-logo {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+          }
+
+          .header-right {
+            flex-shrink: 0;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+          }
+
+          @media (min-width: 992px) {
+            .header-layout {
+              display: grid;
+              grid-template-columns: 1fr auto 1fr;
+              align-items: center;
+            }
+
+            .header-right {
+              margin-left: 0;
+              justify-content: flex-end;
+            }
+          }
+
+          /* ── Logo ── */
           .header-logo-img {
             width: 120px;
             height: 120px;
@@ -223,6 +275,18 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
               width: 56px;
               height: 56px;
             }
+          }
+
+          /* ── Desktop search button ── */
+          .menu-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 9999px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
           }
 
           .mobile-menu-trigger {
