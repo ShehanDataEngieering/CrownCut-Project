@@ -22,7 +22,17 @@
       "Bash(powershell -command \"Expand-Archive -Path ''WhatsApp Unknown 2026-03-12 at 00.30.59.zip'' -DestinationPath ''crown_logo_extract'' -Force\")",
       "Bash(find ~/source -maxdepth 3 -name storefront -o -name medusa*)",
       "Bash(cp //wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/storefront/public/assets/img/logo/crowncut-logonb.png //wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/storefront/public/favicon.png)",
-      "Read(///wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/storefront/public/**)"
+      "Read(///wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/storefront/public/**)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:9000/health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"x-publishable-api-key: pk_2335f2e23f3240066bee039ab7378076ee2ae8e8831d45036fe402d7ab3bbeae\" http://localhost:9000/store/regions)",
+      "Bash(wsl -- bash -lc \"curl -s -o /dev/null -w ''%{http_code}'' -H ''x-publishable-api-key: pk_2335f2e23f3240066bee039ab7378076ee2ae8e8831d45036fe402d7ab3bbeae'' http://localhost:9000/store/regions\")",
+      "Bash(wsl -- bash -lc \"curl -s -H ''x-publishable-api-key: pk_2335f2e23f3240066bee039ab7378076ee2ae8e8831d45036fe402d7ab3bbeae'' http://localhost:9000/store/regions | head -c 200\")",
+      "Read(///wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/.claude/**)",
+      "Read(///wsl.localhost/Ubuntu-24.04/home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/**)",
+      "Bash(wsl -- bash -lc \"curl -sv http://localhost:9000/store/regions -H ''x-publishable-api-key: pk_2335f2e23f3240066bee039ab7378076ee2ae8e8831d45036fe402d7ab3bbeae'' 2>&1 | tail -20\")",
+      "Bash(wsl -- bash -lc \"ss -tlnp | grep 9000\")",
+      "Bash(wsl -- bash -lc \"curl -s -o /dev/null -w ''%{http_code}'' http://localhost:8000/dk\")",
+      "Bash(wsl -- bash -lc \"grep -n ''getProductsListWithSort'' /home/shehanp12/medusa/medusajs-2.0-for-railway-boilerplate-BKGY/storefront/src/lib/data/products.ts | head -5\")"
     ]
   }
 }

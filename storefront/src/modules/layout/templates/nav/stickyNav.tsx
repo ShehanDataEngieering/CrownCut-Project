@@ -89,6 +89,8 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false)
         closeSearch()
+        setIsMobileSearchOpen(false)
+        setMobileSearchQuery("")
       }
     }
 
@@ -103,6 +105,8 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   useEffect(() => {
     clearPageLoading()
     closeSearch()
+    setIsMobileSearchOpen(false)
+    setMobileSearchQuery("")
   }, [pathname])
 
   useEffect(() => {
@@ -183,6 +187,11 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                         </button>
                       </form>
 
+                      {searchQuery.trim() && !isSearching && searchResults.length === 0 && (
+                        <div className="header-search-dropdown header-search-empty">
+                          No results for &ldquo;{searchQuery}&rdquo;
+                        </div>
+                      )}
                       {searchResults.length > 0 && (
                         <ul className="header-search-dropdown">
                           {searchResults.map((product) => (
@@ -205,6 +214,15 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                               </LocalizedClientLink>
                             </li>
                           ))}
+                          <li className="header-search-viewall-row">
+                            <LocalizedClientLink
+                              href={`/store?search=${encodeURIComponent(searchQuery.trim())}`}
+                              className="header-search-viewall"
+                              onClick={closeSearch}
+                            >
+                              View all results for &ldquo;{searchQuery}&rdquo; →
+                            </LocalizedClientLink>
+                          </li>
                         </ul>
                       )}
                     </div>
@@ -240,32 +258,73 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                   </div>
                   {/* Mobile buttons */}
                   <div className="d-flex d-lg-none align-items-center gap-2">
-                    <LocalizedClientLink
-                      href="/search"
-                      aria-label="Search"
-                      className="mobile-search-link"
-                      onClick={() => startPageLoading("/search")}
-                    >
-                      <Search />
-                      <span className="visually-hidden">Search</span>
-                    </LocalizedClientLink>
-                    <button
-                      type="button"
-                      className="mobile-menu-trigger"
-                      aria-label="Open mobile menu"
-                      aria-expanded={isMobileMenuOpen}
-                      aria-controls="mobile-menu-drawer"
-                      disabled={isPageLoading}
-                      onClick={() => setIsMobileMenuOpen(true)}
-                    >
-                      {isPageLoading ? (
-                        <span className="mobile-trigger-loading">
-                          <span className="loading-spinner" />
-                        </span>
-                      ) : (
-                        "☰"
-                      )}
-                    </button>
+                    {isMobileSearchOpen ? (
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          if (mobileSearchQuery.trim()) {
+                            setIsMobileSearchOpen(false)
+                            setMobileSearchQuery("")
+                            window.location.href = `/store?search=${encodeURIComponent(mobileSearchQuery.trim())}`
+                          }
+                        }}
+                        className="mobile-search-bar"
+                      >
+                        <input
+                          ref={mobileSearchInputRef}
+                          type="search"
+                          value={mobileSearchQuery}
+                          onChange={(e) => setMobileSearchQuery(e.target.value)}
+                          placeholder="Search products..."
+                          className="mobile-search-input"
+                          aria-label="Search products"
+                          autoFocus
+                        />
+                        <button type="submit" aria-label="Submit search" className="mobile-search-submit">
+                          <Search />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsMobileSearchOpen(false)
+                            setMobileSearchQuery("")
+                          }}
+                          className="mobile-search-close-btn"
+                          aria-label="Close search"
+                        >
+                          ✕
+                        </button>
+                      </form>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          aria-label="Search"
+                          className="mobile-search-link"
+                          onClick={() => setIsMobileSearchOpen(true)}
+                        >
+                          <Search />
+                          <span className="visually-hidden">Search</span>
+                        </button>
+                        <button
+                          type="button"
+                          className="mobile-menu-trigger"
+                          aria-label="Open mobile menu"
+                          aria-expanded={isMobileMenuOpen}
+                          aria-controls="mobile-menu-drawer"
+                          disabled={isPageLoading}
+                          onClick={() => setIsMobileMenuOpen(true)}
+                        >
+                          {isPageLoading ? (
+                            <span className="mobile-trigger-loading">
+                              <span className="loading-spinner" />
+                            </span>
+                          ) : (
+                            "☰"
+                          )}
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -461,7 +520,33 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
             margin: 0;
             padding: 0.4rem 0;
             z-index: 500;
-            overflow: hidden;
+            overflow: visible;
+          }
+
+          .header-search-empty {
+            padding: 0.75rem 1rem;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 0.875rem;
+            border-radius: 12px;
+          }
+
+          .header-search-viewall-row {
+            border-top: 1px solid rgba(0, 0, 0, 0.07);
+            margin-top: 0.25rem;
+          }
+
+          .header-search-viewall {
+            display: block;
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+            transition: color 0.15s;
+          }
+
+          .header-search-viewall:hover {
+            color: #000;
           }
 
           .header-search-result {
@@ -548,6 +633,72 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           color: inherit;
           text-decoration: none;
           flex-shrink: 0;
+          background: transparent;
+          cursor: pointer;
+        }
+
+        .mobile-search-bar {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 9999px;
+          padding: 0 0.6rem;
+          height: 40px;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .mobile-search-input {
+          flex: 1;
+          border: 0;
+          background: transparent;
+          outline: none;
+          font-size: 0.875rem;
+          color: inherit;
+          min-width: 0;
+        }
+
+        .mobile-search-input::placeholder {
+          color: rgba(0, 0, 0, 0.4);
+        }
+
+        .mobile-search-input::-webkit-search-cancel-button {
+          display: none;
+        }
+
+        .mobile-search-submit {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          padding: 0.2rem;
+          flex-shrink: 0;
+          opacity: 0.6;
+        }
+
+        .mobile-search-submit:hover {
+          opacity: 1;
+        }
+
+        .mobile-search-close-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          font-size: 13px;
+          line-height: 1;
+          padding: 0.2rem;
+          flex-shrink: 0;
+          opacity: 0.55;
+        }
+
+        .mobile-search-close-btn:hover {
+          opacity: 1;
         }
 
         .mobile-menu-trigger:disabled {

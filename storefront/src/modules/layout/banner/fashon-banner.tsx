@@ -1,5 +1,6 @@
 "use client"
 
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -48,9 +49,9 @@ const sliderSetting: SwiperProps = {
   loop: true,
   speed: 2000,
   autoplay: {
-    delay: 1000,
+    delay: 4000,
     disableOnInteraction: false,
-    pauseOnMouseEnter: false,
+    pauseOnMouseEnter: true,
     waitForTransition: true,
   },
   navigation: {
@@ -154,9 +155,9 @@ const FashionBanner = () => {
               {...sliderSetting}
               modules={[Navigation, EffectFade, Autoplay]}
               autoplay={{
-                delay: 1000,
+                delay: 4000,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: false,
+                pauseOnMouseEnter: true,
                 waitForTransition: true,
               }}
               className="tp-slider-active-2 swiper-container w-full"
@@ -182,4 +183,3 @@ const FashionBanner = () => {
 }
 
 export default FashionBanner
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
