@@ -4,19 +4,57 @@ import { usePathname } from "next/navigation"
 import useSticky from "@hooks/use-sticky"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 import CartButton from "@modules/layout/components/cart-button"
-import { memo, useEffect, useRef, useState } from "react"
+import { memo, useEffect, useRef, useState, useCallback } from "react"
 import type { HttpTypes } from "@medusajs/types"
 import { mobile_menu } from "@lib/data/menu-data"
 import Menu from "./nav-componets/menu"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Search } from "@svg"
+import { sdk } from "@lib/config"
 
 function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   const { sticky } = useSticky()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isPageLoading, setIsPageLoading] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState<HttpTypes.StoreProduct[]>([])
+  const [isSearching, setIsSearching] = useState(false)
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("")
+  const searchInputRef = useRef<HTMLInputElement>(null)
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const loadingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const openSearch = useCallback(() => {
+    setIsSearchOpen(true)
+    setTimeout(() => searchInputRef.current?.focus(), 50)
+  }, [])
+
+  const closeSearch = useCallback(() => {
+    setIsSearchOpen(false)
+    setSearchQuery("")
+    setSearchResults([])
+  }, [])
+
+  // Debounced live search
+  useEffect(() => {
+    const trimmed = searchQuery.trim()
+    if (!trimmed) {
+      setSearchResults([])
+      return
+    }
+    setIsSearching(true)
+    const timer = setTimeout(() => {
+      sdk.store.product
+        .list({ q: trimmed, limit: 6, fields: "id,title,handle,thumbnail" })
+        .then(({ products }) => setSearchResults(products))
+        .catch(() => setSearchResults([]))
+        .finally(() => setIsSearching(false))
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [searchQuery])
 
   const clearPageLoading = () => {
     if (loadingTimeoutRef.current) {
@@ -50,6 +88,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMobileMenuOpen(false)
+        closeSearch()
       }
     }
 
@@ -63,6 +102,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
 
   useEffect(() => {
     clearPageLoading()
+    closeSearch()
   }, [pathname])
 
   useEffect(() => {
@@ -86,7 +126,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
         >
           <div className="tp-header-bottom-3 pl-85 pr-85">
             <div className="container-fluid">
-              <div className="header-layout">
+              <div className={`header-layout${isSearchOpen ? " header-layout--search" : ""}`}>
                 {/* Logo */}
                 <div className="header-logo">
                   <LocalizedClientLink
@@ -108,31 +148,93 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                   </LocalizedClientLink>
                 </div>
 
-                {/* Desktop nav — centered via CSS grid */}
-                <div className="header-nav d-none d-lg-flex justify-content-center">
-                  <div className="main-menu menu-style-3 menu-style-4 p-relative">
-                    <nav className="tp-main-menu-content">
-                      <Menu
-                        isPageLoading={isPageLoading}
-                        onNavigateStart={startPageLoading}
-                      />
-                    </nav>
-                  </div>
+                {/* Desktop nav — centered via CSS grid; replaced by search bar when open */}
+                <div className="header-nav d-none d-lg-flex justify-content-center align-items-center">
+                  {isSearchOpen ? (
+                    <div className="header-search-wrap">
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          if (searchQuery.trim()) {
+                            closeSearch()
+                            window.location.href = `/store?search=${encodeURIComponent(searchQuery.trim())}`
+                          }
+                        }}
+                        className="header-search-bar"
+                      >
+                        <span className="header-search-icon"><Search /></span>
+                        <input
+                          ref={searchInputRef}
+                          type="search"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder="Search products..."
+                          className="header-search-input"
+                          aria-label="Search products"
+                        />
+                        {isSearching && <span className="header-search-spinner" />}
+                        <button
+                          type="button"
+                          onClick={closeSearch}
+                          className="header-search-close"
+                          aria-label="Close search"
+                        >
+                          ✕
+                        </button>
+                      </form>
+
+                      {searchResults.length > 0 && (
+                        <ul className="header-search-dropdown">
+                          {searchResults.map((product) => (
+                            <li key={product.id}>
+                              <LocalizedClientLink
+                                href={`/products/${product.handle}`}
+                                className="header-search-result"
+                                onClick={closeSearch}
+                              >
+                                {product.thumbnail ? (
+                                  <img
+                                    src={product.thumbnail}
+                                    alt=""
+                                    className="header-search-thumb"
+                                  />
+                                ) : (
+                                  <div className="header-search-thumb header-search-thumb-placeholder" />
+                                )}
+                                <span className="header-search-title">{product.title}</span>
+                              </LocalizedClientLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="main-menu menu-style-3 menu-style-4 p-relative">
+                      <nav className="tp-main-menu-content">
+                        <Menu
+                          isPageLoading={isPageLoading}
+                          onNavigateStart={startPageLoading}
+                        />
+                      </nav>
+                    </div>
+                  )}
                 </div>
 
                 {/* Right section: desktop actions + mobile buttons */}
                 <div className="header-right">
                   {/* Desktop actions */}
                   <div className="header-desktop-actions d-none d-lg-flex align-items-center gap-3">
-                    <LocalizedClientLink
-                      href="/search"
-                      aria-label="Search"
-                      className="menu-icon-btn text-dark text-decoration-none"
-                      onClick={() => startPageLoading("/search")}
-                    >
-                      <Search />
-                      <span className="visually-hidden">Search</span>
-                    </LocalizedClientLink>
+                    {!isSearchOpen && (
+                      <button
+                        type="button"
+                        aria-label="Search"
+                        className="menu-icon-btn search-open-btn"
+                        onClick={openSearch}
+                      >
+                        <Search />
+                        <span className="visually-hidden">Search</span>
+                      </button>
+                    )}
                     <NavRegionCurrency regions={regions} />
                     <CartButton />
                   </div>
@@ -255,7 +357,10 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
             .header-layout {
               display: grid;
               grid-template-columns: 1fr auto 1fr;
-              align-items: center;
+            }
+
+            .header-layout--search {
+              grid-template-columns: auto minmax(0, 50%) auto;
             }
 
             .header-right {
@@ -277,7 +382,129 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
             }
           }
 
+          /* ── Inline search bar ── */
+          .header-search-wrap {
+            position: relative;
+            width: 100%;
+          }
+
+          .header-search-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 9999px;
+            padding: 0 1rem;
+            height: 40px;
+            width: 100%;
+          }
+
+          .header-search-icon {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            opacity: 0.55;
+          }
+
+          .header-search-input {
+            flex: 1;
+            border: 0;
+            background: transparent;
+            outline: none;
+            font-size: 0.9rem;
+            color: inherit;
+            min-width: 0;
+          }
+
+          .header-search-input::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+          }
+
+          .header-search-input::-webkit-search-cancel-button {
+            display: none;
+          }
+
+          .header-search-close {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            font-size: 13px;
+            line-height: 1;
+            opacity: 0.55;
+            padding: 0.2rem;
+            flex-shrink: 0;
+          }
+
+          .header-search-close:hover {
+            opacity: 1;
+          }
+
+          .header-search-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            animation: nav-spin 0.65s linear infinite;
+            flex-shrink: 0;
+          }
+
+          .header-search-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+            list-style: none;
+            margin: 0;
+            padding: 0.4rem 0;
+            z-index: 500;
+            overflow: hidden;
+          }
+
+          .header-search-result {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.15s;
+          }
+
+          .header-search-result:hover {
+            background: rgba(0, 0, 0, 0.04);
+          }
+
+          .header-search-thumb {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+            background: #f3f3f3;
+          }
+
+          .header-search-thumb-placeholder {
+            background: #efefef;
+          }
+
+          .header-search-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
           /* ── Desktop search button ── */
+          .search-open-btn {
+            background: transparent;
+            cursor: pointer;
+          }
+
           .menu-icon-btn {
             display: inline-flex;
             align-items: center;

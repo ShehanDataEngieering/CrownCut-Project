@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import SortProducts, { SortOptions } from "./sort-products"
 
@@ -29,6 +29,7 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
   const [searchDraft, setSearchDraft] = useState(filters?.search || "")
   const [minDraft, setMinDraft] = useState(filters?.priceRange?.min?.toString() || "")
   const [maxDraft, setMaxDraft] = useState(filters?.priceRange?.max?.toString() || "")
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     setSearchDraft(filters?.search || "")
@@ -145,10 +146,18 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
             className="form-control tp-theme-input"
             placeholder="Search products..."
             value={searchDraft}
-            onChange={(e) => setSearchDraft(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value
+              setSearchDraft(value)
+              if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
+              searchDebounceRef.current = setTimeout(() => {
+                updateFilters({ search: value.trim(), page: "1" })
+              }, 400)
+            }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault()
+                if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current)
                 updateFilters({ search: searchDraft.trim(), page: "1" })
               }
             }}
