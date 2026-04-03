@@ -66,20 +66,17 @@ export default async function PaginatedProducts({
     queryParams["q"] = filters.search
   }
 
-  const region = await getRegion(countryCode)
+  const [region, { response: { products: rawProducts, count: rawCount } }] = await Promise.all([
+    getRegion(countryCode),
+    getProductsListWithSort({ page, queryParams, sortBy, countryCode }),
+  ])
 
   if (!region) {
     return null
   }
 
-  let {
-    response: { products, count },
-  } = await getProductsListWithSort({
-    page,
-    queryParams,
-    sortBy,
-    countryCode,
-  })
+  let products = rawProducts
+  let count = rawCount
 
   // Apply client-side filters
   if (filters) {

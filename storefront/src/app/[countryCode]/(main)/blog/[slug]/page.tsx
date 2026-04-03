@@ -148,25 +148,6 @@ export default function BlogPostPage({ params }: Props) {
                 <p key={idx}>{p}</p>
               ))}
             </div>
-
-            <div
-              className="mt-5 p-4"
-              style={{
-                border: "1.5px solid rgb(222, 222, 209)",
-                borderRadius: 12,
-                background: "#fff",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-              }}
-            >
-              <h6 className="mb-2">Need help picking a stone?</h6>
-              <p className="text-muted mb-3">
-                Tell us what you have in mind (budget, color, size) and we will
-                help shortlist options.
-              </p>
-              <LocalizedClientLink href="/contact" className="btn btn-dark">
-                Contact us
-              </LocalizedClientLink>
-            </div>
           </div>
         </div>
       </div>

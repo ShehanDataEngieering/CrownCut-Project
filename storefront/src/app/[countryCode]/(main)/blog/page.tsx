@@ -28,21 +28,21 @@ const POSTS: BlogPost[] = [
     title: "How to Choose a Sapphire",
     excerpt: "A practical guide to color, clarity, cut, and origin when selecting a sapphire.",
     date: "2026-03-04",
-    image: "/assets/img/product/gem-1.jpg",
+    image: "/assets/img/blog/how-to-choose-sapphire.jpg",
   },
   {
     slug: "spinel-vs-sapphire",
     title: "Spinel vs Sapphire: What's the Difference?",
     excerpt: "Two beautiful stones often confused. Learn the key differences and what to look for.",
     date: "2026-03-01",
-    image: "/assets/img/product/spinel.jpg",
+    image: "/assets/img/blog/spinel-vs-sapphire.jpg",
   },
   {
     slug: "care-and-cleaning",
     title: "Gemstone Care and Cleaning",
     excerpt: "Simple, safe care tips to keep gemstones looking their best over time.",
     date: "2026-02-20",
-    image: "/assets/img/product/aquamarine.jpg",
+    image: "/assets/img/blog/gemstone-care-cleaning.jpg",
   },
 ]
 
@@ -112,7 +112,7 @@ export default function BlogPage() {
                       <div
                         style={{
                           width: "100%",
-                          height: 180,
+                          height: 220,
                           background: "#fff",
                         }}
                       >
