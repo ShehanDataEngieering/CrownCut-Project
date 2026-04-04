@@ -75,7 +75,7 @@ const LocalizedClientLink = ({
     loadingTimeoutRef.current = setTimeout(() => {
       setIsNavigating(false)
       loadingTimeoutRef.current = null
-    }, 10000)
+    }, 3000)
   }
 
   return (

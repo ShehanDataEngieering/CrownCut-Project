@@ -13,6 +13,7 @@ import MobileActions from "./mobile-actions"
 import ProductPrice from "../product-price"
 import { addToCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+import { useCart } from "@lib/context/CartContext"
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -37,6 +38,7 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
+  const { refresh } = useCart()
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -105,6 +107,7 @@ export default function ProductActions({
       countryCode,
     })
 
+    await refresh()
     setIsAdding(false)
   }
 

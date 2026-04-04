@@ -265,36 +265,6 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
         </div>
       </div>
 
-      {/* View Mode Toggle */}
-      <div className="card" style={themedCardStyle}>
-        <div className="card-body" style={themedBodyStyle}>
-          <h6 className="card-title mb-3">View</h6>
-          <div className="d-flex w-100 gap-2" role="group" aria-label="View mode toggle">
-            <button
-              type="button"
-              onClick={() => updateFilters({ view: 'grid' })}
-              className="btn flex-fill"
-              style={{
-                ...viewButtonBaseStyle,
-                ...(isListView ? viewButtonInactiveStyle : viewButtonActiveStyle),
-              }}
-            >
-              Grid
-            </button>
-            <button
-              type="button"
-              onClick={() => updateFilters({ view: 'list' })}
-              className="btn flex-fill"
-              style={{
-                ...viewButtonBaseStyle,
-                ...(isListView ? viewButtonActiveStyle : viewButtonInactiveStyle),
-              }}
-            >
-              List
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

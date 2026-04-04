@@ -35,14 +35,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     refresh()
   }, [refresh])
 
-  // Poll for cart changes every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      refresh()
-    }, 2000)
-
-    return () => clearInterval(interval)
-  }, [refresh])
 
   const cartId = cart?.id || null
 

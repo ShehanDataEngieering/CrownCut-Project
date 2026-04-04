@@ -29,6 +29,7 @@ export default function UnifiedGemCard({
               src={imageUrl}
               alt={imageAlt}
               className="tp-unified-gem-card-image"
+              loading="lazy"
             />
           ) : (
             <div className="text-muted small">No image</div>

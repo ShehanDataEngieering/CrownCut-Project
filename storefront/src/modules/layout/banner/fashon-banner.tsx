@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import type { SwiperProps } from "swiper/react"
+import Image from "next/image"
+import type { StaticImageData } from "next/image"
 
 // internal
 import slider_img_1 from "@assets/img/slider/2/slider-1.png"
@@ -16,7 +18,7 @@ type SliderItem = {
   id: number
   subtitle: string
   title: string
-  img: { src: string }
+  img: StaticImageData
 }
 
 // slider data
@@ -86,7 +88,7 @@ const FashionBanner = () => {
     loadingTimeoutRef.current = setTimeout(() => {
       setIsPageLoading(false)
       loadingTimeoutRef.current = null
-    }, 10000)
+    }, 3000)
   }
 
   useEffect(() => {
@@ -111,13 +113,14 @@ const FashionBanner = () => {
             src: url("/assets/fonts/SourceSerif4-ExtraLightItalic.ttf") format("truetype");
             font-weight: 200;
             font-style: italic;
+            font-display: swap;
           }
         `,
         }}
       />
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 py-8 sm:py-12 lg:py-20 px-4 sm:px-6 lg:px-20 bg-gray-50 auto-rows-fr">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-gray-50 min-h-[420px] lg:min-h-[520px]">
         <div
-          className="flex flex-col justify-center items-center space-y-4 sm:space-y-5 text-center w-full py-10 px-5 sm:p-6"
+          className="flex flex-col justify-center items-center space-y-4 sm:space-y-5 text-center w-full h-full py-12 px-8 sm:px-12"
           style={{ backgroundColor: "#DEDED1" }}
         >
           <h3
@@ -149,8 +152,8 @@ const FashionBanner = () => {
             Shop Collection
           </LocalizedClientLink>
         </div>
-        <div className="flex flex-col w-full h-full">
-          <div className="tp-slider-area relative z-10 w-full h-full">
+        <div className="flex flex-col w-full min-h-[420px] lg:min-h-[520px]">
+          <div className="tp-slider-area relative z-10 w-full flex-1">
             <Swiper
               {...sliderSetting}
               modules={[Navigation, EffectFade, Autoplay]}
@@ -160,16 +163,19 @@ const FashionBanner = () => {
                 pauseOnMouseEnter: true,
                 waitForTransition: true,
               }}
-              className="tp-slider-active-2 swiper-container w-full"
-              style={{ height: "100%", width: "100%" }}
+              className="tp-slider-active-2 swiper-container w-full h-full"
+              style={{ minHeight: "420px" }}
             >
               {sliderData.map((item) => (
                 <SwiperSlide key={item.id} className="h-full">
                   <div className="tp-slider-item-2 relative bg-gray-100 flex items-center justify-center rounded-none overflow-hidden w-full h-full">
-                    <img
-                      src={item.img.src}
+                    <Image
+                      src={item.img}
                       alt="slider img"
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      style={{ objectFit: "cover" }}
+                      priority={item.id === 1}
                     />
                   </div>
                 </SwiperSlide>
