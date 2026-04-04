@@ -1,6 +1,7 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter, useParams } from "next/navigation"
+import Image from "next/image"
 import useSticky from "@hooks/use-sticky"
 import NavRegionCurrency from "@modules/layout/components/nav-region-currency"
 import CartButton from "@modules/layout/components/cart-button"
@@ -10,16 +11,19 @@ import { mobile_menu } from "@lib/data/menu-data"
 import Menu from "./nav-componets/menu"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Search } from "@svg"
-import { sdk } from "@lib/config"
+
+type SearchProduct = { id: string; title: string; handle: string; thumbnail: string | null }
 
 function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   const { sticky } = useSticky()
   const pathname = usePathname()
+  const router = useRouter()
+  const { countryCode } = useParams()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isPageLoading, setIsPageLoading] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const [searchResults, setSearchResults] = useState<HttpTypes.StoreProduct[]>([])
+  const [searchResults, setSearchResults] = useState<SearchProduct[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
   const [mobileSearchQuery, setMobileSearchQuery] = useState("")
@@ -41,15 +45,16 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
   // Debounced live search
   useEffect(() => {
     const trimmed = searchQuery.trim()
-    if (!trimmed) {
+    if (trimmed.length < 2) {
       setSearchResults([])
+      setIsSearching(false)
       return
     }
     setIsSearching(true)
     const timer = setTimeout(() => {
-      sdk.store.product
-        .list({ q: trimmed, limit: 6, fields: "id,title,handle,thumbnail" })
-        .then(({ products }) => setSearchResults(products))
+      fetch(`/api/search-suggestions?q=${encodeURIComponent(trimmed)}`)
+        .then((r) => r.json())
+        .then(({ products }) => setSearchResults(products || []))
         .catch(() => setSearchResults([]))
         .finally(() => setIsSearching(false))
     }, 300)
@@ -77,13 +82,13 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
     loadingTimeoutRef.current = setTimeout(() => {
       setIsPageLoading(false)
       loadingTimeoutRef.current = null
-    }, 10000)
+    }, 3000)
   }
 
   useEffect(() => {
     const prevOverflow = document.body.style.overflow
     document.body.style.overflow =
-      isMobileMenuOpen || isPageLoading ? "hidden" : prevOverflow
+      isMobileMenuOpen ? "hidden" : prevOverflow
 
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -100,7 +105,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
       document.body.style.overflow = prevOverflow
       document.removeEventListener("keydown", onEscape)
     }
-  }, [isMobileMenuOpen, isPageLoading])
+  }, [isMobileMenuOpen, closeSearch])
 
   useEffect(() => {
     clearPageLoading()
@@ -138,16 +143,14 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                     onClick={() => startPageLoading("/")}
                     aria-busy={isPageLoading}
                   >
-                    <img
+                    <Image
                       src="/assets/img/logo/crowncut-logonb.png"
                       alt="logo"
                       width={120}
                       height={120}
                       className="header-logo-img"
-                      style={{
-                        objectFit: "contain",
-                        display: "block",
-                      }}
+                      style={{ objectFit: "contain" }}
+                      priority
                     />
                   </LocalizedClientLink>
                 </div>
@@ -161,7 +164,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                           e.preventDefault()
                           if (searchQuery.trim()) {
                             closeSearch()
-                            window.location.href = `/store?search=${encodeURIComponent(searchQuery.trim())}`
+                            router.push(`/${countryCode}/store?search=${encodeURIComponent(searchQuery.trim())}`)
                           }
                         }}
                         className="header-search-bar"
@@ -196,32 +199,42 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                         <ul className="header-search-dropdown">
                           {searchResults.map((product) => (
                             <li key={product.id}>
-                              <LocalizedClientLink
-                                href={`/products/${product.handle}`}
+                              <a
+                                href={`/${countryCode}/products/${product.handle}`}
                                 className="header-search-result"
-                                onClick={closeSearch}
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  closeSearch()
+                                  router.push(`/${countryCode}/products/${product.handle}`)
+                                }}
                               >
                                 {product.thumbnail ? (
                                   <img
                                     src={product.thumbnail}
                                     alt=""
                                     className="header-search-thumb"
+                                    loading="lazy"
                                   />
                                 ) : (
                                   <div className="header-search-thumb header-search-thumb-placeholder" />
                                 )}
                                 <span className="header-search-title">{product.title}</span>
-                              </LocalizedClientLink>
+                              </a>
                             </li>
                           ))}
                           <li className="header-search-viewall-row">
-                            <LocalizedClientLink
-                              href={`/store?search=${encodeURIComponent(searchQuery.trim())}`}
+                            <a
+                              href={`/${countryCode}/store?search=${encodeURIComponent(searchQuery.trim())}`}
                               className="header-search-viewall"
-                              onClick={closeSearch}
+                              onClick={(e) => {
+                                e.preventDefault()
+                                const q = searchQuery.trim()
+                                closeSearch()
+                                router.push(`/${countryCode}/store?search=${encodeURIComponent(q)}`)
+                              }}
                             >
                               View all results for &ldquo;{searchQuery}&rdquo; →
-                            </LocalizedClientLink>
+                            </a>
                           </li>
                         </ul>
                       )}
@@ -265,7 +278,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                           if (mobileSearchQuery.trim()) {
                             setIsMobileSearchOpen(false)
                             setMobileSearchQuery("")
-                            window.location.href = `/store?search=${encodeURIComponent(mobileSearchQuery.trim())}`
+                            router.push(`/${countryCode}/store?search=${encodeURIComponent(mobileSearchQuery.trim())}`)
                           }
                         }}
                         className="mobile-search-bar"
@@ -383,12 +396,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
       </aside>
 
       {isPageLoading && (
-        <div className="page-loading-overlay" aria-live="polite" role="status">
-          <div className="page-loading-content">
-            <span className="loading-spinner loading-spinner-lg" />
-            <span className="page-loading-text">Loading...</span>
-          </div>
-        </div>
+        <div className="page-loading-overlay" aria-live="polite" role="status" />
       )}
 
         <style jsx>{`
@@ -566,7 +574,7 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           .header-search-thumb {
             width: 40px;
             height: 40px;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 6px;
             flex-shrink: 0;
             background: #f3f3f3;
@@ -582,6 +590,8 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            min-width: 0;
+            flex: 1;
           }
 
           /* ── Desktop search button ── */
@@ -814,42 +824,31 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
 
         .page-loading-overlay {
           position: fixed;
-          inset: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
           z-index: 2000;
-          background: rgba(255, 255, 255, 0.82);
-          backdrop-filter: blur(2px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          pointer-events: all;
+          background: #111;
+          animation: loading-bar 3s ease-in-out forwards;
+          pointer-events: none;
         }
 
-        .page-loading-content {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.95rem;
-          font-weight: 600;
+        @keyframes loading-bar {
+          0% { width: 0%; opacity: 1; }
+          80% { width: 85%; opacity: 1; }
+          100% { width: 100%; opacity: 0; }
         }
 
-        .page-loading-text {
-          color: #111;
-        }
 
         .loading-spinner {
-          width: 14px;
-          height: 14px;
+          width: 18px;
+          height: 18px;
           border: 2px solid rgba(0, 0, 0, 0.2);
           border-top-color: rgba(0, 0, 0, 0.9);
           border-radius: 50%;
           animation: nav-spin 0.65s linear infinite;
           flex-shrink: 0;
-        }
-
-        .loading-spinner-lg {
-          width: 22px;
-          height: 22px;
-          border-width: 3px;
         }
 
         @keyframes nav-spin {

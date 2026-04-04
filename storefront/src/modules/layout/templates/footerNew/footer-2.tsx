@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import Image from "next/image"
 import pay from "@assets/img/footer/footer-pay.png"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -44,10 +45,12 @@ const FooterTwo = () => {
           {/* Brand + Contact */}
           <div className="col-lg-5 col-md-6">
             <LocalizedClientLink href="/">
-              <img
+              <Image
                 src="/assets/img/logo/crowncut-logonb.png"
                 alt="Crown Cut Gems"
-                style={{ width: 64, height: 64, objectFit: "contain", display: "block", marginBottom: "0.75rem" }}
+                width={64}
+                height={64}
+                style={{ objectFit: "contain", display: "block", marginBottom: "0.75rem" }}
               />
             </LocalizedClientLink>
             <p style={{ fontSize: "0.85rem", color: "#555", marginBottom: "0.75rem", maxWidth: 280 }}>
@@ -135,7 +138,7 @@ const FooterTwo = () => {
               </p>
             </div>
             <div className="col-md-6 text-md-end mt-2 mt-md-0">
-              <img src={pay.src} alt="payment methods" style={{ height: 20, width: "auto", maxWidth: "100%", opacity: 0.7 }} />
+              <Image src={pay} alt="payment methods" height={20} width={pay.width} style={{ width: "auto", maxWidth: "100%", opacity: 0.7 }} />
             </div>
           </div>
         </div>

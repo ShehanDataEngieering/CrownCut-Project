@@ -2,6 +2,7 @@
 
 import React from "react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import Image from "next/image"
 import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
@@ -84,10 +85,13 @@ function BannerItem({
               <div
                 style={{ width: "100%", height: "100%", position: "relative" }}
               >
-                <img
-                  src={s.src}
+                <Image
+                  src={s}
                   alt={`banner-slide-${i}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                  priority={i === 0}
                 />
               </div>
             </SwiperSlide>
@@ -164,15 +168,14 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                                 width: "100%",
                                 height: 120,
                                 overflow: "hidden",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
+                                position: "relative",
                                 background: "#fff",
                               }}
                             >
                               <img
                                 src={resolveCategoryImage(category.handle)}
                                 alt={category.name}
+                                loading="lazy"
                                 style={{
                                   width: "100%",
                                   height: "100%",
