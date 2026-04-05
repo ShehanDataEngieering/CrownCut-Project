@@ -118,31 +118,79 @@ const FashionBanner = () => {
         `,
         }}
       />
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-gray-50 min-h-[420px] lg:min-h-[520px]">
+      {/*
+        The nav uses position:absolute (tp-header-transparent) so it overlays content.
+        paddingTop on the section pushes all content below the nav (~120px on desktop).
+        Store/category pages do the same via .tp-store-section { padding-top: 110px }.
+      */}
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          minHeight: "600px",
+        }}
+      >
+        {/* Left content card */}
         <div
-          className="flex flex-col justify-center items-center space-y-4 sm:space-y-5 text-center w-full h-full py-12 px-8 sm:px-12"
-          style={{ backgroundColor: "#DEDED1" }}
+          style={{
+            backgroundColor: "#DEDED1",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            padding: "130px 4rem 3rem 4rem",
+            gap: "1.25rem",
+          }}
         >
           <h3
-            className="text-lg font-bold text-gray-900"
             style={{
               fontFamily: "SourceSerif4ExtraLightItalic, serif",
               fontStyle: "italic",
               fontWeight: 200,
-              fontSize: "clamp(1.6rem, 4.5vw, 2.2rem)",
+              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+              lineHeight: 1.3,
+              color: "#1a1a1a",
+              margin: 0,
+              textAlign: "left",
             }}
           >
             Nature&apos;s Art, Crafted for the Heart
           </h3>
-          <p className="text-gray-600 max-w-md text-sm sm:text-base leading-relaxed">
+          <p
+            style={{
+              color: "#4b5563",
+              fontSize: "0.925rem",
+              lineHeight: 1.75,
+              textAlign: "left",
+              margin: 0,
+              maxWidth: "400px",
+            }}
+          >
             Every gemstone holds a story of love, memory, and meaning. More than
             a sparkle, it captures emotions that last a lifetime. At CROWNCUT
             Gems International, we believe every gem is a promise and a timeless
-            reflection of life&apos;s most beautiful moments.
+            reflection of life&apos;s most beautiful moments. Our gems celebrate
+            authenticity, elegance, and the unique stories they become part of
+            whether marking a milestone, expressing love, or becoming a treasured
+            heirloom for generations to come.
           </p>
           <LocalizedClientLink
             href="/categories"
-            className={`tp-btn tp-btn-border inline-block bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-800 transition-all text-sm w-fit inline-flex items-center gap-2 ${isPageLoading ? "pointer-events-none opacity-80" : ""}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              backgroundColor: "#111",
+              color: "#fff",
+              padding: "0.75rem 2rem",
+              borderRadius: "9999px",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              textDecoration: "none",
+              marginTop: "0.5rem",
+              opacity: isPageLoading ? 0.8 : 1,
+              pointerEvents: isPageLoading ? "none" : "auto",
+            }}
             aria-busy={isPageLoading}
             onClick={() => startPageLoading("/categories")}
           >
@@ -152,36 +200,33 @@ const FashionBanner = () => {
             Shop Collection
           </LocalizedClientLink>
         </div>
-        <div className="flex flex-col w-full min-h-[420px] lg:min-h-[520px]">
-          <div className="tp-slider-area relative z-10 w-full flex-1">
-            <Swiper
-              {...sliderSetting}
-              modules={[Navigation, EffectFade, Autoplay]}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-                waitForTransition: true,
-              }}
-              className="tp-slider-active-2 swiper-container w-full h-full"
-              style={{ minHeight: "420px" }}
-            >
-              {sliderData.map((item) => (
-                <SwiperSlide key={item.id} className="h-full">
-                  <div className="tp-slider-item-2 relative bg-gray-100 flex items-center justify-center rounded-none overflow-hidden w-full h-full">
-                    <Image
-                      src={item.img}
-                      alt="slider img"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      style={{ objectFit: "cover" }}
-                      priority={item.id === 1}
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+
+        {/* Right image slider — starts from y=0, image fills full panel */}
+        <div style={{ position: "relative", minHeight: "600px" }}>
+          <Swiper
+            {...sliderSetting}
+            modules={[Navigation, EffectFade, Autoplay]}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+              waitForTransition: true,
+            }}
+            style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
+          >
+            {sliderData.map((item) => (
+              <SwiperSlide key={item.id} style={{ position: "relative", height: "100%" }}>
+                <Image
+                  src={item.img}
+                  alt="slider img"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ objectFit: "cover", objectPosition: "center 20%" }}
+                  priority={item.id === 1}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
     </>
