@@ -39,8 +39,8 @@ const FooterTwo = () => {
       style={{ backgroundColor: "#F5F5F5", borderTop: "1px solid rgba(0,0,0,0.08)" }}
     >
       {/* Main footer */}
-      <div className="container py-5">
-        <div className="row g-4">
+      <div className="container py-5" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+        <div className="row g-5">
 
           {/* Brand + Contact */}
           <div className="col-lg-5 col-md-6">
@@ -48,15 +48,15 @@ const FooterTwo = () => {
               <Image
                 src="/assets/img/logo/crowncut-logonb.png"
                 alt="Crown Cut Gems"
-                width={64}
-                height={64}
-                style={{ objectFit: "contain", display: "block", marginBottom: "0.75rem" }}
+                width={160}
+                height={160}
+                style={{ objectFit: "contain", display: "block", marginBottom: "1rem" }}
               />
             </LocalizedClientLink>
-            <p style={{ fontSize: "0.85rem", color: "#555", marginBottom: "0.75rem", maxWidth: 280 }}>
+            <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "1rem", maxWidth: 300 }}>
               Fine gems and jewelry curated for brilliance and everyday elegance.
             </p>
-            <div style={{ fontSize: "0.85rem", color: "#444", lineHeight: 1.8 }}>
+            <div style={{ fontSize: "0.95rem", color: "#444", lineHeight: 2 }}>
               <div>
                 <a href="tel:+46760889995" style={{ color: "inherit", textDecoration: "none" }}>
                   +46 760 889 995
@@ -82,19 +82,19 @@ const FooterTwo = () => {
 
           {/* Links */}
           <div className="col-lg-3 col-md-3 col-6">
-            <h6 style={{ fontWeight: 600, marginBottom: "0.75rem", fontSize: "0.9rem" }}>Information</h6>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.85rem", lineHeight: 2 }}>
-              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Our Story</a></li>
-              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Privacy Policy</a></li>
-              <li><a href="#" style={{ color: "#555", textDecoration: "none" }}>Terms &amp; Conditions</a></li>
+            <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Information</h6>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.95rem", lineHeight: 2.4 }}>
+              <li><a href="https://www.notion.so/OUR-STORY-339454eaf24c80a6a763cf6f11af9ca5" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Our Story</a></li>
+              <li><a href="https://www.notion.so/339454eaf24c8081ba1eda04ffd80e88" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Privacy Policy</a></li>
+              <li><a href="https://www.notion.so/339454eaf24c80d0ae35d11ecbf7d633" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Terms &amp; Conditions</a></li>
               <li><LocalizedClientLink href="/blog" style={{ color: "#555", textDecoration: "none" }}>Blog</LocalizedClientLink></li>
             </ul>
           </div>
 
           {/* Follow + Subscribe */}
           <div className="col-lg-4 col-md-3 col-6">
-            <h6 style={{ fontWeight: 600, marginBottom: "0.75rem", fontSize: "0.9rem" }}>Follow Us</h6>
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+            <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Follow Us</h6>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
               {social_data.map((s) => (
                 <a
                   key={s.id}
@@ -107,13 +107,13 @@ const FooterTwo = () => {
                     display: "inline-flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    width: 40,
-                    height: 40,
+                    width: 48,
+                    height: 48,
                     borderRadius: "50%",
                     border: "1px solid rgba(0,0,0,0.15)",
                     background: "#fff",
                     color: "#333",
-                    fontSize: 16,
+                    fontSize: 18,
                     textDecoration: "none",
                     flexShrink: 0,
                   }}
