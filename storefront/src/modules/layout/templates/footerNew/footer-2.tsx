@@ -84,9 +84,9 @@ const FooterTwo = () => {
           <div className="col-lg-3 col-md-3 col-6">
             <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Information</h6>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.95rem", lineHeight: 2.4 }}>
-              <li><a href="https://www.notion.so/OUR-STORY-339454eaf24c80a6a763cf6f11af9ca5" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Our Story</a></li>
-              <li><a href="https://www.notion.so/339454eaf24c8081ba1eda04ffd80e88" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Privacy Policy</a></li>
-              <li><a href="https://www.notion.so/339454eaf24c80d0ae35d11ecbf7d633" target="_blank" rel="noreferrer" style={{ color: "#555", textDecoration: "none" }}>Terms &amp; Conditions</a></li>
+              <li><LocalizedClientLink href="/our-story" style={{ color: "#555", textDecoration: "none" }}>Our Story</LocalizedClientLink></li>
+              <li><LocalizedClientLink href="/privacy-policy" style={{ color: "#555", textDecoration: "none" }}>Privacy Policy</LocalizedClientLink></li>
+              <li><LocalizedClientLink href="/terms-and-conditions" style={{ color: "#555", textDecoration: "none" }}>Terms &amp; Conditions</LocalizedClientLink></li>
               <li><LocalizedClientLink href="/blog" style={{ color: "#555", textDecoration: "none" }}>Blog</LocalizedClientLink></li>
             </ul>
           </div>

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-const PRIVACY_POLICY_URL =
-  "https://www.notion.so/339454eaf24c8081ba1eda04ffd80e88?source=copy_link"
+const PRIVACY_POLICY_PATH = "/privacy-policy"
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false)
@@ -95,19 +94,10 @@ const CookieConsent = () => {
         to us.
       </p>
 
-      {/* Links */}
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          marginBottom: "1.25rem",
-          flexWrap: "wrap",
-        }}
-      >
+      {/* Link */}
+      <div style={{ marginBottom: "1.25rem" }}>
         <a
-          href={PRIVACY_POLICY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={PRIVACY_POLICY_PATH}
           style={{
             fontSize: "0.8rem",
             color: "#111",
@@ -115,20 +105,7 @@ const CookieConsent = () => {
             textUnderlineOffset: "2px",
           }}
         >
-          Learn about our cookies
-        </a>
-        <a
-          href={PRIVACY_POLICY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontSize: "0.8rem",
-            color: "#111",
-            textDecoration: "underline",
-            textUnderlineOffset: "2px",
-          }}
-        >
-          Privacy Policy
+          Learn about how we use cookies and our Privacy Policy
         </a>
       </div>
 

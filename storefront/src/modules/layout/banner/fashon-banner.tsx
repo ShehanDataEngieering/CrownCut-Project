@@ -6,8 +6,6 @@ import { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import type { SwiperProps } from "swiper/react"
-import Image from "next/image"
-import type { StaticImageData } from "next/image"
 
 // internal
 import slider_img_1 from "@assets/img/slider/2/slider-1.png"
@@ -18,7 +16,8 @@ type SliderItem = {
   id: number
   subtitle: string
   title: string
-  img: StaticImageData
+  img: { src: string }
+  objectPosition?: string
 }
 
 // slider data
@@ -28,18 +27,21 @@ const sliderData: SliderItem[] = [
     subtitle: "New Arrivals 2023",
     title: "The Clothing Collection",
     img: slider_img_1,
+    objectPosition: "center top",
   },
   {
     id: 2,
     subtitle: "Best Selling 2023",
     title: "The Summer Collection",
     img: slider_img_2,
+    objectPosition: "center 40%",
   },
   {
     id: 3,
     subtitle: "Winter Has Arrived",
     title: "Amazing New designs",
     img: slider_img_3,
+    objectPosition: "center center",
   },
 ]
 
@@ -115,32 +117,38 @@ const FashionBanner = () => {
             font-style: italic;
             font-display: swap;
           }
+          @media (max-width: 767px) {
+            .fashion-banner-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .fashion-banner-right {
+              min-height: 260px;
+            }
+            .fashion-banner-left {
+              padding: 2.5rem 1.5rem !important;
+            }
+            .fashion-banner-left h3 {
+              font-size: 1.4rem !important;
+            }
+            .fashion-banner-left p {
+              font-size: 0.85rem !important;
+              max-width: 100% !important;
+            }
+          }
         `,
         }}
       />
-      {/*
-        The nav uses position:absolute (tp-header-transparent) so it overlays content.
-        paddingTop on the section pushes all content below the nav (~120px on desktop).
-        Store/category pages do the same via .tp-store-section { padding-top: 110px }.
-      */}
       <section
+        className="fashion-banner-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          minHeight: "600px",
         }}
       >
         {/* Left content card */}
         <div
-          style={{
-            backgroundColor: "#DEDED1",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "flex-start",
-            padding: "130px 4rem 3rem 4rem",
-            gap: "1.25rem",
-          }}
+          className="fashion-banner-left flex flex-col justify-center items-center space-y-5 text-center w-full h-full"
+          style={{ backgroundColor: "#DEDED1", padding: "130px 4rem 3rem 4rem" }}
         >
           <h3
             style={{
@@ -151,7 +159,7 @@ const FashionBanner = () => {
               lineHeight: 1.3,
               color: "#1a1a1a",
               margin: 0,
-              textAlign: "left",
+              textAlign: "center",
             }}
           >
             Nature&apos;s Art, Crafted for the Heart
@@ -161,7 +169,7 @@ const FashionBanner = () => {
               color: "#4b5563",
               fontSize: "0.925rem",
               lineHeight: 1.75,
-              textAlign: "left",
+              textAlign: "center",
               margin: 0,
               maxWidth: "400px",
             }}
@@ -201,8 +209,8 @@ const FashionBanner = () => {
           </LocalizedClientLink>
         </div>
 
-        {/* Right image slider — starts from y=0, image fills full panel */}
-        <div style={{ position: "relative", minHeight: "600px" }}>
+        {/* Right image slider */}
+        <div className="fashion-banner-right tp-slider-area relative w-full" style={{ minHeight: "480px", alignSelf: "stretch", height: "100%" }}>
           <Swiper
             {...sliderSetting}
             modules={[Navigation, EffectFade, Autoplay]}
@@ -215,14 +223,11 @@ const FashionBanner = () => {
             style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
           >
             {sliderData.map((item) => (
-              <SwiperSlide key={item.id} style={{ position: "relative", height: "100%" }}>
-                <Image
-                  src={item.img}
+              <SwiperSlide key={item.id} style={{ height: "100%" }}>
+                <img
+                  src={item.img.src}
                   alt="slider img"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  style={{ objectFit: "cover", objectPosition: "center 20%" }}
-                  priority={item.id === 1}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: item.objectPosition ?? "center center", display: "block" }}
                 />
               </SwiperSlide>
             ))}
