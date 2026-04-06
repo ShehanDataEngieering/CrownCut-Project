@@ -119,10 +119,4 @@ export const mobile_menu = [
     title: 'Blog',
     link: '/blog',
   },
-  {
-    id: 6,
-    single_link: true,
-    title: 'My Account',
-    link: '/account',
-  },
 ]

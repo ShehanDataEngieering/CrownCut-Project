@@ -25,10 +25,10 @@ export default function ProductRail({
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row g-3">
           {products &&
             products.map((product) => (
-              <div className="col-xl-3 col-lg-4 col-sm-6 d-flex" key={product.id}>
+              <div className="col-xl-3 col-lg-4 col-6 d-flex" key={product.id}>
                 {/* @ts-ignore */}
                 <ProductPreview product={product} region={region} isFeatured variant="gem" />
               </div>

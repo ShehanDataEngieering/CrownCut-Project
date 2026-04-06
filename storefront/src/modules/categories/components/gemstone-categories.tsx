@@ -72,6 +72,14 @@ export default function GemstoneCategoriesPage({
 
         .tp-gem-header {
           padding-top: 12px;
+          width: 100%;
+        }
+
+        .tp-gem-header h3,
+        .tp-gem-header p {
+          width: 100%;
+          max-width: 100%;
+          word-break: break-word;
         }
 
         .tp-gem-empty {
@@ -112,6 +120,16 @@ export default function GemstoneCategoriesPage({
           .tp-gem-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
+          }
+
+          .tp-gem-header h3 {
+            font-size: 1.25rem;
+          }
+
+          .tp-gem-header p {
+            font-size: 0.85rem;
+            white-space: normal;
+            overflow: visible;
           }
         }
       `}</style>
