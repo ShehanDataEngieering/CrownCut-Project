@@ -243,7 +243,6 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                     <div className="main-menu menu-style-3 menu-style-4 p-relative">
                       <nav className="tp-main-menu-content">
                         <Menu
-                          isPageLoading={isPageLoading}
                           onNavigateStart={startPageLoading}
                         />
                       </nav>
