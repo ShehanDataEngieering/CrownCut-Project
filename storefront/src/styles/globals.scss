@@ -476,7 +476,7 @@ button {
   }
 
   .tp-unified-gem-card-title {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
   }
 
   .tp-unified-gem-card-meta,
@@ -588,13 +588,15 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   font-family: var(--tp-ff-body);
   color: rgb(48, 48, 42);
 }
 
 .tp-unified-gem-card-title {
   font-family: var(--tp-ff-heading);
-  font-size: 0.72rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: rgb(35, 35, 31);
   display: -webkit-box;
@@ -602,6 +604,7 @@ button {
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.2;
+  text-align: center;
 }
 
 .tp-unified-gem-card-meta,

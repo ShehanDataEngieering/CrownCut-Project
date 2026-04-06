@@ -7,6 +7,7 @@ import type { StaticImageData } from "next/image"
 // internal
 import { ArrowRightLong } from "@svg"
 import { resolveCategoryImage } from "@lib/data/category-image-map"
+import UnifiedGemCard from "@modules/common/components/unified-gem-card"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Navigation, Autoplay } from "swiper/modules"
 import "swiper/css"
@@ -147,55 +148,14 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                       }}
                     >
                       {categories.map((category) => (
-                        <LocalizedClientLink
-                          key={category.id}
-                          href={`/store?category=${encodeURIComponent(category.handle)}`}
-                          className="tp-gem-card"
-                          style={{ textDecoration: "none", color: "inherit" }}
-                        >
-                          <div
-                            style={{
-                              borderRadius: 8,
-                              overflow: "hidden",
-                              boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-                              background: "#fff",
-                              border: "1.5px solid rgb(222, 222, 209)",
-                              height: "100%",
-                            }}
-                          >
-                            <div
-                              style={{
-                                width: "100%",
-                                height: 120,
-                                overflow: "hidden",
-                                position: "relative",
-                                background: "#fff",
-                              }}
-                            >
-                              <img
-                                src={resolveCategoryImage(category.handle)}
-                                alt={category.name}
-                                loading="lazy"
-                                style={{
-                                  width: "100%",
-                                  height: "100%",
-                                  objectFit: "contain",
-                                  objectPosition: "center",
-                                  display: "block",
-                                  padding: 8,
-                                }}
-                              />
-                            </div>
-                            <div style={{ padding: 12 }}>
-                              <h6 className="mb-1">{category.name}</h6>
-                              {category.description && (
-                                <p className="mb-0 text-muted small">
-                                  {category.description}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </LocalizedClientLink>
+                        <div key={category.id}>
+                          <UnifiedGemCard
+                            href={`/categories/${encodeURIComponent(category.handle)}`}
+                            imageUrl={resolveCategoryImage(category.handle)}
+                            imageAlt={category.name}
+                            title={category.name}
+                          />
+                        </div>
                       ))}
 
                       {categories.length === 0 && (
