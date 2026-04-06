@@ -147,19 +147,22 @@ const FashionBanner = () => {
       >
         {/* Left content card */}
         <div
-          className="fashion-banner-left flex flex-col justify-center items-center space-y-5 text-center w-full h-full"
-          style={{ backgroundColor: "#DEDED1", padding: "130px 4rem 3rem 4rem" }}
+          className="fashion-banner-left flex flex-col justify-center items-center space-y-5 text-center w-full"
+          style={{ backgroundColor: "#DEDED1", padding: "130px 4rem 80px 4rem", minHeight: "650px" }}
         >
           <h3
             style={{
               fontFamily: "SourceSerif4ExtraLightItalic, serif",
               fontStyle: "italic",
-              fontWeight: 200,
+              fontWeight: 700,
               fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
               lineHeight: 1.3,
               color: "#1a1a1a",
-              margin: 0,
+              margin: "0 auto",
+              marginBottom: "1.5rem",
               textAlign: "center",
+              maxWidth: "400px",
+              width: "100%",
             }}
           >
             Nature&apos;s Art, Crafted for the Heart
@@ -170,8 +173,9 @@ const FashionBanner = () => {
               fontSize: "0.925rem",
               lineHeight: 1.75,
               textAlign: "center",
-              margin: 0,
+              margin: "0 auto",
               maxWidth: "400px",
+              width: "100%",
             }}
           >
             Every gemstone holds a story of love, memory, and meaning. More than
@@ -195,7 +199,7 @@ const FashionBanner = () => {
               fontSize: "0.875rem",
               fontWeight: 500,
               textDecoration: "none",
-              marginTop: "0.5rem",
+              margin: "0.5rem auto 0",
               opacity: isPageLoading ? 0.8 : 1,
               pointerEvents: isPageLoading ? "none" : "auto",
             }}
@@ -210,7 +214,7 @@ const FashionBanner = () => {
         </div>
 
         {/* Right image slider */}
-        <div className="fashion-banner-right tp-slider-area relative w-full" style={{ minHeight: "480px", alignSelf: "stretch", height: "100%" }}>
+        <div className="fashion-banner-right tp-slider-area relative w-full" style={{ minHeight: "650px", alignSelf: "stretch", height: "100%" }}>
           <Swiper
             {...sliderSetting}
             modules={[Navigation, EffectFade, Autoplay]}
