@@ -309,6 +309,23 @@ button {
   font-family: var(--tp-ff-body);
 }
 
+/* Store product grid — responsive columns matching categories page */
+.tp-store-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 992px) {
+  .tp-store-theme-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tp-store-theme-grid > div {
+  display: flex;
+}
+
 .tp-product-theme-page {
   background: rgb(246, 246, 241);
   font-family: var(--tp-ff-body);
@@ -553,6 +570,8 @@ button {
   background: #fff;
   border: 1px solid rgb(214, 214, 203);
   height: 100%;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -584,7 +603,7 @@ button {
 
 .tp-unified-gem-card-content {
   padding: 8px 10px;
-  min-height: 58px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;

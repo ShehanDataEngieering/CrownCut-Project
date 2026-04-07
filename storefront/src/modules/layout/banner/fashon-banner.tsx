@@ -120,19 +120,34 @@ const FashionBanner = () => {
           @media (max-width: 767px) {
             .fashion-banner-grid {
               grid-template-columns: 1fr !important;
+              padding-top: 100px;
             }
             .fashion-banner-right {
-              min-height: 260px;
+              min-height: 260px !important;
+              order: -1;
             }
             .fashion-banner-left {
-              padding: 2.5rem 1.5rem !important;
+              padding: 1.5rem 1.25rem !important;
+              min-height: unset !important;
             }
             .fashion-banner-left h3 {
-              font-size: 1.4rem !important;
+              font-size: 1.25rem !important;
+              margin-bottom: 0.75rem !important;
             }
             .fashion-banner-left p {
-              font-size: 0.85rem !important;
+              font-size: 0.8rem !important;
               max-width: 100% !important;
+              line-height: 1.6 !important;
+            }
+            .fashion-banner-left .fashion-banner-desc {
+              display: -webkit-box;
+              -webkit-line-clamp: 3;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+            .fashion-banner-left a {
+              padding: 0.6rem 1.5rem !important;
+              font-size: 0.8rem !important;
             }
           }
         `,
@@ -147,7 +162,7 @@ const FashionBanner = () => {
       >
         {/* Left content card */}
         <div
-          className="fashion-banner-left flex flex-col justify-center items-center space-y-5 text-center w-full"
+          className="fashion-banner-left flex flex-col justify-center items-center space-y-4 text-center w-full"
           style={{ backgroundColor: "#DEDED1", padding: "130px 4rem 80px 4rem", minHeight: "650px" }}
         >
           <h3
@@ -168,6 +183,7 @@ const FashionBanner = () => {
             Nature&apos;s Art, Crafted for the Heart
           </h3>
           <p
+            className="fashion-banner-desc"
             style={{
               color: "#4b5563",
               fontSize: "0.925rem",
