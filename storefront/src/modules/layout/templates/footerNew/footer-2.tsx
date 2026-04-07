@@ -39,21 +39,21 @@ const FooterTwo = () => {
       style={{ backgroundColor: "#F5F5F5", borderTop: "1px solid rgba(0,0,0,0.08)" }}
     >
       {/* Main footer */}
-      <div className="container py-5" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
-        <div className="row g-5">
+      <div className="container" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
+        <div className="row g-4 align-items-start">
 
           {/* Brand + Contact */}
-          <div className="col-lg-5 col-md-6">
+          <div className="col-lg-5 col-md-6" style={{ paddingTop: "0.15rem" }}>
             <LocalizedClientLink href="/">
               <Image
                 src="/assets/img/logo/crowncut-logonb.png"
                 alt="Crown Cut Gems"
-                width={160}
-                height={160}
-                style={{ objectFit: "contain", display: "block", marginBottom: "1rem" }}
+                width={180}
+                height={180}
+                style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem" }}
               />
             </LocalizedClientLink>
-            <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "1rem", maxWidth: 300 }}>
+            <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "0.75rem", maxWidth: 300 }}>
               Fine gems and jewelry curated for brilliance and everyday elegance.
             </p>
             <div style={{ fontSize: "0.95rem", color: "#444", lineHeight: 2 }}>
@@ -81,7 +81,7 @@ const FooterTwo = () => {
           </div>
 
           {/* Links */}
-          <div className="col-lg-3 col-md-3 col-6">
+          <div className="col-lg-3 col-md-3 col-6" style={{ paddingTop: "1rem" }}>
             <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Information</h6>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.95rem", lineHeight: 2.4 }}>
               <li><LocalizedClientLink href="/our-story" style={{ color: "#555", textDecoration: "none" }}>Our Story</LocalizedClientLink></li>
@@ -92,7 +92,7 @@ const FooterTwo = () => {
           </div>
 
           {/* Follow + Subscribe */}
-          <div className="col-lg-4 col-md-3 col-6">
+          <div className="col-lg-4 col-md-3 col-6" style={{ paddingTop: "1rem" }}>
             <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Follow Us</h6>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
               {social_data.map((s) => (
