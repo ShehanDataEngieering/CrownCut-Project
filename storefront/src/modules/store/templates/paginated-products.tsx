@@ -134,9 +134,12 @@ export default async function PaginatedProducts({
           ))}
         </div>
       ) : (
-        <div className="row row-cols-2 row-cols-lg-3 g-3 mb-4 tp-store-theme-grid" data-testid="products-list">
+        <div
+          className="tp-store-theme-grid mb-4"
+          data-testid="products-list"
+        >
           {products.map((p) => (
-            <div key={p.id} className="col d-flex">
+            <div key={p.id}>
               <ProductPreview product={p} region={region} variant="gem" />
             </div>
           ))}
