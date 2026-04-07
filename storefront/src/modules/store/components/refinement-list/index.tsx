@@ -114,7 +114,7 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
     maxDraft.trim() !== (filters?.priceRange?.max?.toString() || "").trim()
 
   return (
-    <div className="mb-4 d-grid tp-refinement-list" style={{ gap: "0.875rem" }}>
+    <div className="d-grid tp-refinement-list" style={{ gap: "2rem", alignContent: "start", height: "100%" }}>
       <div className="card" style={themedCardStyle}>
         <div className="card-body" style={themedBodyStyle}>
           <SortProducts sortBy={sortBy} setQueryParams={setQueryParams} data-testid={dataTestId} />
@@ -238,7 +238,7 @@ const RefinementList = ({ sortBy, filters, 'data-testid': dataTestId }: Refineme
       <div className="card" style={themedCardStyle}>
         <div className="card-body" style={themedBodyStyle}>
           <h6 className="card-title mb-3">Status</h6>
-          <div className="form-check mb-2">
+          <div className="form-check mb-3">
             <input
               type="checkbox"
               className="form-check-input tp-theme-check"

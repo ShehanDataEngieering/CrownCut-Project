@@ -36,14 +36,15 @@ const StoreTemplate = ({
 
   return (
     <div className="container py-4 tp-store-section tp-store-theme-page" data-testid="category-container">
-      <div className="row g-3 align-items-start">
+      <div className="row g-3 align-items-stretch">
         {/* Sidebar — desktop only */}
-        <div className="col-lg-3 d-none d-lg-block">
+        <div className="col-lg-3 d-none d-lg-block h-100" style={{ paddingTop: "4.5rem" }}>
           <RefinementList sortBy={sort} filters={filters} />
         </div>
 
         {/* Products — full width on mobile */}
         <div className="col-12 col-lg-9">
+          {/* Heading above products column */}
           <div className="mb-3 tp-page-heading d-flex align-items-center justify-content-between">
             <h1 className="h2 tp-store-theme-title mb-0" data-testid="store-page-title">All products</h1>
           </div>
