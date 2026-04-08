@@ -109,6 +109,7 @@ export default function GemstoneCategoriesPage({
         @media (max-width: 767.98px) {
           .tp-gem-section {
             padding-top: 150px;
+            padding-bottom: 40px;
           }
 
           .tp-gem-grid {
@@ -124,6 +125,7 @@ export default function GemstoneCategoriesPage({
         @media (max-width: 479.98px) {
           .tp-gem-section {
             padding-top: 140px;
+            padding-bottom: 32px;
           }
 
           .tp-gem-grid {
