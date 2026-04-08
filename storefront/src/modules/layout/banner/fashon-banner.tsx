@@ -120,7 +120,7 @@ const FashionBanner = () => {
           @media (max-width: 767px) {
             .fashion-banner-grid {
               grid-template-columns: 1fr !important;
-              padding-top: 100px;
+              padding-top: 80px;
             }
             .fashion-banner-right {
               min-height: 260px !important;
@@ -215,7 +215,7 @@ const FashionBanner = () => {
               fontSize: "0.875rem",
               fontWeight: 500,
               textDecoration: "none",
-              margin: "0.5rem auto 0",
+              margin: "2.25rem auto 0",
               opacity: isPageLoading ? 0.8 : 1,
               pointerEvents: isPageLoading ? "none" : "auto",
             }}

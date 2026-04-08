@@ -611,10 +611,11 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           }
 
           .mobile-menu-trigger {
-            font-size: 24px;
+            font-size: 28px;
             line-height: 1;
             background: transparent;
-            border: 0;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 9999px;
             color: inherit;
             width: 40px;
             height: 40px;
