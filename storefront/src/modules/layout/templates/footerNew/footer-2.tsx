@@ -50,7 +50,7 @@ const FooterTwo = () => {
                 alt="Crown Cut Gems"
                 width={180}
                 height={180}
-                style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem" }}
+                style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem", marginTop: "-2rem" }}
               />
             </LocalizedClientLink>
             <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "0.75rem", maxWidth: 300 }}>

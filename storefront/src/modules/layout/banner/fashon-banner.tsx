@@ -120,7 +120,7 @@ const FashionBanner = () => {
           @media (max-width: 767px) {
             .fashion-banner-grid {
               grid-template-columns: 1fr !important;
-              padding-top: 100px;
+              padding-top: 80px;
             }
             .fashion-banner-right {
               min-height: 260px !important;
@@ -138,12 +138,6 @@ const FashionBanner = () => {
               font-size: 0.8rem !important;
               max-width: 100% !important;
               line-height: 1.6 !important;
-            }
-            .fashion-banner-left .fashion-banner-desc {
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
             }
             .fashion-banner-left a {
               padding: 0.6rem 1.5rem !important;
@@ -215,7 +209,7 @@ const FashionBanner = () => {
               fontSize: "0.875rem",
               fontWeight: 500,
               textDecoration: "none",
-              margin: "0.5rem auto 0",
+              margin: "2.25rem auto 0",
               opacity: isPageLoading ? 0.8 : 1,
               pointerEvents: isPageLoading ? "none" : "auto",
             }}
