@@ -342,6 +342,40 @@ button {
   }
 }
 
+@media (max-width: 767.98px) {
+  .tp-store-theme-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .tp-store-theme-grid .tp-unified-gem-card-image-wrap {
+    min-height: 80px;
+  }
+
+  .tp-store-theme-grid .tp-unified-gem-card-content {
+    padding: 4px 5px;
+  }
+
+  .tp-store-theme-grid .tp-unified-gem-card-title {
+    font-size: 0.62rem;
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+    line-height: 1.2;
+  }
+
+  .tp-store-theme-grid .tp-unified-gem-card-meta,
+  .tp-store-theme-grid .tp-unified-gem-card-meta * {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .tp-store-theme-grid {
+    gap: 8px;
+  }
+}
+
 .tp-store-theme-grid > div {
   display: flex;
 }
@@ -439,24 +473,15 @@ button {
 }
 
 @media (max-width: 991.98px) {
-  .tp-header-area .logo img {
-    max-height: 56px !important;
-    max-width: 56px !important;
-    height: 56px !important;
-    width: 56px !important;
+  .tp-header-bottom-3 {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
   }
 }
 
 @media (max-width: 575.98px) {
   .content-container {
     @apply px-4;
-  }
-
-  .tp-header-area .logo img {
-    max-height: 48px !important;
-    max-width: 48px !important;
-    height: 48px !important;
-    width: 48px !important;
   }
 
   .tp-header-area .tp-header-action-item .tp-header-action-btn {
@@ -637,6 +662,33 @@ button {
   font-size: 0.68rem;
 }
 
+/* Categories page — left-align cards and header on mobile */
+@media (max-width: 991.98px) {
+  .tp-gem-section .tp-unified-gem-card-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .tp-gem-section .tp-unified-gem-card-title {
+    text-align: left;
+  }
+}
+
+/* Categories page — smaller cards on mobile */
+@media (max-width: 767.98px) {
+  .tp-gem-section .tp-unified-gem-card-image-wrap {
+    min-height: 80px;
+  }
+
+  .tp-gem-section .tp-unified-gem-card-content {
+    padding: 5px 6px;
+  }
+
+  .tp-gem-section .tp-unified-gem-card-title {
+    font-size: 0.72rem;
+  }
+}
+
 /* Global mobile spacing reductions */
 @media (max-width: 767.98px) {
   .pb-80 { padding-bottom: 40px !important; }
@@ -778,6 +830,26 @@ button {
   /* Hide verbose contact text on mobile */
   .tp-footer-contact-verbose {
     display: none !important;
+  }
+
+  /* Fix footer logo cut on mobile — reset negative top margin, force left-align */
+  .tp-footer-unified .col-lg-5,
+  .tp-footer-unified .col-md-6 {
+    text-align: left !important;
+  }
+
+  .tp-footer-unified .col-lg-5 a,
+  .tp-footer-unified .col-md-6 a {
+    display: block !important;
+    text-align: left !important;
+  }
+
+  .tp-footer-unified .col-lg-5 img,
+  .tp-footer-unified .col-md-6 img {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
   }
 }
 

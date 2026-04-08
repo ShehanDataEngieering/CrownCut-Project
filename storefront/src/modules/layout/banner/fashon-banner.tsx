@@ -139,12 +139,6 @@ const FashionBanner = () => {
               max-width: 100% !important;
               line-height: 1.6 !important;
             }
-            .fashion-banner-left .fashion-banner-desc {
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-            }
             .fashion-banner-left a {
               padding: 0.6rem 1.5rem !important;
               font-size: 0.8rem !important;

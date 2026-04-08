@@ -143,15 +143,16 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
                     onClick={() => startPageLoading("/")}
                     aria-busy={isPageLoading}
                   >
-                    <Image
-                      src="/assets/img/logo/crowncut-logonb.png"
-                      alt="logo"
-                      width={120}
-                      height={120}
-                      className="header-logo-img"
-                      style={{ objectFit: "contain" }}
-                      priority
-                    />
+                    <div className="header-logo-sizer">
+                      <Image
+                        src="/assets/img/logo/crowncut-logonb.png"
+                        alt="logo"
+                        fill
+                        className="header-logo-img"
+                        style={{ objectFit: "contain" }}
+                        priority
+                      />
+                    </div>
                   </LocalizedClientLink>
                 </div>
 
@@ -436,15 +437,24 @@ function StickyNav({ regions }: { regions: HttpTypes.StoreRegion[] | null }) {
           }
 
           /* ── Logo ── */
-          .header-logo-img {
+          .header-logo-sizer {
+            position: relative;
             width: 120px;
             height: 120px;
+            flex-shrink: 0;
           }
 
           @media (max-width: 991.98px) {
-            .header-logo-img {
-              width: 56px;
-              height: 56px;
+            .header-logo-sizer {
+              width: 95px;
+              height: 95px;
+            }
+          }
+
+          @media (max-width: 575.98px) {
+            .header-logo-sizer {
+              width: 80px;
+              height: 80px;
             }
           }
 

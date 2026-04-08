@@ -94,32 +94,45 @@ export default function GemstoneCategoriesPage({
 
         @media (max-width: 991.98px) {
           .tp-gem-section {
-            padding-top: 90px;
+            padding-top: 160px;
           }
 
           .tp-gem-grid {
             grid-template-columns: repeat(3, 1fr);
           }
+
+          .tp-gem-header {
+            text-align: left;
+          }
         }
 
         @media (max-width: 767.98px) {
           .tp-gem-section {
-            padding-top: 80px;
+            padding-top: 150px;
           }
 
           .tp-gem-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+          }
+
+          .tp-gem-header {
+            text-align: left;
           }
         }
 
         @media (max-width: 479.98px) {
           .tp-gem-section {
-            padding-top: 72px;
+            padding-top: 140px;
           }
 
           .tp-gem-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
+          }
+
+          .tp-gem-header {
+            text-align: left;
           }
 
           .tp-gem-header h3 {
