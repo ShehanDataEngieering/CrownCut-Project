@@ -320,13 +320,25 @@ button {
 
 .tp-store-theme-title {
   font-family: var(--tp-ff-heading);
-  color: rgb(35, 35, 31);
-  letter-spacing: 0.01em;
+  color: var(--tp-heading-primary);
+  font-weight: 700;
 }
 
 .tp-store-theme-grid,
 .tp-store-theme-list {
   font-family: var(--tp-ff-body);
+}
+
+/* Store card titles — match categories page visual weight */
+.tp-store-theme-grid .tp-unified-gem-card-title,
+.tp-store-theme-list .tp-unified-gem-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.tp-store-theme-grid .tp-unified-gem-card-meta,
+.tp-store-theme-list .tp-unified-gem-card-meta {
+  font-size: 0.78rem;
 }
 
 /* Store product grid — responsive columns matching categories page */
@@ -353,11 +365,11 @@ button {
   }
 
   .tp-store-theme-grid .tp-unified-gem-card-content {
-    padding: 4px 5px;
+    padding: 5px 6px;
   }
 
   .tp-store-theme-grid .tp-unified-gem-card-title {
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     -webkit-line-clamp: unset;
     display: block;
     overflow: visible;
@@ -366,7 +378,7 @@ button {
 
   .tp-store-theme-grid .tp-unified-gem-card-meta,
   .tp-store-theme-grid .tp-unified-gem-card-meta * {
-    font-size: 0.58rem;
+    font-size: 0.62rem;
   }
 }
 
@@ -832,24 +844,18 @@ button {
     display: none !important;
   }
 
-  /* Fix footer logo cut on mobile — reset negative top margin, force left-align */
-  .tp-footer-unified .col-lg-5,
-  .tp-footer-unified .col-md-6 {
-    text-align: left !important;
-  }
-
-  .tp-footer-unified .col-lg-5 a,
-  .tp-footer-unified .col-md-6 a {
-    display: block !important;
-    text-align: left !important;
-  }
-
-  .tp-footer-unified .col-lg-5 img,
-  .tp-footer-unified .col-md-6 img {
+  /* Fix footer logo on mobile — left-align and fix top clip */
+  footer.tp-footer-unified img[alt="Crown Cut Gems"] {
     margin-top: 0 !important;
-    margin-bottom: 0.5rem !important;
     margin-left: 0 !important;
     margin-right: auto !important;
+    display: block !important;
+  }
+
+  footer.tp-footer-unified a:has(img[alt="Crown Cut Gems"]) {
+    display: block !important;
+    text-align: left !important;
+    margin-left: 0 !important;
   }
 }
 

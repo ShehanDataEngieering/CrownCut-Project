@@ -46,7 +46,7 @@ const StoreTemplate = ({
         <div className="col-12 col-lg-9">
           {/* Heading above products column */}
           <div className="mb-3 tp-page-heading d-flex align-items-center justify-content-between">
-            <h1 className="h2 tp-store-theme-title mb-0" data-testid="store-page-title">All products</h1>
+            <h1 className="h3 tp-store-theme-title mb-0" data-testid="store-page-title">All products</h1>
           </div>
 
           {/* Mobile filter bar — hidden on desktop */}

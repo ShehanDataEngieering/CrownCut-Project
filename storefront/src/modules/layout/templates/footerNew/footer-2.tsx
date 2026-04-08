@@ -38,21 +38,55 @@ const FooterTwo = () => {
       className="tp-footer-unified"
       style={{ backgroundColor: "#F5F5F5", borderTop: "1px solid rgba(0,0,0,0.08)" }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .footer-brand-col {
+            text-align: center;
+          }
+          .footer-logo-wrapper {
+            display: flex;
+            justify-content: center;
+          }
+          .footer-brand-col p {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .footer-links-col {
+            text-align: center;
+          }
+          .footer-follow-col {
+            text-align: center;
+          }
+          .footer-social-icons {
+            justify-content: center !important;
+          }
+          .footer-bottom-copy {
+            text-align: center;
+          }
+          .footer-bottom-pay {
+            text-align: center;
+            margin-top: 0.5rem;
+          }
+        }
+      `}</style>
+
       {/* Main footer */}
       <div className="container" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
         <div className="row g-4 align-items-start">
 
           {/* Brand + Contact */}
-          <div className="col-lg-5 col-md-6" style={{ paddingTop: "0.15rem" }}>
-            <LocalizedClientLink href="/">
-              <Image
-                src="/assets/img/logo/crowncut-logonb.png"
-                alt="Crown Cut Gems"
-                width={180}
-                height={180}
-                style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem", marginTop: "-2rem" }}
-              />
-            </LocalizedClientLink>
+          <div className="col-lg-5 col-md-6 footer-brand-col" style={{ paddingTop: "0.15rem" }}>
+            <div className="footer-logo-wrapper">
+              <LocalizedClientLink href="/" style={{ display: "inline-block" }}>
+                <Image
+                  src="/assets/img/logo/crowncut-logonb.png"
+                  alt="Crown Cut Gems"
+                  width={180}
+                  height={180}
+                  style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem", marginTop: "-2rem" }}
+                />
+              </LocalizedClientLink>
+            </div>
             <p style={{ fontSize: "0.95rem", color: "#555", marginBottom: "0.75rem", maxWidth: 300 }}>
               Fine gems and jewelry curated for brilliance and everyday elegance.
             </p>
@@ -81,7 +115,7 @@ const FooterTwo = () => {
           </div>
 
           {/* Links */}
-          <div className="col-lg-3 col-md-3 col-6" style={{ paddingTop: "1rem" }}>
+          <div className="col-lg-3 col-md-3 col-6 footer-links-col" style={{ paddingTop: "1rem" }}>
             <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Information</h6>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "0.95rem", lineHeight: 2.4 }}>
               <li><LocalizedClientLink href="/our-story" style={{ color: "#555", textDecoration: "none" }}>Our Story</LocalizedClientLink></li>
@@ -92,9 +126,9 @@ const FooterTwo = () => {
           </div>
 
           {/* Follow + Subscribe */}
-          <div className="col-lg-4 col-md-3 col-6" style={{ paddingTop: "1rem" }}>
+          <div className="col-lg-4 col-md-3 col-6 footer-follow-col" style={{ paddingTop: "1rem" }}>
             <h6 style={{ fontWeight: 700, marginBottom: "1rem", fontSize: "1rem", letterSpacing: "0.02em" }}>Follow Us</h6>
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+            <div className="footer-social-icons" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
               {social_data.map((s) => (
                 <a
                   key={s.id}
@@ -132,12 +166,12 @@ const FooterTwo = () => {
       <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)", padding: "0.9rem 0", background: "#efefef" }}>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6">
+            <div className="col-md-6 footer-bottom-copy">
               <p style={{ margin: 0, fontSize: "0.78rem", color: "#666" }}>
                 © {new Date().getFullYear()} Crown Cut Gems. All rights reserved.
               </p>
             </div>
-            <div className="col-md-6 text-md-end mt-2 mt-md-0">
+            <div className="col-md-6 text-md-end mt-2 mt-md-0 footer-bottom-pay">
               <Image src={pay} alt="payment methods" height={20} width={pay.width} style={{ width: "auto", maxWidth: "100%", opacity: 0.7 }} />
             </div>
           </div>
