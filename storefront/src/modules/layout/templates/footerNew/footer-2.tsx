@@ -97,8 +97,8 @@ const FooterTwo = () => {
                 </a>
               </div>
               <div>
-                <a href="mailto:crowncutgems@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>
-                  crowncutgems@gmail.com
+                <a href="mailto:info@crowncutgems.com" style={{ color: "inherit", textDecoration: "none" }}>
+                  info@crowncutgems.com
                 </a>
               </div>
               <div>
