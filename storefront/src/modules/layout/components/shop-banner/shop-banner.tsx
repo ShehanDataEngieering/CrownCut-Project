@@ -132,6 +132,13 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
 }) => {
   return (
     <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 991px) {
+          .shop-banner-girl-col {
+            margin-top: 24px !important;
+          }
+        }
+      `}} />
       <section className="tp-banner-area">
         <div className="container">
           <div className="row">
@@ -178,7 +185,7 @@ const ShopBanner: React.FC<{ categories: GemstoneCategory[] }> = ({
                 </div>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-5">
+            <div className="col-xl-6 col-lg-5 shop-banner-girl-col">
               <div className="tp-banner-full tp-banner-full-height fix p-relative z-index-1">
                 <div
                   className="tp-banner-full-thumb include-bg black-bg transition-3"
