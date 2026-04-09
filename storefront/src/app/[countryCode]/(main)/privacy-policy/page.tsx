@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
                       label: "Address",
                       text: "Studiegången 8, Lgh 1103, 416 81 Göteborg, Sweden",
                     },
-                    { label: "Contact Email", text: "crowncutgems@gmail.com" },
+                    { label: "Contact Email", text: "info@crowncutgems.com" },
                   ]}
                 />
               </Section>
