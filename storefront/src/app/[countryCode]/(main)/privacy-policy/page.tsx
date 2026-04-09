@@ -270,7 +270,7 @@ export default function PrivacyPolicyPage() {
                     },
                     {
                       label: "Kontakt-e-postadress",
-                      text: "crowncutgems@gmail.com",
+                      text: "info@crowncutgems.com",
                     },
                   ]}
                 />
