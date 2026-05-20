@@ -2,7 +2,7 @@ import { Metadata } from "next"
 
 import { getBaseURL } from "@lib/util/env"
 
-export const SITE_NAME = "Crown Cut Gems"
+export const SITE_NAME = "Crowncut Gems International AB"
 export const SITE_DESCRIPTION = "Fine gems and jewelry curated for brilliance and everyday elegance."
 
 export const getSiteUrl = () => new URL(getBaseURL())

@@ -4,7 +4,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export const metadata: Metadata = {
   title: "Our Story",
   description:
-    "Born from a deep-seated passion for the natural artistry of the earth, Crowncut Gems International believes true luxury lies in purity and provenance.",
+    "Born from a deep-seated passion for the natural artistry of the earth, Crowncut Gems International AB believes true luxury lies in purity and provenance.",
 }
 
 export default function OurStoryPage() {
@@ -25,7 +25,7 @@ export default function OurStoryPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                Crowncut Gems International
+                Crowncut Gems International AB
               </p>
               <h1
                 style={{
@@ -62,9 +62,9 @@ export default function OurStoryPage() {
               <p style={{ marginBottom: 0 }}>
                 Born from a deep-seated passion for the natural artistry of the
                 earth,{" "}
-                <strong>Crowncut Gems International</strong> believes true luxury
+                <strong>Crowncut Gems International AB</strong> believes true luxury
                 lies in purity and provenance. Founded by{" "}
-                <strong>Bawantha Ravinath Perera</strong> in the heart of
+                <strong>Prasantha Perera (Niki)</strong> in the heart of
                 Gothenburg, our house is defined by a rare distinction:{" "}
                 <strong>we are the source.</strong> By eliminating the
                 intermediary, we ensure every stone travels directly from the

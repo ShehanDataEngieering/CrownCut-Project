@@ -3,7 +3,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Terms & Conditions",
   description:
-    "Terms and Conditions for purchases made via the Crowncut Gems International website.",
+    "Terms and Conditions for purchases made via the Crowncut Gems International AB website.",
 }
 
 const Section = ({
@@ -66,7 +66,7 @@ export default function TermsAndConditionsPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                Crowncut Gems International
+                Crowncut Gems International AB
               </p>
               <h1
                 style={{
@@ -118,7 +118,7 @@ export default function TermsAndConditionsPage() {
                 </p>
                 <BulletList
                   items={[
-                    { label: "Company", text: "Crowncut Gems International" },
+                    { label: "Company", text: "Crowncut Gems International AB" },
                     {
                       label: "Location",
                       text: "Studiegången 8, 416 81 Göteborg, Sweden",
@@ -187,7 +187,7 @@ export default function TermsAndConditionsPage() {
               </Section>
 
               <Section number="6" title="Limitation of Liability">
-                Crowncut Gems International is not liable for indirect damages or
+                Crowncut Gems International AB is not liable for indirect damages or
                 delays caused by circumstances beyond our control (Force Majeure),
                 such as postal strikes or customs delays.
               </Section>
@@ -263,7 +263,7 @@ export default function TermsAndConditionsPage() {
                 </p>
                 <BulletList
                   items={[
-                    { label: "Företag", text: "Crowncut Gems International" },
+                    { label: "Företag", text: "Crowncut Gems International AB" },
                     {
                       label: "Adress",
                       text: "Studiegången 8, 416 81 Göteborg, Sverige",
@@ -334,7 +334,7 @@ export default function TermsAndConditionsPage() {
               </Section>
 
               <Section number="6" title="Ansvarsbegränsning">
-                Crowncut Gems International ansvarar inte för indirekta skador
+                Crowncut Gems International AB ansvarar inte för indirekta skador
                 eller förseningar som beror på omständigheter utanför vår
                 kontroll (Force Majeure), såsom poststrejker eller
                 tullförseningar.

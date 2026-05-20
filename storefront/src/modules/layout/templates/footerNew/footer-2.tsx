@@ -80,7 +80,7 @@ const FooterTwo = () => {
               <LocalizedClientLink href="/" style={{ display: "inline-block" }}>
                 <Image
                   src="/assets/img/logo/crowncut-logonb.png"
-                  alt="Crown Cut Gems"
+                  alt="Crowncut Gems International AB"
                   width={180}
                   height={180}
                   style={{ objectFit: "contain", display: "block", marginBottom: "-1.5rem", marginTop: "-2rem" }}
@@ -168,7 +168,7 @@ const FooterTwo = () => {
           <div className="row align-items-center">
             <div className="col-md-6 footer-bottom-copy">
               <p style={{ margin: 0, fontSize: "0.78rem", color: "#666" }}>
-                © {new Date().getFullYear()} Crown Cut Gems. All rights reserved.
+                © {new Date().getFullYear()} Crowncut Gems International AB. All rights reserved.
               </p>
             </div>
             <div className="col-md-6 text-md-end mt-2 mt-md-0 footer-bottom-pay">

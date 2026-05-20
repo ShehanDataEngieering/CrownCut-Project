@@ -3,7 +3,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy Policy for Crowncut Gems International — how we collect, use, and protect your personal data under GDPR.",
+    "Privacy Policy for Crowncut Gems International AB — how we collect, use, and protect your personal data under GDPR.",
 }
 
 const Section = ({
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
                   marginBottom: "0.75rem",
                 }}
               >
-                Crowncut Gems International
+                Crowncut Gems International AB
               </p>
               <h1
                 style={{
@@ -106,12 +106,12 @@ export default function PrivacyPolicyPage() {
             >
               <Section number="1" title="Data Controller">
                 <p style={{ marginBottom: "0.5rem" }}>
-                  Crowncut Gems International is the data controller responsible
+                  Crowncut Gems International AB is the data controller responsible
                   for your personal data.
                 </p>
                 <BulletList
                   items={[
-                    { label: "Company Name", text: "Crowncut Gems International" },
+                    { label: "Company Name", text: "Crowncut Gems International AB" },
                     { label: "Registration Number", text: "19950107-5577" },
                     {
                       label: "Address",
@@ -257,12 +257,12 @@ export default function PrivacyPolicyPage() {
             >
               <Section number="1" title="Personuppgiftsansvarig">
                 <p>
-                  Crowncut Gems International är personuppgiftsansvarig för dina
+                  Crowncut Gems International AB är personuppgiftsansvarig för dina
                   personuppgifter.
                 </p>
                 <BulletList
                   items={[
-                    { label: "Företagsnamn", text: "Crowncut Gems International" },
+                    { label: "Företagsnamn", text: "Crowncut Gems International AB" },
                     { label: "Registreringsnummer", text: "19950107-5577" },
                     {
                       label: "Adress",
